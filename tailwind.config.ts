@@ -8,8 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        lexend: ['Lexend', 'sans-serif'],
+      },
       colors: {
-        'mf-chalk': '#F8F9FA',
+        'mf-chalk': '#F8F6F3',
         'mf-light-grey': '#F4F4F4',
         'mf-ash': '#192B32',
         'mf-red': '#dd083a',
