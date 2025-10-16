@@ -1,5 +1,6 @@
 import { client } from '../sanity/client';
 import { HomepageData } from '../types/homepage';
+import { AboutPageData } from '../types/about';
 
 export async function getHomepageData(): Promise<HomepageData | null> {
   try {
@@ -68,6 +69,88 @@ export async function getHomepageData(): Promise<HomepageData | null> {
     return data;
   } catch (error) {
     console.error('Error fetching homepage data:', error);
+    return null;
+  }
+}
+
+export async function getAboutPageData(): Promise<AboutPageData | null> {
+  try {
+    const query = `*[_type == "aboutPage"][0] {
+      _id,
+      _type,
+      title,
+      headerHeadline,
+      headerSubheadline,
+      whoWeAreTitle,
+      whoWeAre,
+      missionTitle,
+      mission,
+      approachTitle,
+      approach[] {
+        _key,
+        title,
+        description
+      },
+      teamTitle,
+      team,
+      advisoryBoardTitle,
+      advisoryBoard[] {
+        _key,
+        _type,
+        name,
+        logo {
+          asset-> {
+            _ref,
+            url
+          },
+          alt
+        },
+        url
+      },
+      listenAppPartnersTitle,
+      listenAppPartners[] {
+        _key,
+        _type,
+        name,
+        logo {
+          asset-> {
+            _ref,
+            url
+          },
+          alt
+        },
+        url
+      },
+      specialThanksTitle,
+      specialThanks[] {
+        _key,
+        _type,
+        name,
+        logo {
+          asset-> {
+            _ref,
+            url
+          },
+          alt
+        },
+        url
+      },
+      seo {
+        title,
+        description,
+        keywords,
+        ogImage {
+          asset-> {
+            url
+          }
+        }
+      }
+    }`;
+
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error('Error fetching about page data:', error);
     return null;
   }
 }

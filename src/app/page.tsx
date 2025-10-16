@@ -1,6 +1,7 @@
 import { getHomepageData } from './lib/sanity';
 import { renderBlockContent } from './utils/sanity';
 import { HomepageData } from './types/homepage';
+import Link from 'next/link';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -34,6 +35,11 @@ export default async function Home() {
 
   return (
     <div>
+      {/* Navigation */}
+      <nav>
+        <Link href='/'>Home</Link> | <Link href='/about'>About</Link>
+      </nav>
+
       {/* Header Section */}
       <header>
         <h1>{headerHeadline}</h1>
