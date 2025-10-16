@@ -94,26 +94,31 @@ export default async function AboutPage() {
           <div>
             {advisoryBoard.map((member) => (
               <div key={member._key}>
-                {member.logo && (
+                {member.logo ? (
+                  <a
+                    href={member.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Image
+                      src={member.logo.asset.url}
+                      alt={member.logo.alt || member.name}
+                      width={200}
+                      height={100}
+                    />
+                  </a>
+                ) : (
                   <div>
+                    <h3>{member.name}</h3>
                     <a
                       href={member.url}
                       target='_blank'
                       rel='noopener noreferrer'
                     >
-                      <Image
-                        src={member.logo.asset.url}
-                        alt={member.logo.alt || member.name}
-                        width={200}
-                        height={100}
-                      />
+                      Visit Website
                     </a>
                   </div>
                 )}
-                <h3>{member.name}</h3>
-                <a href={member.url} target='_blank' rel='noopener noreferrer'>
-                  Visit Website
-                </a>
               </div>
             ))}
           </div>
@@ -127,26 +132,31 @@ export default async function AboutPage() {
           <div>
             {listenAppPartners.map((partner) => (
               <div key={partner._key}>
-                {partner.logo && (
+                {partner.logo ? (
+                  <a
+                    href={partner.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Image
+                      src={partner.logo.asset.url}
+                      alt={partner.logo.alt || partner.name}
+                      width={200}
+                      height={100}
+                    />
+                  </a>
+                ) : (
                   <div>
+                    <h3>{partner.name}</h3>
                     <a
                       href={partner.url}
                       target='_blank'
                       rel='noopener noreferrer'
                     >
-                      <Image
-                        src={partner.logo.asset.url}
-                        alt={partner.logo.alt || partner.name}
-                        width={200}
-                        height={100}
-                      />
+                      Visit Website
                     </a>
                   </div>
                 )}
-                <h3>{partner.name}</h3>
-                <a href={partner.url} target='_blank' rel='noopener noreferrer'>
-                  Visit Website
-                </a>
               </div>
             ))}
           </div>
@@ -160,26 +170,31 @@ export default async function AboutPage() {
           <div>
             {specialThanks.map((thanks) => (
               <div key={thanks._key}>
-                {thanks.logo && (
+                {thanks.logo ? (
+                  <a
+                    href={thanks.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Image
+                      src={thanks.logo.asset.url}
+                      alt={thanks.logo.alt || thanks.name}
+                      width={200}
+                      height={100}
+                    />
+                  </a>
+                ) : (
                   <div>
+                    <h3>{thanks.name}</h3>
                     <a
                       href={thanks.url}
                       target='_blank'
                       rel='noopener noreferrer'
                     >
-                      <Image
-                        src={thanks.logo.asset.url}
-                        alt={thanks.logo.alt || thanks.name}
-                        width={200}
-                        height={100}
-                      />
+                      Visit Website
                     </a>
                   </div>
                 )}
-                <h3>{thanks.name}</h3>
-                <a href={thanks.url} target='_blank' rel='noopener noreferrer'>
-                  Visit Website
-                </a>
               </div>
             ))}
           </div>
