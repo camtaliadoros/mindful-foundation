@@ -3,6 +3,8 @@ import { HomepageData } from '../types/homepage';
 import { AboutPageData } from '../types/about';
 import { ThinkDifferentPageData } from '../types/thinkDifferent';
 import { ListenAppPageData } from '../types/listenApp';
+import { PerpetratorProgrammePageData } from '../types/perpetratorProgramme';
+import { BlogPost, BlogPageData } from '../types/blog';
 
 export async function getHomepageData(): Promise<HomepageData | null> {
   try {
@@ -297,6 +299,171 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
     return data;
   } catch (error) {
     console.error('Error fetching ListenApp page data:', error);
+    return null;
+  }
+}
+
+export async function getPerpetratorProgrammePageData(): Promise<PerpetratorProgrammePageData | null> {
+  try {
+    const query = `*[_type == "perpetratorProgrammePage"][0] {
+      _id,
+      _type,
+      title,
+      headerHeadline,
+      headerSubheadline,
+      whyItsNeededTitle,
+      whyItsNeeded,
+      ourApproachTitle,
+      ourApproach,
+      whatTheProgrammeProvidesTitle,
+      whatTheProgrammeProvides[] {
+        _key,
+        title
+      },
+      outcomesTitle,
+      outcomes,
+      expansionTitle,
+      expansion,
+      callToActionTitle,
+      primaryCta {
+        _key,
+        label,
+        actionType,
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      seo {
+        title,
+        description,
+        keywords,
+        ogImage
+      }
+    }`;
+
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error('Error fetching Perpetrator Programme page data:', error);
+    return null;
+  }
+}
+
+export async function getBlogPageData(): Promise<BlogPageData | null> {
+  try {
+    const query = `*[_type == "blogPage"][0] {
+      _id,
+      _type,
+      title,
+      headerHeadline,
+      headerSubheadline,
+      seo {
+        title,
+        description,
+        keywords,
+        ogImage
+      }
+    }`;
+
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error('Error fetching blog page data:', error);
+    return null;
+  }
+}
+
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
+  try {
+    const query = `*[_type == "blogPost"] | order(publishedAt desc) {
+      _id,
+      _type,
+      title,
+      headline,
+      subheadline,
+      featuredImage {
+        asset-> {
+          url
+        },
+        alt,
+        caption
+      },
+      slug,
+      publishedAt,
+      excerpt
+    }`;
+
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+}
+
+export async function getBlogPostBySlug(
+  slug: string
+): Promise<BlogPost | null> {
+  try {
+    const query = `*[_type == "blogPost" && slug.current == $slug][0] {
+      _id,
+      _type,
+      title,
+      headline,
+      subheadline,
+      featuredImage {
+        asset-> {
+          url
+        },
+        alt,
+        caption
+      },
+      slug,
+      publishedAt,
+      excerpt,
+      contentBlocks[] {
+        _key,
+        content,
+        image {
+          asset-> {
+            url
+          },
+          alt,
+          caption
+        }
+      },
+      cta {
+        _key,
+        label,
+        actionType,
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      seo {
+        title,
+        description,
+        keywords,
+        ogImage
+      }
+    }`;
+
+    const data = await client.fetch(query, { slug });
+    return data;
+  } catch (error) {
+    console.error('Error fetching blog post:', error);
     return null;
   }
 }

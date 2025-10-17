@@ -38,6 +38,9 @@ export default function Header() {
         >
           Perpetrator Programme
         </Link>
+        <Link href='/blog' className='hover:text-mf-green transition-colors'>
+          News
+        </Link>
         <button className='bg-mf-green text-ash px-6 py-2 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium'>
           Donate
         </button>

@@ -1,0 +1,141 @@
+import { getPerpetratorProgrammePageData } from '../lib/sanity';
+import { renderBlockContent } from '../utils/sanity';
+import { CTAButton } from '../utils/cta';
+import Header from '../components/Header';
+import { ProgrammeFeature } from '../types/perpetratorProgramme';
+
+export default async function PerpetratorProgrammePage() {
+  const perpetratorData = await getPerpetratorProgrammePageData();
+
+  if (!perpetratorData) {
+    return (
+      <div className='min-h-screen bg-chalk'>
+        <Header />
+        <div className='max-w-4xl mx-auto px-6 py-16 text-center'>
+          <h1 className='text-3xl font-bold text-mf-blue mb-4'>
+            Page Not Found
+          </h1>
+          <p className='text-gray-600'>
+            The Perpetrator Programme page content could not be loaded.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const {
+    headerHeadline,
+    headerSubheadline,
+    whyItsNeededTitle,
+    whyItsNeeded,
+    ourApproachTitle,
+    ourApproach,
+    whatTheProgrammeProvidesTitle,
+    whatTheProgrammeProvides,
+    outcomesTitle,
+    outcomes,
+    expansionTitle,
+    expansion,
+    callToActionTitle,
+    primaryCta,
+  } = perpetratorData;
+
+  return (
+    <div className='min-h-screen bg-chalk'>
+      <Header />
+
+      {/* Header Section */}
+      <section className='bg-mf-blue text-chalk py-16 px-6'>
+        <div className='max-w-4xl mx-auto text-center'>
+          <h1 className='text-4xl md:text-5xl font-bold mb-4 font-grotesk-medium'>
+            {headerHeadline}
+          </h1>
+          <p className='text-xl md:text-2xl text-mf-green font-grotesk-regular'>
+            {headerSubheadline}
+          </p>
+        </div>
+      </section>
+
+      {/* Why It's Needed Section */}
+      <section className='py-16 px-6'>
+        <div className='max-w-4xl mx-auto'>
+          <h2 className='text-3xl font-bold text-mf-blue mb-8 font-grotesk-medium'>
+            {whyItsNeededTitle}
+          </h2>
+          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+            {renderBlockContent(whyItsNeeded)}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Approach Section */}
+      <section className='bg-[#f8f5ed] py-16 px-6'>
+        <div className='max-w-4xl mx-auto'>
+          <h2 className='text-3xl font-bold text-mf-blue mb-8 font-grotesk-medium'>
+            {ourApproachTitle}
+          </h2>
+          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+            {renderBlockContent(ourApproach)}
+          </div>
+        </div>
+      </section>
+
+      {/* What the Programme Provides Section */}
+      <section className='py-16 px-6'>
+        <div className='max-w-4xl mx-auto'>
+          <h2 className='text-3xl font-bold text-mf-blue mb-12 text-center font-grotesk-medium'>
+            {whatTheProgrammeProvidesTitle}
+          </h2>
+          <div className='grid md:grid-cols-2 gap-8'>
+            {whatTheProgrammeProvides?.map((feature: ProgrammeFeature) => (
+              <div
+                key={feature._key}
+                className='bg-white p-6 rounded-lg shadow-sm border border-gray-200'
+              >
+                <h3 className='text-xl font-semibold text-mf-blue font-grotesk-medium'>
+                  {feature.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Outcomes Section */}
+      <section className='bg-[#f8f5ed] py-16 px-6'>
+        <div className='max-w-4xl mx-auto'>
+          <h2 className='text-3xl font-bold text-mf-blue mb-8 font-grotesk-medium'>
+            {outcomesTitle}
+          </h2>
+          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+            {renderBlockContent(outcomes)}
+          </div>
+        </div>
+      </section>
+
+      {/* Expansion Section */}
+      <section className='py-16 px-6'>
+        <div className='max-w-4xl mx-auto'>
+          <h2 className='text-3xl font-bold text-mf-blue mb-8 font-grotesk-medium'>
+            {expansionTitle}
+          </h2>
+          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+            {renderBlockContent(expansion)}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className='bg-mf-blue text-chalk py-16 px-6'>
+        <div className='max-w-4xl mx-auto text-center'>
+          <h2 className='text-3xl font-bold mb-8 font-grotesk-medium'>
+            {callToActionTitle}
+          </h2>
+          <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+            {primaryCta && <CTAButton cta={primaryCta} />}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
