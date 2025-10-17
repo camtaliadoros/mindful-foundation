@@ -26,7 +26,15 @@ export interface Testimonial {
 export interface CTA {
   _key: string;
   label: string;
-  href: string;
+  actionType: 'url' | 'email' | 'pdf';
+  href?: string;
+  email?: string;
+  pdf?: {
+    asset: {
+      url: string;
+      originalFilename?: string;
+    };
+  };
   style: 'primary' | 'secondary' | 'link';
 }
 
@@ -68,12 +76,6 @@ export interface HomepageData {
   callToActionTitle?: string;
   primaryCta?: CTA;
   secondaryCta?: CTA;
-  infoPack?: {
-    asset: {
-      url: string;
-    };
-    originalFilename?: string;
-  };
   seo?: {
     title?: string;
     description?: string;

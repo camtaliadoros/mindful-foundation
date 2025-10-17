@@ -1,6 +1,7 @@
 import { client } from '../sanity/client';
 import { HomepageData } from '../types/homepage';
 import { AboutPageData } from '../types/about';
+import { ThinkDifferentPageData } from '../types/thinkDifferent';
 
 export async function getHomepageData(): Promise<HomepageData | null> {
   try {
@@ -42,20 +43,30 @@ export async function getHomepageData(): Promise<HomepageData | null> {
       primaryCta {
         _key,
         label,
+        actionType,
         href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
         style
       },
       secondaryCta {
         _key,
         label,
+        actionType,
         href,
-        style
-      },
-      infoPack {
-        asset-> {
-          url
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
         },
-        originalFilename
+        style
       },
       seo {
         title,
@@ -151,6 +162,75 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
     return data;
   } catch (error) {
     console.error('Error fetching about page data:', error);
+    return null;
+  }
+}
+
+export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageData | null> {
+  try {
+    const query = `*[_type == "thinkDifferentPage"][0] {
+      _id,
+      _type,
+      title,
+      missionStatement,
+      overviewHeadline,
+      overview,
+      whyDifferentTitle,
+      whyDifferentDescription,
+      whyDifferentApproachesTitle,
+      whyDifferentApproaches,
+      courseStructureTitle,
+      courseStructureDescription,
+      modulesTitle,
+      modules[] {
+        _key,
+        title,
+        description
+      },
+      courseAimsTitle,
+      courseAims,
+      impactTitle,
+      impactDescription,
+      impactOutcomes,
+      impactStories,
+      trainingTitle,
+      trainingDescription,
+      trainingCoversTitle,
+      trainingCovers,
+      trainingParticipantsReceiveTitle,
+      trainingParticipantsReceive,
+      trainingDelivery,
+      ctaTitle,
+      ctaButtons[] {
+        _key,
+        label,
+        actionType,
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      seo {
+        title,
+        description,
+        keywords,
+        ogImage {
+          asset-> {
+            url
+          }
+        }
+      }
+    }`;
+
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error('Error fetching Think Different page data:', error);
     return null;
   }
 }

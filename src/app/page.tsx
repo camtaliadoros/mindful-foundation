@@ -7,6 +7,7 @@ import {
   ListenAppIcon,
   PerpetratorProgrammeIcon,
 } from './components/Icons';
+import { CTAButton } from './utils/cta';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -35,7 +36,6 @@ export default async function Home() {
     callToActionTitle,
     primaryCta,
     secondaryCta,
-    infoPack,
   } = homepageData;
 
   // Get the three core strands
@@ -190,31 +190,8 @@ export default async function Home() {
             {callToActionTitle || 'Together, we can build safer futures.'}
           </h2>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-            {primaryCta && (
-              <a
-                href={primaryCta.href}
-                className='bg-mf-green text-ash px-8 py-3 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium'
-              >
-                {primaryCta.label}
-              </a>
-            )}
-            {secondaryCta && (
-              <a
-                href={secondaryCta.href}
-                className='border-2 border-mf-blue text-mf-blue px-8 py-3 rounded-md hover:bg-mf-blue hover:text-chalk transition-all font-grotesk-medium'
-              >
-                {secondaryCta.label}
-              </a>
-            )}
-            {infoPack && (
-              <a
-                href={infoPack.asset.url}
-                download
-                className='border-2 border-mf-green text-mf-green px-8 py-3 rounded-md hover:bg-mf-green hover:text-ash transition-all font-grotesk-medium'
-              >
-                Download Info Pack
-              </a>
-            )}
+            {primaryCta && <CTAButton cta={primaryCta} />}
+            {secondaryCta && <CTAButton cta={secondaryCta} />}
           </div>
         </div>
       </section>
