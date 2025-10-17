@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import HeaderLink from './HeaderLink';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,31 +26,14 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className='hidden md:flex items-center space-x-8'>
-          <Link href='/about' className='hover:text-mf-green transition-colors'>
-            About
-          </Link>
-          <Link
-            href='/think-different'
-            className='hover:text-mf-green transition-colors'
-          >
-            Think Different
-          </Link>
-          <Link
-            href='/listen-app'
-            className='hover:text-mf-green transition-colors'
-          >
-            ListenApp
-          </Link>
-          <Link
-            href='/perpetrator-programme'
-            className='hover:text-mf-green transition-colors'
-          >
+        <nav className='hidden md:flex items-center space-x-8 [&>a]:mb-0'>
+          <HeaderLink href='/about'>About</HeaderLink>
+          <HeaderLink href='/think-different'>Think Different</HeaderLink>
+          <HeaderLink href='/listen-app'>ListenApp</HeaderLink>
+          <HeaderLink href='/perpetrator-programme'>
             Perpetrator Programme
-          </Link>
-          <Link href='/news' className='hover:text-mf-green transition-colors'>
-            News
-          </Link>
+          </HeaderLink>
+          <HeaderLink href='/news'>News</HeaderLink>
           <button className='bg-mf-green text-ash px-6 py-2 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium'>
             Donate
           </button>
