@@ -1,49 +1,137 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Header() {
-  return (
-    <header className='bg-mf-blue text-chalk px-6 py-4 flex items-center justify-between font-grotesk-regular'>
-      {/* Logo */}
-      <Link href='/' className='flex items-center space-x-3'>
-        <Image
-          src='/Mindful Foundation logo.jpeg'
-          alt='The Mindful Foundation'
-          width={240}
-          height={80}
-          className='h-16 w-auto'
-        />
-      </Link>
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
-      {/* Navigation */}
-      <nav className='flex items-center space-x-8'>
-        <Link href='/about' className='hover:text-mf-green transition-colors'>
-          About
+  return (
+    <header className='bg-mf-blue text-chalk px-6 py-4 font-grotesk-regular sticky top-0 z-50'>
+      <div className='flex items-center justify-between'>
+        {/* Logo */}
+        <Link href='/' className='flex items-center space-x-3'>
+          <Image
+            src='/Mindful Foundation logo.jpeg'
+            alt='The Mindful Foundation'
+            width={240}
+            height={80}
+            className='h-16 w-auto'
+          />
         </Link>
-        <Link
-          href='/think-different'
-          className='hover:text-mf-green transition-colors'
+
+        {/* Desktop Navigation */}
+        <nav className='hidden md:flex items-center space-x-8'>
+          <Link href='/about' className='hover:text-mf-green transition-colors'>
+            About
+          </Link>
+          <Link
+            href='/think-different'
+            className='hover:text-mf-green transition-colors'
+          >
+            Think Different
+          </Link>
+          <Link
+            href='/listen-app'
+            className='hover:text-mf-green transition-colors'
+          >
+            ListenApp
+          </Link>
+          <Link
+            href='/perpetrator-programme'
+            className='hover:text-mf-green transition-colors'
+          >
+            Perpetrator Programme
+          </Link>
+          <Link href='/news' className='hover:text-mf-green transition-colors'>
+            News
+          </Link>
+          <button className='bg-mf-green text-ash px-6 py-2 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium'>
+            Donate
+          </button>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={toggleMobileMenu}
+          className='md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1'
+          aria-label='Toggle mobile menu'
         >
-          Think Different
-        </Link>
-        <Link
-          href='/listen-app'
-          className='hover:text-mf-green transition-colors'
-        >
-          ListenApp
-        </Link>
-        <Link
-          href='/perpetrator-programme'
-          className='hover:text-mf-green transition-colors'
-        >
-          Perpetrator Programme
-        </Link>
-        <Link href='/news' className='hover:text-mf-green transition-colors'>
-          News
-        </Link>
-        <button className='bg-mf-green text-ash px-6 py-2 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium'>
-          Donate
+          <span
+            className={`block w-6 h-0.5 bg-chalk transition-all duration-300 ${
+              isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
+            }`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-chalk transition-all duration-300 ${
+              isMobileMenuOpen ? 'opacity-0' : ''
+            }`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-chalk transition-all duration-300 ${
+              isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
+            }`}
+          />
         </button>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      <nav
+        className={`md:hidden fixed inset-0 top-[73px] bg-mf-blue transition-all duration-300 ${
+          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+      >
+        <div className='flex flex-col h-full'>
+          {/* Navigation Links */}
+          <div className='flex-1 px-6 py-8 space-y-6'>
+            <Link
+              href='/about'
+              className='block text-xl hover:text-mf-green transition-colors py-3'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href='/think-different'
+              className='block text-xl hover:text-mf-green transition-colors py-3'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Think Different
+            </Link>
+            <Link
+              href='/listen-app'
+              className='block text-xl hover:text-mf-green transition-colors py-3'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ListenApp
+            </Link>
+            <Link
+              href='/perpetrator-programme'
+              className='block text-xl hover:text-mf-green transition-colors py-3'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Perpetrator Programme
+            </Link>
+            <Link
+              href='/news'
+              className='block text-xl hover:text-mf-green transition-colors py-3'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              News
+            </Link>
+          </div>
+
+          {/* Donate Button - Anchored to Bottom */}
+          <div className='px-6 py-6 border-t border-mf-green/20'>
+            <button className='w-full bg-mf-green text-ash px-6 py-4 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium text-lg'>
+              Donate
+            </button>
+          </div>
+        </div>
       </nav>
     </header>
   );
