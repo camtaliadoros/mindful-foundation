@@ -2,7 +2,7 @@ import { getAboutPageData } from '../lib/sanity';
 import { renderBlockContent } from '../utils/sanity';
 import { AboutPageData } from '../types/about';
 import Image from 'next/image';
-import Link from 'next/link';
+import Header from '../components/Header';
 
 export default async function AboutPage() {
   const aboutPageData: AboutPageData | null = await getAboutPageData();
@@ -36,167 +36,218 @@ export default async function AboutPage() {
   } = aboutPageData;
 
   return (
-    <div>
-      {/* Navigation */}
-      <nav>
-        <Link href='/'>Home</Link> | <Link href='/about'>About</Link>
-      </nav>
+    <div className='min-h-screen'>
+      {/* Header */}
+      <Header />
 
       {/* Header Section */}
-      <header>
-        <h1>{headerHeadline}</h1>
-        <p>{headerSubheadline}</p>
-      </header>
+      <section className='bg-chalk py-16 px-6'>
+        <div className='max-w-4xl mx-auto text-center'>
+          <h1 className='text-4xl md:text-5xl font-bold text-gray-800 mb-4'>
+            {headerHeadline}
+          </h1>
+          <p className='text-xl text-gray-600'>{headerSubheadline}</p>
+        </div>
+      </section>
 
       {/* Who We Are Section */}
       {whoWeAre && (
-        <section>
-          <h2>{whoWeAreTitle || 'Who We Are'}</h2>
-          {renderBlockContent(whoWeAre)}
+        <section className='bg-white py-16 px-6'>
+          <div className='max-w-4xl mx-auto'>
+            <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
+              {whoWeAreTitle || 'Who We Are'}
+            </h2>
+            <div className='prose prose-lg max-w-none'>
+              {renderBlockContent(whoWeAre)}
+            </div>
+          </div>
         </section>
       )}
 
       {/* Mission Section */}
       {mission && (
-        <section>
-          <h2>{missionTitle || 'Our Mission'}</h2>
-          <p>{mission}</p>
+        <section className='bg-chalk py-16 px-6'>
+          <div className='max-w-4xl mx-auto text-center'>
+            <h2 className='text-3xl font-bold text-gray-800 mb-8'>
+              {missionTitle || 'Our Mission'}
+            </h2>
+            <p className='text-lg text-gray-700 leading-relaxed'>{mission}</p>
+          </div>
         </section>
       )}
 
       {/* Approach Section */}
       {approach && approach.length > 0 && (
-        <section>
-          <h2>{approachTitle || 'Our Approach'}</h2>
-          <div>
-            {approach.map((item) => (
-              <div key={item._key}>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </div>
-            ))}
+        <section className='bg-white py-16 px-6'>
+          <div className='max-w-4xl mx-auto'>
+            <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
+              {approachTitle || 'Our Approach'}
+            </h2>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+              {approach.map((item) => (
+                <div key={item._key} className='bg-chalk p-6 rounded-lg'>
+                  <h3 className='text-xl font-bold text-mf-blue mb-4'>
+                    {item.title}
+                  </h3>
+                  <p className='text-gray-700'>{item.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
       {/* Team Section */}
       {team && (
-        <section>
-          <h2>{teamTitle || 'The Team'}</h2>
-          {renderBlockContent(team)}
+        <section className='bg-chalk py-16 px-6'>
+          <div className='max-w-4xl mx-auto'>
+            <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
+              {teamTitle || 'The Team'}
+            </h2>
+            <div className='prose prose-lg max-w-none'>
+              {renderBlockContent(team)}
+            </div>
+          </div>
         </section>
       )}
 
       {/* Advisory Board Section */}
       {advisoryBoard && advisoryBoard.length > 0 && (
-        <section>
-          <h2>{advisoryBoardTitle || 'Advisory Board'}</h2>
-          <div>
-            {advisoryBoard.map((member) => (
-              <div key={member._key}>
-                {member.logo ? (
-                  <a
-                    href={member.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    <Image
-                      src={member.logo.asset.url}
-                      alt={member.logo.alt || member.name}
-                      width={200}
-                      height={100}
-                    />
-                  </a>
-                ) : (
-                  <div>
-                    <h3>{member.name}</h3>
+        <section className='bg-white py-16 px-6'>
+          <div className='max-w-6xl mx-auto'>
+            <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
+              {advisoryBoardTitle || 'Advisory Board'}
+            </h2>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>
+              {advisoryBoard.map((member) => (
+                <div key={member._key} className='flex justify-center'>
+                  {member.logo ? (
                     <a
                       href={member.url}
                       target='_blank'
                       rel='noopener noreferrer'
+                      className='transition-transform hover:scale-105'
                     >
-                      Visit Website
+                      <Image
+                        src={member.logo.asset.url}
+                        alt={member.logo.alt || member.name}
+                        width={200}
+                        height={100}
+                        className='max-h-20 w-auto object-contain'
+                      />
                     </a>
-                  </div>
-                )}
-              </div>
-            ))}
+                  ) : (
+                    <div className='text-center'>
+                      <h3 className='text-lg font-grotesk-medium text-mf-blue mb-2'>
+                        {member.name}
+                      </h3>
+                      <a
+                        href={member.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-mf-green hover:underline'
+                      >
+                        Visit Website
+                      </a>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
       {/* ListenApp Partners Section */}
       {listenAppPartners && listenAppPartners.length > 0 && (
-        <section>
-          <h2>{listenAppPartnersTitle || 'ListenApp Partners'}</h2>
-          <div>
-            {listenAppPartners.map((partner) => (
-              <div key={partner._key}>
-                {partner.logo ? (
-                  <a
-                    href={partner.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    <Image
-                      src={partner.logo.asset.url}
-                      alt={partner.logo.alt || partner.name}
-                      width={200}
-                      height={100}
-                    />
-                  </a>
-                ) : (
-                  <div>
-                    <h3>{partner.name}</h3>
+        <section className='bg-mf-blue py-16 px-6'>
+          <div className='max-w-6xl mx-auto'>
+            <h2 className='text-3xl font-bold text-white mb-12 text-center'>
+              {listenAppPartnersTitle || 'ListenApp Partners'}
+            </h2>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>
+              {listenAppPartners.map((partner) => (
+                <div key={partner._key} className='flex justify-center'>
+                  {partner.logo ? (
                     <a
                       href={partner.url}
                       target='_blank'
                       rel='noopener noreferrer'
+                      className='transition-transform hover:scale-105'
                     >
-                      Visit Website
+                      <Image
+                        src={partner.logo.asset.url}
+                        alt={partner.logo.alt || partner.name}
+                        width={200}
+                        height={100}
+                        className='max-h-20 w-auto object-contain'
+                      />
                     </a>
-                  </div>
-                )}
-              </div>
-            ))}
+                  ) : (
+                    <div className='text-center'>
+                      <h3 className='text-lg font-grotesk-medium text-white mb-2'>
+                        {partner.name}
+                      </h3>
+                      <a
+                        href={partner.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-mf-green hover:underline'
+                      >
+                        Visit Website
+                      </a>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
       {/* Special Thanks Section */}
       {specialThanks && specialThanks.length > 0 && (
-        <section>
-          <h2>{specialThanksTitle || 'Special Thanks'}</h2>
-          <div>
-            {specialThanks.map((thanks) => (
-              <div key={thanks._key}>
-                {thanks.logo ? (
-                  <a
-                    href={thanks.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    <Image
-                      src={thanks.logo.asset.url}
-                      alt={thanks.logo.alt || thanks.name}
-                      width={200}
-                      height={100}
-                    />
-                  </a>
-                ) : (
-                  <div>
-                    <h3>{thanks.name}</h3>
+        <section className='bg-chalk py-16 px-6'>
+          <div className='max-w-6xl mx-auto'>
+            <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
+              {specialThanksTitle || 'Special Thanks'}
+            </h2>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>
+              {specialThanks.map((thanks) => (
+                <div key={thanks._key} className='flex justify-center'>
+                  {thanks.logo ? (
                     <a
                       href={thanks.url}
                       target='_blank'
                       rel='noopener noreferrer'
+                      className='transition-transform hover:scale-105'
                     >
-                      Visit Website
+                      <Image
+                        src={thanks.logo.asset.url}
+                        alt={thanks.logo.alt || thanks.name}
+                        width={200}
+                        height={100}
+                        className='max-h-20 w-auto object-contain'
+                      />
                     </a>
-                  </div>
-                )}
-              </div>
-            ))}
+                  ) : (
+                    <div className='text-center'>
+                      <h3 className='text-lg font-grotesk-medium text-mf-blue mb-2'>
+                        {thanks.name}
+                      </h3>
+                      <a
+                        href={thanks.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-mf-green hover:underline'
+                      >
+                        Visit Website
+                      </a>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
