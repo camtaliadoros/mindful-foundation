@@ -27,7 +27,7 @@ export default function Header() {
           Think Different
         </Link>
         <Link
-          href='/listenapp'
+          href='/listen-app'
           className='hover:text-mf-green transition-colors'
         >
           ListenApp

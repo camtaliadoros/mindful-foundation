@@ -2,6 +2,7 @@ import { client } from '../sanity/client';
 import { HomepageData } from '../types/homepage';
 import { AboutPageData } from '../types/about';
 import { ThinkDifferentPageData } from '../types/thinkDifferent';
+import { ListenAppPageData } from '../types/listenApp';
 
 export async function getHomepageData(): Promise<HomepageData | null> {
   try {
@@ -231,6 +232,71 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
     return data;
   } catch (error) {
     console.error('Error fetching Think Different page data:', error);
+    return null;
+  }
+}
+
+export async function getListenAppPageData(): Promise<ListenAppPageData | null> {
+  try {
+    const query = `*[_type == "listenAppPage"][0] {
+      _id,
+      _type,
+      title,
+      headerHeadline,
+      headerSubheadline,
+      whatItIsTitle,
+      whatItIs,
+      whyItMattersTitle,
+      whyItMatters,
+      featuresTitle,
+      features[] {
+        _key,
+        title,
+        description
+      },
+      partnersTitle,
+      partners,
+      callToActionTitle,
+      primaryCta {
+        _key,
+        label,
+        actionType,
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      secondaryCta {
+        _key,
+        label,
+        actionType,
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      seo {
+        title,
+        description,
+        keywords,
+        ogImage
+      }
+    }`;
+
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error('Error fetching ListenApp page data:', error);
     return null;
   }
 }
