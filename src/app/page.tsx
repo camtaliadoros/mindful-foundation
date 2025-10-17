@@ -73,6 +73,18 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Mission Section */}
+      {mission && (
+        <section className='bg-mf-green py-16 px-6'>
+          <div className='max-w-4xl mx-auto text-white'>
+            <h2 className='text-3xl font-bold text-center mb-8'>Our Mission</h2>
+            <div className='prose prose-lg prose-invert max-w-none'>
+              {renderBlockContent(mission)}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Introduction Section */}
       <section className='bg-chalk py-16 px-6'>
         <div className='max-w-4xl mx-auto text-gray-800'>
