@@ -3,13 +3,13 @@ import Header from '../components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default async function BlogPage() {
-  const [blogPageData, blogPosts] = await Promise.all([
+export default async function NewsPage() {
+  const [newsPageData, newsPosts] = await Promise.all([
     getBlogPageData(),
     getAllBlogPosts(),
   ]);
 
-  if (!blogPageData) {
+  if (!newsPageData) {
     return (
       <div className='min-h-screen bg-chalk'>
         <Header />
@@ -18,14 +18,14 @@ export default async function BlogPage() {
             Page Not Found
           </h1>
           <p className='text-gray-600'>
-            The blog page content could not be loaded.
+            The news page content could not be loaded.
           </p>
         </div>
       </div>
     );
   }
 
-  const { headerHeadline, headerSubheadline } = blogPageData;
+  const { headerHeadline, headerSubheadline } = newsPageData;
 
   return (
     <div className='min-h-screen bg-chalk'>
@@ -43,13 +43,13 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      {/* Blog Posts Section */}
+      {/* News Articles Section */}
       <section className='py-16 px-6'>
         <div className='max-w-6xl mx-auto'>
-          {blogPosts.length === 0 ? (
+          {newsPosts.length === 0 ? (
             <div className='text-center py-16'>
               <h2 className='text-2xl font-bold text-mf-blue mb-4 font-grotesk-medium'>
-                No blog posts yet
+                No news articles yet
               </h2>
               <p className='text-gray-600 font-grotesk-regular'>
                 Check back soon for insights, updates, and stories from The
@@ -58,10 +58,10 @@ export default async function BlogPage() {
             </div>
           ) : (
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-              {blogPosts.map((post) => (
+              {newsPosts.map((post) => (
                 <Link
                   key={post._id}
-                  href={`/blog/${post.slug.current}`}
+                  href={`/news/${post.slug.current}`}
                   className='block bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow group'
                 >
                   {post.featuredImage && (

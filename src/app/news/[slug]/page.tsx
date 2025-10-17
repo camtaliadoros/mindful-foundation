@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-interface BlogPostPageProps {
+interface NewsArticlePageProps {
   params: {
     slug: string;
   };
@@ -19,7 +19,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
+export default async function NewsArticlePage({
+  params,
+}: NewsArticlePageProps) {
   const post = await getBlogPostBySlug(params.slug);
 
   if (!post) {
@@ -44,7 +46,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className='max-w-4xl mx-auto'>
           <div className='mb-4'>
             <Link
-              href='/blog'
+              href='/news'
               className='inline-flex items-center text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
             >
               <svg
@@ -60,7 +62,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   d='M15 19l-7-7 7-7'
                 />
               </svg>
-              Back to Blog
+              Back to News
             </Link>
           </div>
           <h1 className='text-4xl md:text-5xl font-bold mb-4 font-grotesk-medium'>
@@ -120,7 +122,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <div className='aspect-video relative rounded-lg overflow-hidden'>
                     <Image
                       src={block.image.asset.url}
-                      alt={block.image.alt || 'Blog post image'}
+                      alt={block.image.alt || 'News article image'}
                       fill
                       className='object-cover'
                     />
@@ -148,11 +150,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </section>
       )}
 
-      {/* Back to Blog */}
+      {/* Back to News */}
       <section className='py-8 px-6'>
         <div className='max-w-4xl mx-auto text-center'>
           <Link
-            href='/blog'
+            href='/news'
             className='inline-flex items-center text-mf-green hover:text-mf-blue transition-colors font-grotesk-medium'
           >
             <svg
@@ -168,7 +170,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 d='M15 19l-7-7 7-7'
               />
             </svg>
-            Back to Blog
+            Back to News
           </Link>
         </div>
       </section>
