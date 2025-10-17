@@ -26,7 +26,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className='hidden md:flex items-center space-x-8 [&>a]:mb-0'>
+        <nav className='hidden md:flex items-center space-x-8'>
           <HeaderLink href='/about'>About</HeaderLink>
           <HeaderLink href='/think-different'>Think Different</HeaderLink>
           <HeaderLink href='/listen-app'>ListenApp</HeaderLink>
@@ -34,7 +34,7 @@ export default function Header() {
             Perpetrator Programme
           </HeaderLink>
           <HeaderLink href='/news'>News</HeaderLink>
-          <button className='bg-mf-green text-ash px-6 py-2 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium'>
+          <button className='bg-mf-green text-ash px-6 py-2 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium flex items-center'>
             Donate
           </button>
         </nav>
