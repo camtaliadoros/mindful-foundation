@@ -40,17 +40,17 @@ export function CTAButton({ cta, className = '' }: CTAButtonProps) {
   // Generate CSS classes based on style
   const getStyleClasses = () => {
     const baseClasses =
-      'px-8 py-3 rounded-md transition-all font-grotesk-medium';
+      'px-8 py-3 rounded-full transition-all font-grotesk-medium';
 
     switch (style) {
       case 'primary':
-        return `${baseClasses} bg-mf-green text-ash hover:bg-opacity-90`;
+        return `${baseClasses} border-2 border-mf-green text-ash hover:bg-mf-green  `;
       case 'secondary':
         return `${baseClasses} border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-chalk`;
       case 'link':
-        return `${baseClasses} border-2 border-mf-green text-mf-green hover:bg-mf-green hover:text-ash`;
+        return `${baseClasses} border-2 border-mf-green text-ash hover:bg-mf-green  `;
       default:
-        return `${baseClasses} bg-mf-green text-ash hover:bg-opacity-90`;
+        return `${baseClasses} border-2 border-mf-green text-ash hover:bg-mf-green  `;
     }
   };
 

@@ -22,6 +22,7 @@
   --mf-blue: #26224f;
   --mf-dark-blue: #181634;
   --mf-green: #30f6ba;
+  --mf-dark-green: #2be5ad;
   --ash: #232426;
   --chalk: #fafafa;
   --mf-coral: #e86e63;
@@ -32,6 +33,7 @@
   --color-foreground: var(--foreground);
   --color-mf-blue: var(--mf-blue);
   --color-mf-green: var(--mf-green);
+  --color-mf-dark-green: var(--mf-dark-green);
   --color-ash: var(--ash);
   --color-chalk: var(--chalk);
   --color-mf-coral: var(--mf-coral);
@@ -69,4 +71,20 @@ body {
 
 .animate-mf-fade-up {
   animation: mf-fade-up 800ms ease-out both;
+}
+
+/* Elegant button shadows */
+.hover\:shadow-mf-green\/30:hover {
+  box-shadow: 0 25px 50px -12px rgba(48, 246, 186, 0.3),
+    0 0 0 1px rgba(48, 246, 186, 0.1);
+}
+
+.hover\:shadow-mf-blue\/20:hover {
+  box-shadow: 0 20px 40px -12px rgba(38, 34, 79, 0.2),
+    0 0 0 1px rgba(38, 34, 79, 0.1);
+}
+
+.hover\:shadow-mf-green\/20:hover {
+  box-shadow: 0 20px 40px -12px rgba(48, 246, 186, 0.2),
+    0 0 0 1px rgba(48, 246, 186, 0.1);
 }
