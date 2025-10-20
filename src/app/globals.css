@@ -23,6 +23,7 @@
   --mf-green: #30f6ba;
   --ash: #232426;
   --chalk: #fafafa;
+  --mf-coral: #e86e63;
 }
 
 @theme inline {
@@ -32,6 +33,7 @@
   --color-mf-green: var(--mf-green);
   --color-ash: var(--ash);
   --color-chalk: var(--chalk);
+  --color-mf-coral: var(--mf-coral);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-grotesk-regular: Founders-Grotesk-Regular, sans-serif;

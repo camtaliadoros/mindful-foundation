@@ -9,6 +9,7 @@ import {
 } from './components/Icons';
 import { CTAButton } from './utils/cta';
 import { WordCard } from './components/WorkCard';
+import { StatCard } from './components/StatCard';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -137,14 +138,13 @@ export default async function Home() {
             <h2 className='text-3xl font-bold text-gray-800 text-center mb-12'>
               {whyItMattersTitle || 'Why It Matters'}
             </h2>
-            <div className='grid md:grid-cols-3 gap-8'>
+            <div className='grid md:grid-cols-2 md:gap-x-16 gap-8'>
               {stats.map((stat) => (
-                <div key={stat._key} className='text-center'>
-                  <h3 className='text-4xl font-bold text-mf-blue mb-4'>
-                    {stat.value}
-                  </h3>
-                  <p className='text-gray-700'>{stat.description}</p>
-                </div>
+                <StatCard
+                  key={stat._key}
+                  value={stat.value}
+                  description={stat.description}
+                />
               ))}
             </div>
             {whyItMattersFootnote && (
