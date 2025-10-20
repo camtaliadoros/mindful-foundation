@@ -81,7 +81,7 @@ export default async function Home() {
             <div className='prose prose-lg prose-invert max-w-none font-extrabold text-2xl text-centre'>
               {renderBlockContent(mission)}
             </div>
-            <div className='prose prose-lg'>
+            <div className='prose prose-lg [&>*]:space-y-3'>
               {intro && renderBlockContent(intro)}
             </div>
           </div>
