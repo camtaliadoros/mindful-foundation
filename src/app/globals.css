@@ -50,3 +50,19 @@ body {
   color: var(--foreground);
   font-family: Founders-Grotesk-Regular, sans-serif;
 }
+
+/* Subtle fade-up animation for hero subheadline */
+@keyframes mf-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-mf-fade-up {
+  animation: mf-fade-up 800ms ease-out both;
+}
