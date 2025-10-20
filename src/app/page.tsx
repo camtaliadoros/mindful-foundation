@@ -10,6 +10,7 @@ import {
 import { CTAButton } from './utils/cta';
 import { WordCard } from './components/WorkCard';
 import { AnimatedStatCard } from './components/AnimatedStatCard';
+import { TestimonialCard } from './components/TestimonialCard';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -164,18 +165,15 @@ export default async function Home() {
             <h2 className='text-3xl font-bold text-white text-center mb-12'>
               {testimonialsTitle || 'Testimonials'}
             </h2>
-            <div className='grid md:grid-cols-2 gap-8'>
+            <div className='grid md:grid-cols-4 gap-8 '>
               {testimonials.map((testimonial) => (
-                <div key={testimonial._key} className='bg-ash p-8 rounded-lg'>
-                  <blockquote className='text-white text-lg italic mb-4'>
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </blockquote>
-                  <cite className='text-mf-green font-semibold'>
-                    {testimonial.author}
-                    {testimonial.roleOrTitle && `, ${testimonial.roleOrTitle}`}
-                    {testimonial.org && ` at ${testimonial.org}`}
-                  </cite>
-                </div>
+                <TestimonialCard
+                  key={testimonial._key}
+                  author={testimonial.author}
+                  title={testimonial.roleOrTitle}
+                  organisation={testimonial.org}
+                  quote={testimonial.quote}
+                />
               ))}
             </div>
           </div>

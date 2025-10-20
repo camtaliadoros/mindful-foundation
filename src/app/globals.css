@@ -20,6 +20,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --mf-blue: #26224f;
+  --mf-dark-blue: #181634;
   --mf-green: #30f6ba;
   --ash: #232426;
   --chalk: #fafafa;
@@ -34,6 +35,7 @@
   --color-ash: var(--ash);
   --color-chalk: var(--chalk);
   --color-mf-coral: var(--mf-coral);
+  --color-mf-dark-blue: var(--mf-dark-blue);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-grotesk-regular: Founders-Grotesk-Regular, sans-serif;
@@ -67,60 +69,4 @@ body {
 
 .animate-mf-fade-up {
   animation: mf-fade-up 800ms ease-out both;
-}
-
-/* Gentle fade-in animation */
-@keyframes mf-fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.animate-mf-fade-in {
-  animation: mf-fade-in 1000ms ease-out both;
-}
-
-/* Staggered card animations */
-@keyframes mf-slide-up {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-mf-slide-up {
-  animation: mf-slide-up 600ms ease-out both;
-}
-
-.animate-mf-slide-up-delay-1 {
-  animation: mf-slide-up 600ms ease-out both;
-  animation-delay: 200ms;
-}
-
-.animate-mf-slide-up-delay-2 {
-  animation: mf-slide-up 600ms ease-out both;
-  animation-delay: 400ms;
-}
-
-/* Counter animation for stat values */
-@keyframes mf-count-up {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-mf-count-up {
-  animation: mf-count-up 800ms ease-out both;
 }
