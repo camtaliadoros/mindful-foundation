@@ -9,7 +9,7 @@ import {
 } from './components/Icons';
 import { CTAButton } from './utils/cta';
 import { WordCard } from './components/WorkCard';
-import { StatCard } from './components/StatCard';
+import { AnimatedStatCard } from './components/AnimatedStatCard';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -138,17 +138,18 @@ export default async function Home() {
             <h2 className='text-3xl font-bold text-gray-800 text-center mb-12'>
               {whyItMattersTitle || 'Why It Matters'}
             </h2>
-            <div className='grid md:grid-cols-2 md:gap-x-16 gap-8'>
-              {stats.map((stat) => (
-                <StatCard
+            <div className='grid md:grid-cols-2 md:gap-x-16 gap-16 w-3/4 mx-auto'>
+              {stats.map((stat, index) => (
+                <AnimatedStatCard
                   key={stat._key}
                   value={stat.value}
                   description={stat.description}
+                  delay={index * 200}
                 />
               ))}
             </div>
             {whyItMattersFootnote && (
-              <p className='text-center text-gray-600 mt-8'>
+              <p className='text-center text-gray-600 mt-8 font-extrabold text-xl animate-mf-fade-in'>
                 {whyItMattersFootnote}
               </p>
             )}
