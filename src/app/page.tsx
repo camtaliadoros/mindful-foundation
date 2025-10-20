@@ -91,9 +91,12 @@ export default async function Home() {
       {/* Our Work Section */}
       <section className='bg-mf-blue py-16 px-6'>
         <div className='max-w-6xl mx-auto'>
-          <h2 className='text-3xl font-bold text-white text-center mb-12'>
-            Our Work — Three Core Strands
+          <h2 className='text-3xl font-bold text-white text-center mb-2'>
+            Our Work
           </h2>
+          <h3 className='text-center text-white/80 text-lg mt-2 mb-12 font-bold'>
+            Three Core Strands
+          </h3>
 
           <div className='grid md:grid-cols-3 gap-8'>
             {/* Think Different */}
