@@ -8,6 +8,7 @@ import {
   PerpetratorProgrammeIcon,
 } from './components/Icons';
 import { CTAButton } from './utils/cta';
+import { WordCard } from './components/WorkCard';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -98,44 +99,32 @@ export default async function Home() {
             Three Core Strands
           </h3>
 
-          <div className='grid md:grid-cols-3 gap-8'>
+          <div className='grid md:grid-cols-3 gap-8 w-3/4 mx-auto'>
             {/* Think Different */}
             {thinkDifferent && (
-              <div className='bg-ash p-8 rounded-lg'>
-                <ThinkDifferentIcon />
-                <h3 className='text-xl font-bold text-white mb-4'>
-                  {thinkDifferent.title}
-                </h3>
-                <p className='text-white leading-relaxed'>
-                  {thinkDifferent.description}
-                </p>
-              </div>
+              <WordCard
+                title={thinkDifferent.title}
+                description={thinkDifferent.description}
+                icon={<ThinkDifferentIcon />}
+              />
             )}
 
             {/* ListenApp */}
             {listenApp && (
-              <div className='bg-ash p-8 rounded-lg'>
-                <ListenAppIcon />
-                <h3 className='text-xl font-bold text-white mb-4'>
-                  {listenApp.title}
-                </h3>
-                <p className='text-white leading-relaxed'>
-                  {listenApp.description}
-                </p>
-              </div>
+              <WordCard
+                title={listenApp.title}
+                description={listenApp.description}
+                icon={<ListenAppIcon />}
+              />
             )}
 
             {/* Perpetrator Programme */}
             {perpetratorProgramme && (
-              <div className='bg-ash p-8 rounded-lg'>
-                <PerpetratorProgrammeIcon />
-                <h3 className='text-xl font-bold text-white mb-4'>
-                  {perpetratorProgramme.title}
-                </h3>
-                <p className='text-white leading-relaxed'>
-                  {perpetratorProgramme.description}
-                </p>
-              </div>
+              <WordCard
+                title={perpetratorProgramme.title}
+                description={perpetratorProgramme.description}
+                icon={<PerpetratorProgrammeIcon />}
+              />
             )}
           </div>
         </div>
