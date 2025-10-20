@@ -99,7 +99,7 @@ export default async function Home() {
             Three Core Strands
           </h3>
 
-          <div className='grid md:grid-cols-3 gap-8 w-3/4 mx-auto'>
+          <div className='grid md:grid-cols-3 gap-8 lg:w-3/4 mx-auto'>
             {/* Think Different */}
             {thinkDifferent && (
               <WordCard
