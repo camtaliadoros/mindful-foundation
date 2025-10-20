@@ -34,7 +34,7 @@ export default function Header() {
             Perpetrator Programme
           </HeaderLink>
           <HeaderLink href='/news'>News</HeaderLink>
-          <button className='bg-mf-green text-ash px-6 py-2 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium flex items-center'>
+          <button className='px-8 py-3 rounded-full transition-all font-grotesk-medium border-2 border-mf-green text-ash bg-mf-green hover:bg-transparent hover:text-mf-green'>
             Donate
           </button>
         </nav>
@@ -111,7 +111,7 @@ export default function Header() {
 
           {/* Donate Button - Anchored to Bottom */}
           <div className='px-6 py-6 border-t border-mf-green/20'>
-            <button className='w-full bg-mf-green text-ash px-6 py-4 rounded-md hover:bg-opacity-90 transition-all font-grotesk-medium text-lg'>
+            <button className='w-full bg-mf-green text-ash rounded-full px-6 py-4 hover:bg-opacity-90 transition-all font-grotesk-medium text-lg'>
               Donate
             </button>
           </div>
