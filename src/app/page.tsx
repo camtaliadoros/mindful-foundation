@@ -52,6 +52,9 @@ export default async function Home() {
     strand.title.toLowerCase().includes('perpetrator')
   );
 
+  // Split the headerSubheadline into an array of strings
+  const headerSubheadlineArray = headerSubheadline?.split('. ') || [];
+
   return (
     <div className='min-h-screen'>
       {/* Header */}
@@ -68,9 +71,12 @@ export default async function Home() {
         <div className='relative z-10 h-full flex items-center px-6'>
           <div className='text-white max-w-2xl'>
             <h1 className='text-5xl md:text-6xl font-bold leading-tight mb-6 animate-mf-fade-up'>
-              <div>Empowering Lives.</div>
-              <div>Preventing Harm.</div>
-              <div>Healing Futures.</div>
+              {headerSubheadlineArray.map((line, index) => (
+                <div key={index}>
+                  {line +
+                    (index < headerSubheadlineArray.length - 1 ? '.' : '')}
+                </div>
+              ))}
             </h1>
           </div>
         </div>
