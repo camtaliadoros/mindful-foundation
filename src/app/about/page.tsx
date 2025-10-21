@@ -30,6 +30,7 @@ export default async function AboutPage() {
     approach,
     teamTitle,
     team,
+    teamImage,
     advisoryBoardTitle,
     advisoryBoard,
     listenAppPartnersTitle,
@@ -129,8 +130,18 @@ export default async function AboutPage() {
 
       {/* Team Section */}
       {team && (
-        <section className='max-w-6xl mx-auto bg-chalk py-16 px-3'>
-          <div className='grid md:grid-cols-2 gap-12'>
+        <section className=' bg-chalk py-16 px-3'>
+          <div className='max-w-6xl mx-auto grid md:grid-cols-2 gap-12'>
+            {teamImage && (
+              <div className='relative h-[400px] rounded-lg overflow-hidden'>
+                <Image
+                  src={teamImage.asset.url}
+                  alt={teamImage.alt || 'The Team'}
+                  fill
+                  className='object-cover'
+                />
+              </div>
+            )}
             <div>
               <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
                 {teamTitle || 'The Team'}

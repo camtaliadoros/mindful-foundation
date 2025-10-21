@@ -114,6 +114,13 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
       },
       teamTitle,
       team,
+      teamImage {
+        asset-> {
+          _ref,
+          url
+        },
+        alt
+      },
       advisoryBoardTitle,
       advisoryBoard[] {
         _key,

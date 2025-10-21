@@ -41,6 +41,13 @@ export interface AboutPageData {
   approach: ApproachItem[];
   teamTitle?: string;
   team: BlockContent[];
+  teamImage?: {
+    asset: {
+      _ref: string;
+      url: string;
+    };
+    alt?: string;
+  };
   advisoryBoardTitle?: string;
   advisoryBoard: LinkableLogo[];
   listenAppPartnersTitle?: string;
