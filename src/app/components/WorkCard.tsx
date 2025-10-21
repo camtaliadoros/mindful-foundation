@@ -11,7 +11,7 @@ export const WordCard = ({
     <div className='md:p-8 md:[&>*]:text-center'>
       {icon}
       <h3 className='text-xl font-bold text-white mb-4'>{title}</h3>
-      <p className='text-white leading-relaxed'>{description}</p>
+      <p className='text-white prose-xl leading-relaxed'>{description}</p>
     </div>
   );
 };

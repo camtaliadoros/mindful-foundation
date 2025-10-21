@@ -86,11 +86,11 @@ export default async function Home() {
       {mission && (
         <section className='bg-chalk py-16 px-6'>
           <div className='max-w-4xl mx-auto text-gray-800 md:w-1/2 space-y-6'>
-            <h2 className='text-3xl font-bold text-center mb-8'>Our Mission</h2>
+            <h2 className='text-4xl font-bold text-center mb-8'>Our Mission</h2>
             <div className='prose prose-lg prose-invert max-w-none font-extrabold text-2xl text-centre'>
               {renderBlockContent(mission)}
             </div>
-            <div className='prose prose-lg [&>*]:space-y-3'>
+            <div className='prose prose-xl [&>*]:space-y-3'>
               {intro && renderBlockContent(intro)}
             </div>
           </div>
@@ -103,7 +103,7 @@ export default async function Home() {
           <h2 className='text-3xl font-bold text-white text-center mb-2'>
             Our Work
           </h2>
-          <h3 className='text-center text-white/80 text-lg mt-2 mb-12 font-bold'>
+          <h3 className='text-center text-white/80 text-xl mt-2 mb-12 font-bold'>
             Three Core Strands
           </h3>
 
