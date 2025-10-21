@@ -25,6 +25,7 @@ export default async function AboutPage() {
     whoWeAre,
     missionTitle,
     mission,
+    missionImage,
     approachTitle,
     approach,
     teamTitle,
@@ -67,11 +68,33 @@ export default async function AboutPage() {
       {/* Mission Section */}
       {mission && (
         <section className='bg-chalk py-16 px-6'>
-          <div className='max-w-4xl mx-auto text-center'>
-            <h2 className='text-3xl font-bold text-gray-800 mb-8'>
+          <div className='max-w-6xl mx-auto'>
+            <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
               {missionTitle || 'Our Mission'}
             </h2>
-            <p className='text-lg text-gray-700 leading-relaxed'>{mission}</p>
+            {missionImage ? (
+              <div className='grid md:grid-cols-2 gap-12 items-center'>
+                <div className='relative h-[400px] rounded-lg overflow-hidden'>
+                  <Image
+                    src={missionImage.asset.url}
+                    alt={missionImage.alt || 'Our Mission'}
+                    fill
+                    className='object-cover'
+                  />
+                </div>
+                <div>
+                  <p className='text-lg text-gray-700 leading-relaxed'>
+                    {mission}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className='max-w-4xl mx-auto text-center'>
+                <p className='text-lg text-gray-700 leading-relaxed'>
+                  {mission}
+                </p>
+              </div>
+            )}
           </div>
         </section>
       )}

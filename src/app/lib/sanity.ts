@@ -99,6 +99,13 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
       whoWeAre,
       missionTitle,
       mission,
+      missionImage {
+        asset-> {
+          _ref,
+          url
+        },
+        alt
+      },
       approachTitle,
       approach[] {
         _key,

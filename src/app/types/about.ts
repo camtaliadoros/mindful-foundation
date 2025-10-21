@@ -30,6 +30,13 @@ export interface AboutPageData {
   whoWeAre: BlockContent[];
   missionTitle?: string;
   mission: string;
+  missionImage?: {
+    asset: {
+      _ref: string;
+      url: string;
+    };
+    alt?: string;
+  };
   approachTitle?: string;
   approach: ApproachItem[];
   teamTitle?: string;
@@ -51,4 +58,3 @@ export interface AboutPageData {
     };
   };
 }
-
