@@ -54,7 +54,7 @@ export function renderBlockContent(content: BlockContent[]) {
   if (!content) return null;
 
   return (
-    <div>
+    <div className='prose prose-lg max-w-none space-y-3'>
       <PortableText value={content} components={portableTextComponents} />
     </div>
   );

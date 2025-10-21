@@ -71,14 +71,6 @@ export default async function AboutPage() {
           <div className='max-w-6xl mx-auto'>
             {missionImage ? (
               <div className='grid md:grid-cols-2 gap-12 items-center'>
-                <div className='relative h-[400px] rounded-lg overflow-hidden'>
-                  <Image
-                    src={missionImage.asset.url}
-                    alt={missionImage.alt || 'Our Mission'}
-                    fill
-                    className='object-cover'
-                  />
-                </div>
                 <div>
                   <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
                     {missionTitle || 'Our Mission'}
@@ -86,6 +78,14 @@ export default async function AboutPage() {
                   <p className='text-xl text-gray-700 leading-snug font-semibold'>
                     {mission}
                   </p>
+                </div>
+                <div className='relative h-[400px] rounded-lg overflow-hidden'>
+                  <Image
+                    src={missionImage.asset.url}
+                    alt={missionImage.alt || 'Our Mission'}
+                    fill
+                    className='object-cover'
+                  />
                 </div>
               </div>
             ) : (
@@ -129,13 +129,13 @@ export default async function AboutPage() {
 
       {/* Team Section */}
       {team && (
-        <section className='bg-chalk py-16 px-6'>
-          <div className='max-w-4xl mx-auto'>
-            <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
-              {teamTitle || 'The Team'}
-            </h2>
-            <div className='prose prose-lg max-w-none'>
-              {renderBlockContent(team)}
+        <section className='max-w-6xl mx-auto bg-chalk py-16 px-3'>
+          <div className='grid md:grid-cols-2 gap-12'>
+            <div>
+              <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
+                {teamTitle || 'The Team'}
+              </h2>
+              <div>{renderBlockContent(team)}</div>
             </div>
           </div>
         </section>
