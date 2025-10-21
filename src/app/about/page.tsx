@@ -3,6 +3,8 @@ import { renderBlockContent } from '../utils/sanity';
 import { AboutPageData } from '../types/about';
 import Image from 'next/image';
 import Header from '../components/Header';
+import { BlockContent } from '../components/BlockContent';
+import { PortableTextBlock } from 'next-sanity';
 
 export default async function AboutPage() {
   const aboutPageData: AboutPageData | null = await getAboutPageData();
@@ -52,14 +54,12 @@ export default async function AboutPage() {
 
       {/* Who We Are Section */}
       {whoWeAre && (
-        <section className='bg-white py-16 px-6'>
+        <section className='bg-white py-16 px-6 md:w-1/2 mx-auto'>
           <div className='max-w-4xl mx-auto'>
             <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
               {whoWeAreTitle || 'Who We Are'}
             </h2>
-            <div className='prose prose-lg max-w-none'>
-              {renderBlockContent(whoWeAre)}
-            </div>
+            <BlockContent content={whoWeAre as PortableTextBlock[]} />
           </div>
         </section>
       )}
