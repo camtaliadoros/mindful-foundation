@@ -1,16 +1,16 @@
-import { getHomepageData } from './lib/sanity';
-import { renderBlockContent } from './utils/sanity';
-import { HomepageData } from './types/homepage';
+import { AnimatedStatCard } from './components/AnimatedStatCard';
 import Header from './components/Header';
 import {
-  ThinkDifferentIcon,
   ListenAppIcon,
   PerpetratorProgrammeIcon,
+  ThinkDifferentIcon,
 } from './components/Icons';
-import { CTAButton } from './utils/cta';
-import { WordCard } from './components/WorkCard';
-import { AnimatedStatCard } from './components/AnimatedStatCard';
 import { TestimonialCard } from './components/TestimonialCard';
+import { WorkCard } from './components/WorkCard';
+import { getHomepageData } from './lib/sanity';
+import { HomepageData } from './types/homepage';
+import { CTAButton } from './utils/cta';
+import { renderBlockContent } from './utils/sanity';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -110,7 +110,7 @@ export default async function Home() {
           <div className='grid md:grid-cols-3 gap-8 lg:w-3/4 mx-auto'>
             {/* Think Different */}
             {thinkDifferent && (
-              <WordCard
+              <WorkCard
                 title={thinkDifferent.title}
                 description={thinkDifferent.description}
                 icon={<ThinkDifferentIcon />}
@@ -119,7 +119,7 @@ export default async function Home() {
 
             {/* ListenApp */}
             {listenApp && (
-              <WordCard
+              <WorkCard
                 title={listenApp.title}
                 description={listenApp.description}
                 icon={<ListenAppIcon />}
@@ -128,7 +128,7 @@ export default async function Home() {
 
             {/* Perpetrator Programme */}
             {perpetratorProgramme && (
-              <WordCard
+              <WorkCard
                 title={perpetratorProgramme.title}
                 description={perpetratorProgramme.description}
                 icon={<PerpetratorProgrammeIcon />}

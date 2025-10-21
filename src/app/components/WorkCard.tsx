@@ -1,4 +1,4 @@
-export const WordCard = ({
+export const WorkCard = ({
   title,
   description,
   icon,
