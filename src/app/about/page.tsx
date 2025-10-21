@@ -41,12 +41,12 @@ export default async function AboutPage() {
       <Header />
 
       {/* Header Section */}
-      <section className='bg-chalk py-16 px-6'>
+      <section className='bg-mf-blue py-16 px-6'>
         <div className='max-w-4xl mx-auto text-center'>
-          <h1 className='text-4xl md:text-5xl font-bold text-gray-800 mb-4'>
+          <h1 className='text-4xl md:text-5xl font-bold text-chalk mb-4'>
             {headerHeadline}
           </h1>
-          <p className='text-xl text-gray-600'>{headerSubheadline}</p>
+          <p className='text-2xl text-chalk'>{headerSubheadline}</p>
         </div>
       </section>
 
