@@ -69,9 +69,6 @@ export default async function AboutPage() {
       {mission && (
         <section className='bg-chalk py-16 px-6'>
           <div className='max-w-6xl mx-auto'>
-            <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
-              {missionTitle || 'Our Mission'}
-            </h2>
             {missionImage ? (
               <div className='grid md:grid-cols-2 gap-12 items-center'>
                 <div className='relative h-[400px] rounded-lg overflow-hidden'>
@@ -83,13 +80,19 @@ export default async function AboutPage() {
                   />
                 </div>
                 <div>
-                  <p className='text-lg text-gray-700 leading-relaxed'>
+                  <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
+                    {missionTitle || 'Our Mission'}
+                  </h2>
+                  <p className='text-xl text-gray-700 leading-snug font-semibold'>
                     {mission}
                   </p>
                 </div>
               </div>
             ) : (
               <div className='max-w-4xl mx-auto text-center'>
+                <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
+                  {missionTitle || 'Our Mission'}
+                </h2>
                 <p className='text-lg text-gray-700 leading-relaxed'>
                   {mission}
                 </p>
@@ -101,18 +104,22 @@ export default async function AboutPage() {
 
       {/* Approach Section */}
       {approach && approach.length > 0 && (
-        <section className='bg-white py-16 px-6'>
+        <section className='bg-mf-blue py-16 px-6'>
           <div className='max-w-4xl mx-auto'>
-            <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
+            <h2 className='text-3xl font-bold text-chalk mb-12 text-center'>
               {approachTitle || 'Our Approach'}
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
               {approach.map((item) => (
-                <div key={item._key} className='bg-chalk p-6 rounded-lg'>
-                  <h3 className='text-xl font-bold text-mf-blue mb-4'>
+                <div
+                  key={item._key}
+                  className='bg-mf-dark-blue p-6 rounded-xl space-y-4'
+                >
+                  <div className='h-5 w-5 bg-mf-blue rounded-full'></div>
+                  <h3 className='text-xl font-bold text-mf-green mb-4'>
                     {item.title}
                   </h3>
-                  <p className='text-gray-700'>{item.description}</p>
+                  <p className='text-chalk leading-snug'>{item.description}</p>
                 </div>
               ))}
             </div>
