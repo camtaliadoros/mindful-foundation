@@ -159,9 +159,9 @@ export default async function AboutPage() {
             <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
               {advisoryBoardTitle || 'Advisory Board'}
             </h2>
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>
+            <div className='flex flex-wrap gap-12 items-center justify-center max-w-3xl mx-auto'>
               {advisoryBoard.map((member) => (
-                <div key={member._key} className='flex justify-center'>
+                <div key={member._key} className='flex justify-center max-w-30'>
                   {member.logo ? (
                     <a
                       href={member.url}
