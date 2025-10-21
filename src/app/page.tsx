@@ -156,7 +156,7 @@ export default async function Home() {
               ))}
             </div>
             {whyItMattersFootnote && (
-              <p className='text-center text-gray-600 mt-8 font-extrabold text-xl animate-mf-fade-in'>
+              <p className='text-center text-gray-600 mt-8 font-extrabold text-2xl animate-mf-fade-in'>
                 {whyItMattersFootnote}
               </p>
             )}

@@ -40,11 +40,11 @@ export function CTAButton({ cta, className = '' }: CTAButtonProps) {
   // Generate CSS classes based on style
   const getStyleClasses = () => {
     const baseClasses =
-      'px-8 py-3 rounded-full transition-all font-grotesk-medium';
+      'px-8 py-3 rounded-full transition-all font-grotesk-medium text-xl';
 
     switch (style) {
       case 'primary':
-        return `${baseClasses} border-2 border-mf-green text-ash hover:bg-mf-green  `;
+        return `${baseClasses} border-2 border-mf-green text-ash hover:bg-mf-green`;
       case 'secondary':
         return `${baseClasses} border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-chalk`;
       case 'link':
