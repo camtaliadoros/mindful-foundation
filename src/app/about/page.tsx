@@ -1,7 +1,7 @@
 import { getAboutPageData } from '../lib/sanity';
 import { renderBlockContent } from '../utils/sanity';
 import { AboutPageData } from '../types/about';
-import Image from 'next/image';
+
 import Header from '../components/Header';
 import { BlockContent } from '../components/BlockContent';
 import { PortableTextBlock } from 'next-sanity';
@@ -148,104 +148,24 @@ export default async function AboutPage() {
 
       {/* Advisory Board Section */}
       <LogoSection
-        type='advisoryBoard'
+        colourScheme='light'
         title={advisoryBoardTitle || 'Advisory Board'}
         logos={advisoryBoard}
       />
 
       {/* ListenApp Partners Section */}
-      {listenAppPartners && listenAppPartners.length > 0 && (
-        <section className='bg-mf-blue py-16 px-6'>
-          <div className='max-w-6xl mx-auto'>
-            <h2 className='text-3xl font-bold text-white mb-12 text-center'>
-              {listenAppPartnersTitle || 'ListenApp Partners'}
-            </h2>
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>
-              {listenAppPartners.map((partner) => (
-                <div key={partner._key} className='flex justify-center'>
-                  {partner.logo ? (
-                    <a
-                      href={partner.url}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='transition-transform hover:scale-105'
-                    >
-                      <Image
-                        src={partner.logo.asset.url}
-                        alt={partner.logo.alt || partner.name}
-                        width={200}
-                        height={100}
-                        className='max-h-20 w-auto object-contain'
-                      />
-                    </a>
-                  ) : (
-                    <div className='text-center'>
-                      <h3 className='text-lg font-grotesk-medium text-white mb-2'>
-                        {partner.name}
-                      </h3>
-                      <a
-                        href={partner.url}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-mf-green hover:underline'
-                      >
-                        Visit Website
-                      </a>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <LogoSection
+        colourScheme='dark'
+        title={listenAppPartnersTitle || 'ListenApp Partners'}
+        logos={listenAppPartners}
+      />
 
       {/* Special Thanks Section */}
-      {specialThanks && specialThanks.length > 0 && (
-        <section className='bg-chalk py-16 px-6'>
-          <div className='max-w-6xl mx-auto'>
-            <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
-              {specialThanksTitle || 'Special Thanks'}
-            </h2>
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>
-              {specialThanks.map((thanks) => (
-                <div key={thanks._key} className='flex justify-center'>
-                  {thanks.logo ? (
-                    <a
-                      href={thanks.url}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='transition-transform hover:scale-105'
-                    >
-                      <Image
-                        src={thanks.logo.asset.url}
-                        alt={thanks.logo.alt || thanks.name}
-                        width={200}
-                        height={100}
-                        className='max-h-20 w-auto object-contain'
-                      />
-                    </a>
-                  ) : (
-                    <div className='text-center'>
-                      <h3 className='text-lg font-grotesk-medium text-mf-blue mb-2'>
-                        {thanks.name}
-                      </h3>
-                      <a
-                        href={thanks.url}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-mf-green hover:underline'
-                      >
-                        Visit Website
-                      </a>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <LogoSection
+        colourScheme='light'
+        title={specialThanksTitle || 'Special Thanks'}
+        logos={specialThanks}
+      />
     </div>
   );
 }

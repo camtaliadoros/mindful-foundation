@@ -2,20 +2,20 @@ import Image from 'next/image';
 import { LinkableLogo } from '../types/about';
 
 export const LogoSection = ({
-  type,
+  colourScheme,
   title,
   logos,
 }: {
-  type: string;
+  colourScheme: 'light' | 'dark';
   title: string;
   logos: LinkableLogo[];
 }) => {
-  const backgroundColor = type === 'advisoryBoard' ? 'bg-white' : 'bg-mf-blue';
-  const textColor = type === 'advisoryBoard' ? 'text-gray-800' : 'text-white';
-  const titleColor = type === 'advisoryBoard' ? 'text-gray-800' : 'text-white';
-  const linkColor = type === 'advisoryBoard' ? 'text-mf-blue' : 'text-mf-green';
+  const backgroundColor = colourScheme === 'light' ? 'bg-white' : 'bg-mf-blue';
+  const textColor = colourScheme === 'light' ? 'text-gray-800' : 'text-white';
+  const titleColor = colourScheme === 'light' ? 'text-gray-800' : 'text-white';
+  const linkColor = colourScheme === 'light' ? 'text-mf-blue' : 'text-mf-green';
   const linkHoverColor =
-    type === 'advisoryBoard' ? 'text-mf-dark-green' : 'text-mf-dark-blue';
+    colourScheme === 'light' ? 'text-mf-dark-green' : 'text-mf-dark-blue';
 
   return (
     <>
