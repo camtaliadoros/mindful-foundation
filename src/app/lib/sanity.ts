@@ -5,6 +5,7 @@ import { ThinkDifferentPageData } from '../types/thinkDifferent';
 import { ListenAppPageData } from '../types/listenApp';
 import { PerpetratorProgrammePageData } from '../types/perpetratorProgramme';
 import { BlogPost, BlogPageData } from '../types/blog';
+import { CTABlockData } from '../types/CTA';
 
 export async function getHomepageData(): Promise<HomepageData | null> {
   try {
@@ -478,6 +479,23 @@ export async function getBlogPostBySlug(
     return data;
   } catch (error) {
     console.error('Error fetching blog post:', error);
+    return null;
+  }
+}
+
+export async function getCTABlockData(): Promise<CTABlockData | null> {
+  try {
+    const query = `*[_type == "CTABlock"][0] {
+      _id,
+      _type,
+      callToActionTitle,
+      primaryCta,
+      secondaryCta
+    }`;
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error('Error fetching CTABlock data:', error);
     return null;
   }
 }

@@ -7,6 +7,7 @@ import { BlockContent } from '../components/BlockContent';
 import { PortableTextBlock } from 'next-sanity';
 import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import { LogoSection } from '../components/LogoSection';
+import { CTA } from '../components/CTA';
 
 export default async function AboutPage() {
   const aboutPageData: AboutPageData | null = await getAboutPageData();
@@ -166,6 +167,9 @@ export default async function AboutPage() {
         title={specialThanksTitle || 'Special Thanks'}
         logos={specialThanks}
       />
+
+      {/* {CTA Block} */}
+      <CTA />
     </div>
   );
 }
