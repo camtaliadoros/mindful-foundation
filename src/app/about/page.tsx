@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Header from '../components/Header';
 import { BlockContent } from '../components/BlockContent';
 import { PortableTextBlock } from 'next-sanity';
+import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
+import { LogoSection } from '../components/LogoSection';
 
 export default async function AboutPage() {
   const aboutPageData: AboutPageData | null = await getAboutPageData();
@@ -80,14 +82,10 @@ export default async function AboutPage() {
                     {mission}
                   </p>
                 </div>
-                <div className='relative h-[400px] rounded-lg overflow-hidden'>
-                  <Image
-                    src={missionImage.asset.url}
-                    alt={missionImage.alt || 'Our Mission'}
-                    fill
-                    className='object-cover'
-                  />
-                </div>
+                <ScrollAnimatedImage
+                  src={missionImage.asset.url}
+                  alt={missionImage.alt || 'Our Mission'}
+                />
               </div>
             ) : (
               <div className='max-w-4xl mx-auto text-center'>
@@ -133,14 +131,10 @@ export default async function AboutPage() {
         <section className=' bg-chalk py-16 px-3'>
           <div className='max-w-6xl mx-auto grid md:grid-cols-2 gap-12'>
             {teamImage && (
-              <div className='relative h-[400px] rounded-lg overflow-hidden'>
-                <Image
-                  src={teamImage.asset.url}
-                  alt={teamImage.alt || 'The Team'}
-                  fill
-                  className='object-cover'
-                />
-              </div>
+              <ScrollAnimatedImage
+                src={teamImage.asset.url}
+                alt={teamImage.alt || 'The Team'}
+              />
             )}
             <div>
               <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
@@ -153,51 +147,11 @@ export default async function AboutPage() {
       )}
 
       {/* Advisory Board Section */}
-      {advisoryBoard && advisoryBoard.length > 0 && (
-        <section className='bg-white py-16 px-6'>
-          <div className='max-w-6xl mx-auto'>
-            <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
-              {advisoryBoardTitle || 'Advisory Board'}
-            </h2>
-            <div className='flex flex-wrap gap-12 items-center justify-center max-w-3xl mx-auto'>
-              {advisoryBoard.map((member) => (
-                <div key={member._key} className='flex justify-center max-w-30'>
-                  {member.logo ? (
-                    <a
-                      href={member.url}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='transition-transform hover:scale-105'
-                    >
-                      <Image
-                        src={member.logo.asset.url}
-                        alt={member.logo.alt || member.name}
-                        width={200}
-                        height={100}
-                        className='max-h-20 w-auto object-contain'
-                      />
-                    </a>
-                  ) : (
-                    <div className='text-center'>
-                      <h3 className='text-lg font-grotesk-medium text-mf-blue mb-2'>
-                        {member.name}
-                      </h3>
-                      <a
-                        href={member.url}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-mf-green hover:underline'
-                      >
-                        Visit Website
-                      </a>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <LogoSection
+        type='advisoryBoard'
+        title={advisoryBoardTitle || 'Advisory Board'}
+        logos={advisoryBoard}
+      />
 
       {/* ListenApp Partners Section */}
       {listenAppPartners && listenAppPartners.length > 0 && (
