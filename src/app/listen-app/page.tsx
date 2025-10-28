@@ -40,9 +40,7 @@ export default async function ListenAppPage() {
   } = listenAppData;
 
   return (
-    <div className='min-h-screen bg-chalk'>
-      <Header />
-
+    <>
       {/* Header Section */}
       <section className='bg-mf-blue text-chalk py-16 px-6'>
         <div className='max-w-4xl mx-auto text-center'>
@@ -127,6 +125,6 @@ export default async function ListenAppPage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

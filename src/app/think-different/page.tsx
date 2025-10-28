@@ -57,10 +57,7 @@ export default async function ThinkDifferentPage() {
   } = pageData;
 
   return (
-    <div className='min-h-screen'>
-      {/* Header */}
-      <Header />
-
+    <>
       {/* Hero Section */}
       <section className='bg-mf-blue py-16 px-6'>
         <div className='max-w-4xl mx-auto text-center'>
@@ -251,6 +248,6 @@ export default async function ThinkDifferentPage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

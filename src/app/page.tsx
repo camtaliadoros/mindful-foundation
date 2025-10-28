@@ -53,10 +53,7 @@ export default async function Home() {
   const headerSubheadlineArray = headerSubheadline?.split('. ') || [];
 
   return (
-    <div className='min-h-screen'>
-      {/* Header */}
-      <Header />
-
+    <>
       {/* Hero Section */}
       <section
         className='relative h-[600px] bg-cover bg-center'
@@ -185,6 +182,6 @@ export default async function Home() {
 
       {/* Call to Action Section */}
       <CTA />
-    </div>
+    </>
   );
 }

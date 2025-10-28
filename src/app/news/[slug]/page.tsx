@@ -1,10 +1,9 @@
-import { getBlogPostBySlug, getAllBlogPosts } from '../../lib/sanity';
-import { renderBlockContent } from '../../utils/sanity';
-import { CTAButton } from '../../utils/cta';
-import Header from '../../components/Header';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { getAllBlogPosts, getBlogPostBySlug } from '../../lib/sanity';
+import { CTAButton } from '../../utils/cta';
+import { renderBlockContent } from '../../utils/sanity';
 
 interface NewsArticlePageProps {
   params: {
@@ -38,9 +37,7 @@ export default async function NewsArticlePage({
   } = post;
 
   return (
-    <div className='min-h-screen bg-chalk'>
-      <Header />
-
+    <>
       {/* Header Section */}
       <section className='bg-mf-blue text-chalk py-16 px-6'>
         <div className='max-w-4xl mx-auto'>
@@ -174,6 +171,6 @@ export default async function NewsArticlePage({
           </Link>
         </div>
       </section>
-    </div>
+    </>
   );
 }

@@ -41,9 +41,7 @@ export default async function PerpetratorProgrammePage() {
   } = perpetratorData;
 
   return (
-    <div className='min-h-screen bg-chalk'>
-      <Header />
-
+    <>
       {/* Header Section */}
       <section className='bg-mf-blue text-chalk py-16 px-6'>
         <div className='max-w-4xl mx-auto text-center'>
@@ -136,6 +134,6 @@ export default async function PerpetratorProgrammePage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

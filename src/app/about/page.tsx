@@ -43,10 +43,7 @@ export default async function AboutPage() {
   } = aboutPageData;
 
   return (
-    <div className='min-h-screen'>
-      {/* Header */}
-      <Header />
-
+    <>
       {/* Header Section */}
       <section className='bg-mf-blue py-16 px-6'>
         <div className='max-w-4xl mx-auto text-center'>
@@ -170,6 +167,6 @@ export default async function AboutPage() {
 
       {/* {CTA Block} */}
       <CTA />
-    </div>
+    </>
   );
 }
