@@ -64,7 +64,7 @@ export default async function ThinkDifferentPage() {
           <h1 className='text-4xl md:text-5xl font-bold text-chalk mb-6'>
             {title}
           </h1>
-          <div className='text-xl text-chalk leading-relaxed max-w-3xl mx-auto'>
+          <div className='text-xl text-mf-green leading-relaxed max-w-3xl mx-auto'>
             {missionStatement}
           </div>
         </div>
