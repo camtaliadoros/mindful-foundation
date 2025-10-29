@@ -5,8 +5,7 @@ import Header from '../components/Header';
 import { CTAButton } from '../utils/cta';
 import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import TwoColumnSection from '../components/TwoColumnSection';
-import { ApproachBulletIcon } from '../components/Icons';
-import Image from 'next/image';
+import { AnimatedApproachItem } from '../components/AnimatedApproachItem';
 
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =
@@ -121,27 +120,13 @@ export default async function ThinkDifferentPage() {
               <h3 className='text-xl font-bold text-mf-blue mb-6'>
                 {whyDifferentApproachesTitle || 'The course draws on:'}
               </h3>
-              <div className='grid md:grid-cols-2 gap-4 mb-6'>
+              <div className='grid md:grid-cols-2 gap-4 mb-6 '>
                 {whyDifferentApproaches.map((approach, index) => (
-                  <div
+                  <AnimatedApproachItem
                     key={approach._key || index}
-                    className='bg-chalk p-6 rounded-lg flex items-start gap-3'
-                  >
-                    {approach.icon?.asset?.url ? (
-                      <Image
-                        src={approach.icon.asset.url}
-                        alt={approach.title}
-                        width={24}
-                        height={24}
-                        className='flex-shrink-0'
-                      />
-                    ) : (
-                      <ApproachBulletIcon />
-                    )}
-                    <p className='text-gray-700 font-grotesk-medium'>
-                      {approach.title}
-                    </p>
-                  </div>
+                    approach={approach}
+                    index={index}
+                  />
                 ))}
               </div>
             </div>

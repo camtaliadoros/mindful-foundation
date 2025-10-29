@@ -115,12 +115,12 @@ export function PerpetratorProgrammeIcon() {
 export function ApproachBulletIcon() {
   return (
     <svg
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
+      width='40'
+      height='40'
+      viewBox='0 0 40 40'
       className='text-mf-green flex-shrink-0'
     >
-      <circle cx='12' cy='12' r='4' fill='currentColor' />
+      <circle cx='20' cy='20 ' r='10' fill='currentColor' />
     </svg>
   );
 }
