@@ -193,6 +193,13 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       missionStatement,
       overviewHeadline,
       overview,
+      overviewImage {
+        asset-> {
+          _ref,
+          url
+        },
+        alt
+      },
       whyDifferentTitle,
       whyDifferentDescription,
       whyDifferentApproachesTitle,

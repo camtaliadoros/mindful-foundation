@@ -14,6 +14,13 @@ export interface ThinkDifferentPageData {
   missionStatement: string;
   overviewHeadline: string;
   overview: BlockContent[];
+  overviewImage: {
+    asset: {
+      _ref: string;
+      url: string;
+    };
+    alt?: string;
+  };
   whyDifferentTitle?: string;
   whyDifferentDescription: BlockContent[];
   whyDifferentApproachesTitle?: string;

@@ -3,6 +3,8 @@ import { renderBlockContent } from '../utils/sanity';
 import { ThinkDifferentPageData } from '../types/thinkDifferent';
 import Header from '../components/Header';
 import { CTAButton } from '../utils/cta';
+import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
+import TwoColumnSection from '../components/TwoColumnSection';
 
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =
@@ -31,6 +33,7 @@ export default async function ThinkDifferentPage() {
     missionStatement,
     overviewHeadline,
     overview,
+    overviewImage,
     whyDifferentTitle,
     whyDifferentDescription,
     whyDifferentApproachesTitle,
@@ -56,11 +59,13 @@ export default async function ThinkDifferentPage() {
     ctaButtons,
   } = pageData;
 
+  console.log(overviewImage);
+
   return (
     <>
       {/* Hero Section */}
       <section className='bg-mf-blue py-16 px-6'>
-        <div className='max-w-4xl mx-auto text-center'>
+        <div className='max-w-2xl mx-auto text-center'>
           <h1 className='text-4xl md:text-5xl font-bold text-chalk mb-6'>
             {title}
           </h1>
@@ -71,15 +76,32 @@ export default async function ThinkDifferentPage() {
       </section>
 
       {/* Overview Section */}
-      <section className='bg-chalk py-16 px-6'>
-        <div className='max-w-4xl mx-auto'>
-          <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
-            {overviewHeadline}
-          </h2>
-          <div className='prose prose-lg max-w-none'>
-            {overview && renderBlockContent(overview)}
+      <section className='bg-chalk py-16 px-12'>
+        {overviewImage ? (
+          <TwoColumnSection>
+            <div>
+              <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
+                {overviewHeadline}
+              </h2>
+              <div className='prose prose-lg max-w-none'>
+                {overview && renderBlockContent(overview)}
+              </div>
+            </div>
+            <ScrollAnimatedImage
+              src={overviewImage.asset.url}
+              alt={overviewImage.alt || 'Our Mission'}
+            />
+          </TwoColumnSection>
+        ) : (
+          <div className='max-w-2xl mx-auto'>
+            <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
+              {overviewHeadline}
+            </h2>
+            <div className='prose prose-lg max-w-none'>
+              {overview && renderBlockContent(overview)}
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       {/* Why It's Different Section */}
