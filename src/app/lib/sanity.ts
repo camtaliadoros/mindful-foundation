@@ -203,7 +203,15 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       whyDifferentTitle,
       whyDifferentDescription,
       whyDifferentApproachesTitle,
-      whyDifferentApproaches,
+      whyDifferentApproaches[] {
+        _key,
+        title,
+        icon {
+          asset-> {
+            url
+          }
+        }
+      },
       courseStructureTitle,
       courseStructureDescription,
       modulesTitle,

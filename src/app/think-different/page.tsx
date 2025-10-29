@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import { CTAButton } from '../utils/cta';
 import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import TwoColumnSection from '../components/TwoColumnSection';
+import { ApproachBulletIcon } from '../components/Icons';
+import Image from 'next/image';
 
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =
@@ -106,11 +108,11 @@ export default async function ThinkDifferentPage() {
 
       {/* Why It's Different Section */}
       <section className='bg-white py-16 px-6'>
-        <div className='max-w-4xl mx-auto'>
-          <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
+        <div className='max-w-2xl mx-auto flex flex-col items-center'>
+          <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center '>
             {whyDifferentTitle || "Why It's Different"}
           </h2>
-          <div className='prose prose-lg max-w-none mb-8'>
+          <div className='prose prose-lg max-w-2xl mb-8 text-center'>
             {whyDifferentDescription &&
               renderBlockContent(whyDifferentDescription)}
           </div>
@@ -121,9 +123,23 @@ export default async function ThinkDifferentPage() {
               </h3>
               <div className='grid md:grid-cols-2 gap-4 mb-6'>
                 {whyDifferentApproaches.map((approach, index) => (
-                  <div key={index} className='bg-chalk p-6 rounded-lg'>
+                  <div
+                    key={approach._key || index}
+                    className='bg-chalk p-6 rounded-lg flex items-start gap-3'
+                  >
+                    {approach.icon?.asset?.url ? (
+                      <Image
+                        src={approach.icon.asset.url}
+                        alt={approach.title}
+                        width={24}
+                        height={24}
+                        className='flex-shrink-0'
+                      />
+                    ) : (
+                      <ApproachBulletIcon />
+                    )}
                     <p className='text-gray-700 font-grotesk-medium'>
-                      {approach}
+                      {approach.title}
                     </p>
                   </div>
                 ))}

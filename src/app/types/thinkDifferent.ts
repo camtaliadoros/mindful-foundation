@@ -7,6 +7,16 @@ export interface CourseModule {
   description: string;
 }
 
+export interface Approach {
+  _key: string;
+  title: string;
+  icon?: {
+    asset: {
+      url: string;
+    };
+  };
+}
+
 export interface ThinkDifferentPageData {
   _id: string;
   _type: 'thinkDifferentPage';
@@ -24,7 +34,7 @@ export interface ThinkDifferentPageData {
   whyDifferentTitle?: string;
   whyDifferentDescription: BlockContent[];
   whyDifferentApproachesTitle?: string;
-  whyDifferentApproaches: string[];
+  whyDifferentApproaches: Approach[];
   courseStructureTitle?: string;
   courseStructureDescription: BlockContent[];
   modulesTitle?: string;
