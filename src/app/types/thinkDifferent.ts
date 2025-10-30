@@ -41,6 +41,13 @@ export interface ThinkDifferentPageData {
   modules: CourseModule[];
   courseAimsTitle?: string;
   courseAims: string[];
+  courseAimsImage?: {
+    asset: {
+      _ref: string;
+      url: string;
+    };
+    alt?: string;
+  };
   impactTitle?: string;
   impactDescription: BlockContent[];
   impactOutcomes: string[];

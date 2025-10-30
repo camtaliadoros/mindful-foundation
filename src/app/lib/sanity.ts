@@ -222,6 +222,13 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       },
       courseAimsTitle,
       courseAims,
+      courseAimsImage {
+        asset-> {
+          _ref,
+          url
+        },
+        alt
+      },
       impactTitle,
       impactDescription,
       impactOutcomes,

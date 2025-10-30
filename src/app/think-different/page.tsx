@@ -46,6 +46,7 @@ export default async function ThinkDifferentPage() {
     modules,
     courseAimsTitle,
     courseAims,
+    courseAimsImage,
     impactTitle,
     impactDescription,
     impactOutcomes,
@@ -166,17 +167,35 @@ export default async function ThinkDifferentPage() {
 
       {/* Course Aims Section */}
       <section className='bg-white py-16 px-6'>
-        <div className='max-w-4xl mx-auto'>
+        <div className='max-w-6xl mx-auto'>
           <h2 className='text-3xl font-bold text-mf-blue mb-12 text-center'>
             {courseAimsTitle || 'Course Aims'}
           </h2>
-          <div className='grid md:grid-cols-2 gap-6'>
-            {courseAims.map((aim, index) => (
-              <div key={index} className='bg-chalk p-6 rounded-lg'>
-                <p className='text-gray-700'>{aim}</p>
+          {courseAimsImage ? (
+            <TwoColumnSection>
+              <div>
+                <div className='grid md:grid-cols-2 gap-6'>
+                  {courseAims.map((aim, index) => (
+                    <div key={index} className='bg-chalk p-6 rounded-lg'>
+                      <p className='text-gray-700'>{aim}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-          </div>
+              <ScrollAnimatedImage
+                src={courseAimsImage.asset.url}
+                alt={courseAimsImage.alt || 'Course Aims'}
+              />
+            </TwoColumnSection>
+          ) : (
+            <div className='grid md:grid-cols-2 gap-6'>
+              {courseAims.map((aim, index) => (
+                <div key={index} className='bg-chalk p-6 rounded-lg'>
+                  <p className='text-gray-700'>{aim}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
