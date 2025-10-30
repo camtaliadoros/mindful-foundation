@@ -1,3 +1,11 @@
+import {
+  faArrowDown,
+  faArrowUp,
+  faHeart,
+  faStarOfLife,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export function ThinkDifferentIcon() {
   return (
     <svg
@@ -123,4 +131,23 @@ export function ApproachBulletIcon() {
       <circle cx='20' cy='20 ' r='10' fill='currentColor' />
     </svg>
   );
+}
+
+export function ArrowDownIcon() {
+  return (
+    <FontAwesomeIcon icon={faArrowDown} className='h-6 w-6 text-mf-green' />
+  );
+}
+export function StarIcon() {
+  return (
+    <FontAwesomeIcon icon={faStarOfLife} className='h-6 w-6 text-mf-green' />
+  );
+}
+
+export function HeartIcon() {
+  return <FontAwesomeIcon icon={faHeart} className='h-6 w-6 text-mf-green' />;
+}
+
+export function ArrowUpIcon() {
+  return <FontAwesomeIcon icon={faArrowUp} className='h-6 w-6 text-mf-green' />;
 }

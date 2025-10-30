@@ -1,12 +1,18 @@
-import { getThinkDifferentPageData } from '../lib/sanity';
-import { renderBlockContent } from '../utils/sanity';
-import { ThinkDifferentPageData } from '../types/thinkDifferent';
-import Header from '../components/Header';
-import { CTAButton } from '../utils/cta';
-import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
-import TwoColumnSection from '../components/TwoColumnSection';
 import { AnimatedApproachItem } from '../components/AnimatedApproachItem';
 import { AnimatedModuleItem } from '../components/AnimatedModuleItem';
+import Header from '../components/Header';
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  HeartIcon,
+  StarIcon,
+} from '../components/Icons';
+import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
+import TwoColumnSection from '../components/TwoColumnSection';
+import { getThinkDifferentPageData } from '../lib/sanity';
+import { ThinkDifferentPageData } from '../types/thinkDifferent';
+import { CTAButton } from '../utils/cta';
+import { renderBlockContent } from '../utils/sanity';
 
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =
@@ -205,7 +211,7 @@ export default async function ThinkDifferentPage() {
 
       {/* Impact Section */}
       <section className='bg-mf-blue py-16 px-6'>
-        <div className='max-w-6xl mx-auto'>
+        <div className='max-w-2xl mx-auto'>
           <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
             {impactTitle || 'Impact So Far'}
           </h2>
@@ -214,12 +220,23 @@ export default async function ThinkDifferentPage() {
           </div>
 
           {impactOutcomes && impactOutcomes.length > 0 && (
-            <div className='grid md:grid-cols-2 gap-6 mb-12'>
-              {impactOutcomes.map((outcome, index) => (
-                <div key={index} className='bg-ash p-6 rounded-lg'>
-                  <p className='text-chalk'>{outcome}</p>
-                </div>
-              ))}
+            <div className='flex flex-col gap-6 mb-12 space-y-2'>
+              {impactOutcomes.map((outcome, index) => {
+                const IconComponent =
+                  index === 0
+                    ? ArrowDownIcon
+                    : index === 1
+                      ? StarIcon
+                      : index === 2
+                        ? HeartIcon
+                        : ArrowUpIcon;
+                return (
+                  <div key={index} className='flex gap-3 items-center'>
+                    <IconComponent />
+                    <p className='text-chalk font-bold'>{outcome}</p>
+                  </div>
+                );
+              })}
             </div>
           )}
 
