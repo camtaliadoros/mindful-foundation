@@ -1,13 +1,12 @@
 import { getAboutPageData } from '../lib/sanity';
-import { renderBlockContent } from '../utils/sanity';
 import { AboutPageData } from '../types/about';
+import { renderBlockContent } from '../utils/sanity';
 
-import Header from '../components/Header';
-import { BlockContent } from '../components/BlockContent';
 import { PortableTextBlock } from 'next-sanity';
-import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
-import { LogoSection } from '../components/LogoSection';
+import { BlockContent } from '../components/BlockContent';
 import { CTA } from '../components/CTA';
+import { LogoSection } from '../components/LogoSection';
+import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 
 export default async function AboutPage() {
   const aboutPageData: AboutPageData | null = await getAboutPageData();
@@ -50,7 +49,7 @@ export default async function AboutPage() {
           <h1 className='text-4xl md:text-5xl font-bold text-chalk mb-4'>
             {headerHeadline}
           </h1>
-          <p className='text-2xl text-chalk'>{headerSubheadline}</p>
+          <p className='text-2xl text-mf-green'>{headerSubheadline}</p>
         </div>
       </section>
 
