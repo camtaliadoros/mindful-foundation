@@ -6,6 +6,7 @@ import { CTAButton } from '../utils/cta';
 import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import TwoColumnSection from '../components/TwoColumnSection';
 import { AnimatedApproachItem } from '../components/AnimatedApproachItem';
+import { AnimatedModuleItem } from '../components/AnimatedModuleItem';
 
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =
@@ -81,7 +82,7 @@ export default async function ThinkDifferentPage() {
         {overviewImage ? (
           <TwoColumnSection>
             <div>
-              <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
+              <h2 className='text-3xl font-bold text-mf-blue mb-8'>
                 {overviewHeadline}
               </h2>
               <div className='prose prose-lg max-w-none'>
@@ -135,31 +136,27 @@ export default async function ThinkDifferentPage() {
       </section>
 
       {/* Course Structure Section */}
-      <section className='bg-chalk py-16 px-6'>
-        <div className='max-w-6xl mx-auto'>
-          <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
+      <section className='bg-mf-blue py-16 px-6'>
+        <div className='max-w-2xl mx-auto'>
+          <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
             {courseStructureTitle || 'Course Structure'}
           </h2>
-          <div className='prose prose-lg max-w-none mb-12'>
+          <div className='prose prose-lg max-w-none mb-12 text-chalk text-center'>
             {courseStructureDescription &&
               renderBlockContent(courseStructureDescription)}
           </div>
           {modules && modules.length > 0 && (
             <div>
-              <h3 className='text-2xl font-bold text-mf-blue mb-8 text-center'>
+              <h3 className='text-2xl font-bold text-chalk mb-8 text-center'>
                 {modulesTitle || 'Modules include:'}
               </h3>
-              <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                {modules.map((module) => (
-                  <div
+              <div className='flex flex-col gap-6'>
+                {modules.map((module, index) => (
+                  <AnimatedModuleItem
                     key={module._key}
-                    className='bg-white p-6 rounded-lg shadow-sm'
-                  >
-                    <h3 className='text-xl font-bold text-mf-blue mb-3'>
-                      {module.title}
-                    </h3>
-                    <p className='text-gray-700'>{module.description}</p>
-                  </div>
+                    module={module}
+                    index={index}
+                  />
                 ))}
               </div>
             </div>
