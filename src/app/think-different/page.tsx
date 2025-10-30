@@ -173,19 +173,23 @@ export default async function ThinkDifferentPage() {
           </h2>
           {courseAimsImage ? (
             <TwoColumnSection>
-              <div>
-                <div className='grid md:grid-cols-2 gap-6'>
-                  {courseAims.map((aim, index) => (
-                    <div key={index} className='bg-chalk p-6 rounded-lg'>
-                      <p className='text-gray-700'>{aim}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
               <ScrollAnimatedImage
                 src={courseAimsImage.asset.url}
                 alt={courseAimsImage.alt || 'Course Aims'}
               />
+              <div>
+                <div className='flex flex-col space-y-3'>
+                  {courseAims.map((aim, index) => (
+                    <div
+                      key={index}
+                      className='flex items-start md:items-center gap-2'
+                    >
+                      <div className='mt-1 md:mt-0 bg-mf-blue h-3 w-3 shrink-0 rounded-full' />
+                      <p className='md:mt-1.5 text-mf-blue'>{aim}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </TwoColumnSection>
           ) : (
             <div className='grid md:grid-cols-2 gap-6'>
