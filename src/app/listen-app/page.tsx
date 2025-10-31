@@ -92,7 +92,8 @@ export default async function ListenAppPage() {
           <h2 className='text-3xl font-bold text-chalk mb-12 text-center'>
             {featuresTitle}
           </h2>
-          <div className='max-w-2xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {/* <div className='max-w-2xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8'> */}
+          <div className='max-w-2xl mx-auto flex flex-wrap justify-center gap-8'>
             {features?.map((feature: Feature, index: number) => {
               const iconMap = [
                 faHeadphones,
@@ -106,7 +107,7 @@ export default async function ListenAppPage() {
               return (
                 <div
                   key={feature._key}
-                  className='bg-mf-dark-blue p-6 rounded-lg space-y-2 flex flex-col items-center'
+                  className='bg-mf-dark-blue p-6 rounded-lg space-y-2 flex flex-col items-center w-full sm:max-w-48'
                 >
                   <FontAwesomeIcon
                     icon={icon}
