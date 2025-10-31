@@ -1,5 +1,6 @@
 import { AnimatedApproachItem } from '../components/AnimatedApproachItem';
 import { AnimatedModuleItem } from '../components/AnimatedModuleItem';
+import { BulletItemCard } from '../components/BulletItemCard';
 import Header from '../components/Header';
 import {
   ArrowDownIcon,
@@ -248,7 +249,7 @@ export default async function ThinkDifferentPage() {
 
       {/* Training Section */}
       <section className='bg-chalk py-16 px-6'>
-        <div className='max-w-4xl mx-auto'>
+        <div className='max-w-2xl mx-auto'>
           <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
             {trainingTitle || 'Training for Educators & Staff'}
           </h2>
@@ -261,11 +262,14 @@ export default async function ThinkDifferentPage() {
               <h3 className='text-xl font-bold text-mf-blue mb-4'>
                 {trainingCoversTitle || 'Training covers:'}
               </h3>
-              <div className='grid md:grid-cols-2 gap-4'>
+              <div className='grid gap-4'>
                 {trainingCovers.map((cover, index) => (
-                  <div key={index} className='bg-white p-4 rounded-lg'>
-                    <p className='text-gray-700'>{cover}</p>
-                  </div>
+                  <BulletItemCard
+                    backgroundColour='bg-white'
+                    discColour='bg-mf-blue'
+                    content={cover}
+                    key={index}
+                  />
                 ))}
               </div>
             </div>
@@ -277,11 +281,14 @@ export default async function ThinkDifferentPage() {
                 <h3 className='text-xl font-bold text-mf-blue mb-4'>
                   {trainingParticipantsReceiveTitle || 'Participants receive:'}
                 </h3>
-                <div className='grid md:grid-cols-2 gap-4'>
+                <div className='grid gap-4'>
                   {trainingParticipantsReceive.map((item, index) => (
-                    <div key={index} className='bg-white p-4 rounded-lg'>
-                      <p className='text-gray-700'>{item}</p>
-                    </div>
+                    <BulletItemCard
+                      backgroundColour='bg-white'
+                      discColour='bg-mf-blue'
+                      content={item}
+                      key={index}
+                    />
                   ))}
                 </div>
               </div>
@@ -295,9 +302,9 @@ export default async function ThinkDifferentPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className='bg-white py-16 px-6'>
+      <section className='bg-mf-blue py-16 px-6'>
         <div className='max-w-4xl mx-auto text-center'>
-          <h2 className='text-3xl font-bold text-mf-blue mb-8'>
+          <h2 className='text-3xl font-bold text-chalk mb-8'>
             {ctaTitle ||
               'Bring Think Different to your school, organisation, or community.'}
           </h2>
