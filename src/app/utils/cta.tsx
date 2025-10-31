@@ -4,9 +4,14 @@ import { CTA } from '../types/homepage';
 interface CTAButtonProps {
   cta: CTA;
   className?: string;
+  darkBackground?: boolean;
 }
 
-export function CTAButton({ cta, className = '' }: CTAButtonProps) {
+export function CTAButton({
+  cta,
+  className = '',
+  darkBackground = false,
+}: CTAButtonProps) {
   const { label, actionType, href, email, pdf, style } = cta;
 
   // Generate the appropriate props based on action type
@@ -42,6 +47,21 @@ export function CTAButton({ cta, className = '' }: CTAButtonProps) {
     const baseClasses =
       'px-8 py-3 rounded-full transition-all font-grotesk-medium text-xl';
 
+    // Dark background styles
+    if (darkBackground) {
+      switch (style) {
+        case 'primary':
+          return `${baseClasses} border-2 border-mf-green text-mf-green hover:bg-mf-green hover:text-mf-blue`;
+        case 'secondary':
+          return `${baseClasses} border-2 border-chalk text-chalk hover:bg-chalk hover:text-mf-blue`;
+        case 'link':
+          return `${baseClasses} border-2 border-mf-green text-mf-green hover:bg-mf-green hover:text-mf-blue`;
+        default:
+          return `${baseClasses} border-2 border-mf-green text-mf-green hover:bg-mf-green hover:text-mf-blue`;
+      }
+    }
+
+    // Light background styles (original)
     switch (style) {
       case 'primary':
         return `${baseClasses} border-2 border-mf-green text-ash hover:bg-mf-green`;

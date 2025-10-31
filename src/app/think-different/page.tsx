@@ -234,7 +234,7 @@ export default async function ThinkDifferentPage() {
                 return (
                   <div key={index} className='flex gap-3 items-center'>
                     <IconComponent />
-                    <p className='text-chalk font-bold'>{outcome}</p>
+                    <p className='text-chalk font-bold mt-1'>{outcome}</p>
                   </div>
                 );
               })}
@@ -265,10 +265,11 @@ export default async function ThinkDifferentPage() {
               <div className='grid gap-4'>
                 {trainingCovers.map((cover, index) => (
                   <BulletItemCard
+                    key={index}
                     backgroundColour='bg-white'
                     discColour='bg-mf-blue'
                     content={cover}
-                    key={index}
+                    index={index}
                   />
                 ))}
               </div>
@@ -284,10 +285,11 @@ export default async function ThinkDifferentPage() {
                 <div className='grid gap-4'>
                   {trainingParticipantsReceive.map((item, index) => (
                     <BulletItemCard
+                      key={index}
                       backgroundColour='bg-white'
                       discColour='bg-mf-blue'
                       content={item}
-                      key={index}
+                      index={index}
                     />
                   ))}
                 </div>
@@ -310,7 +312,7 @@ export default async function ThinkDifferentPage() {
           </h2>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             {ctaButtons.map((button) => (
-              <CTAButton key={button._key} cta={button} />
+              <CTAButton key={button._key} cta={button} darkBackground={true} />
             ))}
           </div>
         </div>
