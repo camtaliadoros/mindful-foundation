@@ -75,16 +75,26 @@ body {
 
 /* Elegant button shadows */
 .hover\:shadow-mf-green\/30:hover {
-  box-shadow: 0 25px 50px -12px rgba(48, 246, 186, 0.3),
+  box-shadow:
+    0 25px 50px -12px rgba(48, 246, 186, 0.3),
     0 0 0 1px rgba(48, 246, 186, 0.1);
 }
 
 .hover\:shadow-mf-blue\/20:hover {
-  box-shadow: 0 20px 40px -12px rgba(38, 34, 79, 0.2),
+  box-shadow:
+    0 20px 40px -12px rgba(38, 34, 79, 0.2),
     0 0 0 1px rgba(38, 34, 79, 0.1);
 }
 
 .hover\:shadow-mf-green\/20:hover {
-  box-shadow: 0 20px 40px -12px rgba(48, 246, 186, 0.2),
+  box-shadow:
+    0 20px 40px -12px rgba(48, 246, 186, 0.2),
     0 0 0 1px rgba(48, 246, 186, 0.1);
+}
+
+/* Global button styling */
+button,
+a[class*='rounded-full'] {
+  padding-bottom: 6px;
+  margin-bottom: 4px;
 }
