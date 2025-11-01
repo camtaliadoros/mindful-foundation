@@ -60,15 +60,15 @@ export default async function NewsPage() {
                 <Link
                   key={post._id}
                   href={`/news/${post.slug.current}`}
-                  className='block bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow group'
+                  className='block bg-white rounded-lg shadow-sm overflow-hidden  transition-shadow group'
                 >
                   {post.featuredImage && (
-                    <div className='aspect-video relative'>
+                    <div className='aspect-video relative overflow-hidden'>
                       <Image
                         src={post.featuredImage.asset.url}
                         alt={post.featuredImage.alt || post.headline}
                         fill
-                        className='object-cover'
+                        className='object-cover transition-transform duration-300 group-hover:scale-105'
                       />
                     </div>
                   )}
@@ -85,7 +85,7 @@ export default async function NewsPage() {
                         )}
                       </time>
                     </div>
-                    <h2 className='text-xl font-bold text-mf-blue mb-2 font-grotesk-medium group-hover:text-mf-green transition-colors'>
+                    <h2 className='text-xl font-bold text-mf-blue mb-2 font-grotesk-medium  transition-colors'>
                       {post.headline}
                     </h2>
                     {post.subheadline && (
