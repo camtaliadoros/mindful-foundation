@@ -40,14 +40,14 @@ export default async function NewsArticlePage({
     <>
       {/* Header Section */}
       <section className='bg-mf-blue text-chalk py-16 px-6'>
-        <div className='max-w-4xl mx-auto'>
+        <div className='max-w-2xl mx-auto'>
           <div className='mb-4'>
             <Link
               href='/news'
               className='inline-flex items-center text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
             >
               <svg
-                className='mr-2 w-4 h-4'
+                className='mr-2 w-4 h-4 mb-1'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -85,8 +85,8 @@ export default async function NewsArticlePage({
       {/* Featured Image */}
       {featuredImage && (
         <section className='py-8 px-6'>
-          <div className='max-w-4xl mx-auto'>
-            <div className='aspect-video relative rounded-lg overflow-hidden'>
+          <div className='max-w-2xl mx-auto'>
+            <div className='aspect-video relative  overflow-hidden'>
               <Image
                 src={featuredImage.asset.url}
                 alt={featuredImage.alt || headline}
@@ -105,7 +105,7 @@ export default async function NewsArticlePage({
 
       {/* Content Blocks */}
       <section className='py-16 px-6'>
-        <div className='max-w-4xl mx-auto'>
+        <div className='max-w-2xl mx-auto'>
           {contentBlocks?.map((block) => (
             <div key={block._key} className='mb-12'>
               {/* Content */}
@@ -116,7 +116,7 @@ export default async function NewsArticlePage({
               {/* Optional Image */}
               {block.image && (
                 <div className='my-8'>
-                  <div className='aspect-video relative rounded-lg overflow-hidden'>
+                  <div className='aspect-video relative  overflow-hidden'>
                     <Image
                       src={block.image.asset.url}
                       alt={block.image.alt || 'News article image'}
@@ -137,39 +137,34 @@ export default async function NewsArticlePage({
       </section>
 
       {/* Call to Action */}
-      {cta && (
-        <section className='bg-[#f8f5ed] py-16 px-6'>
+
+      <section className='bg-mf-blue py-16 px-6 flex flex-col-reverse items-center justify-center md:grid md:grid-cols-3 gap-4'>
+        <Link
+          href='/news'
+          className='flex items-center text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
+        >
+          <svg
+            className='mr-2 w-4 h-4 mb-1'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M15 19l-7-7 7-7'
+            />
+          </svg>
+          Back to News
+        </Link>
+        {cta && (
           <div className='max-w-4xl mx-auto text-center'>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-              <CTAButton cta={cta} />
+              <CTAButton cta={cta} darkBackground={true} />
             </div>
           </div>
-        </section>
-      )}
-
-      {/* Back to News */}
-      <section className='py-8 px-6'>
-        <div className='max-w-4xl mx-auto text-center'>
-          <Link
-            href='/news'
-            className='inline-flex items-center text-mf-green hover:text-mf-blue transition-colors font-grotesk-medium'
-          >
-            <svg
-              className='mr-2 w-4 h-4'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M15 19l-7-7 7-7'
-              />
-            </svg>
-            Back to News
-          </Link>
-        </div>
+        )}
       </section>
     </>
   );
