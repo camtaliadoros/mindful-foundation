@@ -1,5 +1,4 @@
 export const TestimonialCard = ({
-  key,
   author,
   title,
   organisation,
@@ -13,10 +12,7 @@ export const TestimonialCard = ({
 }) => {
   return (
     <div className='h-full flex flex-col'>
-      <div
-        key={key}
-        className='bg-mf-dark-blue p-8 rounded-xl h-full flex flex-col justify-between space-y-4'
-      >
+      <div className='bg-mf-dark-blue p-8 rounded-xl h-full flex flex-col justify-between space-y-4'>
         <div className='h-5 w-5 bg-mf-blue rounded-full'></div>
         <blockquote className='text-white text-base italic mb-4 flex-grow leading-tight'>
           &ldquo;{quote}&rdquo;

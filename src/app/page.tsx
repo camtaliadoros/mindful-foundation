@@ -1,6 +1,5 @@
 import { AnimatedStatCard } from './components/AnimatedStatCard';
 import { CTA } from './components/CTA';
-import Header from './components/Header';
 import {
   ListenAppIcon,
   PerpetratorProgrammeIcon,
@@ -107,7 +106,7 @@ export default async function Home() {
               <WorkCard
                 title={thinkDifferent.title}
                 description={thinkDifferent.description}
-                icon={<ThinkDifferentIcon />}
+                icon='think-different'
               />
             )}
 
@@ -116,7 +115,7 @@ export default async function Home() {
               <WorkCard
                 title={listenApp.title}
                 description={listenApp.description}
-                icon={<ListenAppIcon />}
+                icon='listen-app'
               />
             )}
 
@@ -125,7 +124,7 @@ export default async function Home() {
               <WorkCard
                 title={perpetratorProgramme.title}
                 description={perpetratorProgramme.description}
-                icon={<PerpetratorProgrammeIcon />}
+                icon='perpetrator-programme'
               />
             )}
           </div>
