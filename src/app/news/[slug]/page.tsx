@@ -6,9 +6,9 @@ import { CTAButton } from '../../utils/cta';
 import { renderBlockContent } from '../../utils/sanity';
 
 interface NewsArticlePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -21,7 +21,8 @@ export async function generateStaticParams() {
 export default async function NewsArticlePage({
   params,
 }: NewsArticlePageProps) {
-  const post = await getBlogPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
