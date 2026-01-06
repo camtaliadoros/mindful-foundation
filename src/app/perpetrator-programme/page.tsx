@@ -60,7 +60,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {whyItsNeededTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(whyItsNeeded)}
           </div>
         </div>
@@ -72,7 +72,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {ourApproachTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(ourApproach)}
           </div>
         </div>
@@ -106,7 +106,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 '>
             {outcomesTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(outcomes)}
           </div>
         </div>
@@ -118,7 +118,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 '>
             {expansionTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(expansion)}
           </div>
         </div>

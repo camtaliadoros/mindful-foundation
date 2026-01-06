@@ -17,22 +17,24 @@ export const portableTextComponents: PortableTextComponents = {
             width={800}
             height={600}
           />
-          {value.caption && <p>{value.caption}</p>}
+          {value.caption && <p className='text-lg'>{value.caption}</p>}
         </div>
       );
     },
   },
   block: {
-    normal: ({ children }) => <p>{children}</p>,
-    h2: ({ children }) => <h2>{children}</h2>,
-    h3: ({ children }) => <h3>{children}</h3>,
-    blockquote: ({ children }) => <blockquote>{children}</blockquote>,
+    normal: ({ children }) => <p className='text-lg'>{children}</p>,
+    h2: ({ children }) => <h2 className='text-lg'>{children}</h2>,
+    h3: ({ children }) => <h3 className='text-lg'>{children}</h3>,
+    blockquote: ({ children }) => (
+      <blockquote className='text-lg'>{children}</blockquote>
+    ),
   },
   list: {
     bullet: ({ children }) => <ul>{children}</ul>,
   },
   listItem: {
-    bullet: ({ children }) => <li>{children}</li>,
+    bullet: ({ children }) => <li className='text-lg'>{children}</li>,
   },
   marks: {
     strong: ({ children }) => <strong>{children}</strong>,
@@ -42,6 +44,7 @@ export const portableTextComponents: PortableTextComponents = {
         href={value.href}
         target={value.openInNewTab ? '_blank' : '_self'}
         rel={value.openInNewTab ? 'noopener noreferrer' : undefined}
+        className='text-lg'
       >
         {children}
       </a>
@@ -53,7 +56,5 @@ export const portableTextComponents: PortableTextComponents = {
 export function renderBlockContent(content: BlockContent[]) {
   if (!content) return null;
 
-  return (
-    <PortableText value={content} components={portableTextComponents} />
-  );
+  return <PortableText value={content} components={portableTextComponents} />;
 }

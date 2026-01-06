@@ -68,7 +68,7 @@ export default async function ListenAppPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {whatItIsTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(whatItIs)}
           </div>
         </div>
@@ -80,7 +80,7 @@ export default async function ListenAppPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {whyItMattersTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 '>
+          <div className='prose prose-xl max-w-none text-gray-700 [&>*]:text-lg'>
             {renderBlockContent(whyItMatters)}
           </div>
         </div>
@@ -132,7 +132,7 @@ export default async function ListenAppPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {partnersTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(partners)}
           </div>
         </div>

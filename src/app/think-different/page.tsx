@@ -107,7 +107,7 @@ export default async function ThinkDifferentPage() {
             <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
               {overviewHeadline}
             </h2>
-            <div className='prose prose-xl max-w-none'>
+            <div className='prose prose-xl max-w-none [&>*]:text-lg'>
               {overview && renderBlockContent(overview)}
             </div>
           </div>
@@ -120,7 +120,7 @@ export default async function ThinkDifferentPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center '>
             {whyDifferentTitle || "Why It's Different"}
           </h2>
-          <div className='prose prose-xl max-w-2xl mb-8 text-center'>
+          <div className='prose prose-xl max-w-2xl mb-8 text-center [&>*]:text-lg'>
             {whyDifferentDescription &&
               renderBlockContent(whyDifferentDescription)}
           </div>
@@ -149,7 +149,7 @@ export default async function ThinkDifferentPage() {
           <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
             {courseStructureTitle || 'Course Structure'}
           </h2>
-          <div className='prose prose-xl max-w-none mb-12 text-chalk text-center'>
+          <div className='prose prose-xl max-w-none mb-12 text-chalk text-center [&>*]:text-lg'>
             {courseStructureDescription &&
               renderBlockContent(courseStructureDescription)}
           </div>
@@ -216,7 +216,7 @@ export default async function ThinkDifferentPage() {
           <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
             {impactTitle || 'Impact So Far'}
           </h2>
-          <div className='prose prose-xl max-w-none mb-12 text-chalk'>
+          <div className='prose prose-xl max-w-none mb-12 text-chalk [&>*]:text-lg'>
             {impactDescription && renderBlockContent(impactDescription)}
           </div>
 
@@ -241,7 +241,7 @@ export default async function ThinkDifferentPage() {
             </div>
           )}
 
-          <div className='prose prose-xl max-w-none text-chalk'>
+          <div className='prose prose-xl max-w-none text-chalk [&>*]:text-lg'>
             {impactStories && renderBlockContent(impactStories)}
           </div>
         </div>
@@ -253,7 +253,7 @@ export default async function ThinkDifferentPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
             {trainingTitle || 'Training for Educators & Staff'}
           </h2>
-          <div className='prose prose-xl max-w-none mb-8'>
+          <div className='prose prose-xl max-w-none mb-8 [&>*]:text-lg'>
             {trainingDescription && renderBlockContent(trainingDescription)}
           </div>
 

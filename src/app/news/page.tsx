@@ -2,6 +2,7 @@ import { getBlogPageData, getAllBlogPosts } from '../lib/sanity';
 import Header from '../components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
+import { formatDate } from '../utils/dateFormat';
 
 export default async function NewsPage() {
   const [newsPageData, newsPosts] = await Promise.all([
@@ -74,15 +75,11 @@ export default async function NewsPage() {
                   )}
                   <div className='p-6'>
                     <div className='mb-3'>
-                      <time className='text-sm md:text-xl text-gray-500 font-grotesk-regular'>
-                        {new Date(post.publishedAt).toLocaleDateString(
-                          'en-US',
-                          {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          }
-                        )}
+                      <time 
+                        className='text-lg md:text-xl text-gray-500 font-grotesk-regular'
+                        dateTime={post.publishedAt}
+                      >
+                        {formatDate(post.publishedAt)}
                       </time>
                     </div>
                     <h2 className='text-xl font-bold text-mf-blue mb-2 font-grotesk-medium  transition-colors'>
@@ -98,7 +95,7 @@ export default async function NewsPage() {
                         {post.excerpt}
                       </p>
                     )}
-                    <div className='inline-flex items-center text-mf-green group-hover:text-mf-blue transition-colors font-grotesk-medium'>
+                    <div className='inline-flex items-center text-lg text-mf-green group-hover:text-mf-blue transition-colors font-grotesk-medium'>
                       Read more
                       <svg
                         className='ml-2 w-4 h-4'

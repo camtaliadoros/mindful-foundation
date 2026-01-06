@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllBlogPosts, getBlogPostBySlug } from '../../lib/sanity';
 import { CTAButton } from '../../utils/cta';
+import { formatDate } from '../../utils/dateFormat';
 import { renderBlockContent } from '../../utils/sanity';
 
 interface NewsArticlePageProps {
@@ -45,7 +46,7 @@ export default async function NewsArticlePage({
           <div className='mb-4'>
             <Link
               href='/news'
-              className='inline-flex items-center text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
+              className='inline-flex items-center text-lg text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
             >
               <svg
                 className='mr-2 w-4 h-4 mb-1'
@@ -71,13 +72,9 @@ export default async function NewsArticlePage({
               {subheadline}
             </p>
           )}
-          <div className='text-chalk/80 font-grotesk-regular'>
-            <time>
-              {new Date(publishedAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+          <div className='text-lg text-chalk/80 font-grotesk-regular'>
+            <time dateTime={publishedAt}>
+              {formatDate(publishedAt)}
             </time>
           </div>
         </div>
@@ -110,7 +107,7 @@ export default async function NewsArticlePage({
           {contentBlocks?.map((block) => (
             <div key={block._key} className='mb-12'>
               {/* Content */}
-              <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular mb-8'>
+              <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular mb-8 [&>*]:text-lg'>
                 {renderBlockContent(block.content)}
               </div>
 
@@ -142,7 +139,7 @@ export default async function NewsArticlePage({
       <section className='bg-mf-blue py-16 px-6 flex flex-col-reverse items-center justify-center md:grid md:grid-cols-3 gap-4'>
         <Link
           href='/news'
-          className='flex items-center text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
+          className='flex items-center text-lg text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
         >
           <svg
             className='mr-2 w-4 h-4 mb-1'

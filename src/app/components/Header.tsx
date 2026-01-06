@@ -34,7 +34,7 @@ export default function Header() {
             Perpetrator Programme
           </HeaderLink>
           <HeaderLink href='/news'>News</HeaderLink>
-          <button className='px-8 py-3 rounded-full transition-all font-grotesk-medium border-2 border-mf-green text-ash bg-mf-green hover:bg-transparent hover:text-mf-green'>
+          <button className='px-8 py-3 rounded-full transition-all font-grotesk-medium border-2 border-mf-green text-ash bg-mf-green hover:bg-transparent hover:text-mf-green text-lg'>
             Donate
           </button>
         </nav>
