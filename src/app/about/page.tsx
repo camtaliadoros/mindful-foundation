@@ -16,7 +16,7 @@ export default async function AboutPage() {
     return (
       <div>
         <h1>Error Loading About Page</h1>
-        <p>Unable to load about page content from Sanity.</p>
+        <p className='md:text-xl'>Unable to load about page content from Sanity.</p>
       </div>
     );
   }
@@ -89,7 +89,7 @@ export default async function AboutPage() {
               <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
                 {missionTitle || 'Our Mission'}
               </h2>
-              <p className='text-lg text-gray-700 leading-relaxed'>{mission}</p>
+              <p className='text-lg md:text-xl text-gray-700 leading-relaxed'>{mission}</p>
             </div>
           )}
         </section>
@@ -112,7 +112,9 @@ export default async function AboutPage() {
                   <h3 className='text-xl font-bold text-mf-green mb-4'>
                     {item.title}
                   </h3>
-                  <p className='text-chalk leading-snug'>{item.description}</p>
+                  <p className='text-chalk text-lg md:text-xl leading-snug'>
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>

@@ -24,7 +24,7 @@ export default async function ListenAppPage() {
           <h1 className='text-3xl font-bold text-mf-blue mb-4'>
             Page Not Found
           </h1>
-          <p className='text-gray-600'>
+          <p className='text-gray-600 md:text-xl'>
             The ListenApp page content could not be loaded.
           </p>
         </div>
@@ -68,7 +68,7 @@ export default async function ListenAppPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {whatItIsTitle}
           </h2>
-          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
             {renderBlockContent(whatItIs)}
           </div>
         </div>
@@ -80,7 +80,7 @@ export default async function ListenAppPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {whyItMattersTitle}
           </h2>
-          <div className='prose prose-lg max-w-none text-gray-700 '>
+          <div className='prose prose-xl max-w-none text-gray-700 '>
             {renderBlockContent(whyItMatters)}
           </div>
         </div>
@@ -116,7 +116,7 @@ export default async function ListenAppPage() {
                   <h3 className='text-xl font-semibold text-chalk text-center'>
                     {feature.title}
                   </h3>
-                  <p className='text-chalk font-grotesk-regular text-center'>
+                  <p className='text-chalk font-grotesk-regular text-center md:text-xl'>
                     {feature.description}
                   </p>
                 </div>
@@ -132,7 +132,7 @@ export default async function ListenAppPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {partnersTitle}
           </h2>
-          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
             {renderBlockContent(partners)}
           </div>
         </div>

@@ -15,7 +15,7 @@ export default async function PerpetratorProgrammePage() {
           <h1 className='text-3xl font-bold text-mf-blue mb-4'>
             Page Not Found
           </h1>
-          <p className='text-gray-600'>
+          <p className='text-gray-600 md:text-xl'>
             The Perpetrator Programme page content could not be loaded.
           </p>
         </div>
@@ -60,7 +60,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {whyItsNeededTitle}
           </h2>
-          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
             {renderBlockContent(whyItsNeeded)}
           </div>
         </div>
@@ -72,7 +72,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {ourApproachTitle}
           </h2>
-          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
             {renderBlockContent(ourApproach)}
           </div>
         </div>
@@ -91,7 +91,7 @@ export default async function PerpetratorProgrammePage() {
                 className='p-6 rounded-lg border border-mf-green w-full md:max-w-72 sm:max-w-60'
               >
                 <div className='h-6 w-6 bg-mf-green rounded-full mb-4'></div>
-                <h3 className='text-lg font-semibold text-chalk '>
+                <h3 className='text-lg md:text-xl font-semibold text-chalk '>
                   {feature.title}
                 </h3>
               </div>
@@ -106,7 +106,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 '>
             {outcomesTitle}
           </h2>
-          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
             {renderBlockContent(outcomes)}
           </div>
         </div>
@@ -118,7 +118,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 '>
             {expansionTitle}
           </h2>
-          <div className='prose prose-lg max-w-none text-gray-700 font-grotesk-regular'>
+          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular'>
             {renderBlockContent(expansion)}
           </div>
         </div>

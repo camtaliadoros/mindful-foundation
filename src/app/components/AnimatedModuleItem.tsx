@@ -51,7 +51,7 @@ export const AnimatedModuleItem = ({
       <div className='h-6 w-6 bg-mf-blue rounded-full flex-shrink-0' />
       <div>
         <h3 className='text-xl font-bold text-chalk '>{module.title}</h3>
-        <p className='text-chalk'>{module.description}</p>
+        <p className='text-chalk md:text-xl'>{module.description}</p>
       </div>
     </div>
   );

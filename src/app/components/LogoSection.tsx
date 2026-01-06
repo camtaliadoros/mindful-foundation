@@ -48,7 +48,7 @@ export const LogoSection = ({
                   ) : (
                     <div className='text-center'>
                       <h3
-                        className={`text-lg font-grotesk-medium ${textColor} mb-2`}
+                        className={`text-lg md:text-xl font-grotesk-medium ${textColor} mb-2`}
                       >
                         {member.name}
                       </h3>

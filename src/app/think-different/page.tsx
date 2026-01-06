@@ -93,7 +93,7 @@ export default async function ThinkDifferentPage() {
               <h2 className='text-3xl font-bold text-mf-blue mb-8'>
                 {overviewHeadline}
               </h2>
-              <div className='prose prose-lg max-w-none'>
+              <div className='max-w-none'>
                 {overview && renderBlockContent(overview)}
               </div>
             </div>
@@ -107,7 +107,7 @@ export default async function ThinkDifferentPage() {
             <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
               {overviewHeadline}
             </h2>
-            <div className='prose prose-lg max-w-none'>
+            <div className='prose prose-xl max-w-none'>
               {overview && renderBlockContent(overview)}
             </div>
           </div>
@@ -120,7 +120,7 @@ export default async function ThinkDifferentPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center '>
             {whyDifferentTitle || "Why It's Different"}
           </h2>
-          <div className='prose prose-lg max-w-2xl mb-8 text-center'>
+          <div className='prose prose-xl max-w-2xl mb-8 text-center'>
             {whyDifferentDescription &&
               renderBlockContent(whyDifferentDescription)}
           </div>
@@ -149,7 +149,7 @@ export default async function ThinkDifferentPage() {
           <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
             {courseStructureTitle || 'Course Structure'}
           </h2>
-          <div className='prose prose-lg max-w-none mb-12 text-chalk text-center'>
+          <div className='prose prose-xl max-w-none mb-12 text-chalk text-center'>
             {courseStructureDescription &&
               renderBlockContent(courseStructureDescription)}
           </div>
@@ -192,7 +192,7 @@ export default async function ThinkDifferentPage() {
                       className='flex items-start md:items-center gap-2'
                     >
                       <div className='mt-1 md:mt-0 bg-mf-blue h-3 w-3 shrink-0 rounded-full' />
-                      <p className='md:mt-1.5 text-mf-blue'>{aim}</p>
+                      <p className='md:mt-1.5 text-mf-blue md:text-xl'>{aim}</p>
                     </div>
                   ))}
                 </div>
@@ -202,7 +202,7 @@ export default async function ThinkDifferentPage() {
             <div className='grid md:grid-cols-2 gap-6'>
               {courseAims.map((aim, index) => (
                 <div key={index} className='bg-chalk p-6 rounded-lg'>
-                  <p className='text-gray-700'>{aim}</p>
+                  <p className='text-gray-700 md:text-xl'>{aim}</p>
                 </div>
               ))}
             </div>
@@ -216,7 +216,7 @@ export default async function ThinkDifferentPage() {
           <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
             {impactTitle || 'Impact So Far'}
           </h2>
-          <div className='prose prose-lg max-w-none mb-12 text-chalk'>
+          <div className='prose prose-xl max-w-none mb-12 text-chalk'>
             {impactDescription && renderBlockContent(impactDescription)}
           </div>
 
@@ -234,14 +234,14 @@ export default async function ThinkDifferentPage() {
                 return (
                   <div key={index} className='flex gap-3 items-center'>
                     <IconComponent />
-                    <p className='text-chalk font-bold mt-1'>{outcome}</p>
+                    <p className='text-chalk font-bold mt-1 md:text-xl'>{outcome}</p>
                   </div>
                 );
               })}
             </div>
           )}
 
-          <div className='prose prose-lg max-w-none text-chalk'>
+          <div className='prose prose-xl max-w-none text-chalk'>
             {impactStories && renderBlockContent(impactStories)}
           </div>
         </div>
@@ -253,7 +253,7 @@ export default async function ThinkDifferentPage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
             {trainingTitle || 'Training for Educators & Staff'}
           </h2>
-          <div className='prose prose-lg max-w-none mb-8'>
+          <div className='prose prose-xl max-w-none mb-8'>
             {trainingDescription && renderBlockContent(trainingDescription)}
           </div>
 
@@ -298,7 +298,7 @@ export default async function ThinkDifferentPage() {
 
           <div className='bg-white p-6 rounded-lg'>
             <h3 className='text-xl font-bold text-mf-blue mb-4'>Delivery</h3>
-            <p className='text-gray-700'>{trainingDelivery}</p>
+            <p className='text-gray-700 md:text-xl'>{trainingDelivery}</p>
           </div>
         </div>
       </section>

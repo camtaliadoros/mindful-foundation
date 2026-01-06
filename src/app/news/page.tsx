@@ -17,7 +17,7 @@ export default async function NewsPage() {
           <h1 className='text-3xl font-bold text-mf-blue mb-4'>
             Page Not Found
           </h1>
-          <p className='text-gray-600'>
+          <p className='text-gray-600 md:text-xl'>
             The news page content could not be loaded.
           </p>
         </div>
@@ -49,7 +49,7 @@ export default async function NewsPage() {
               <h2 className='text-2xl font-bold text-mf-blue mb-4 font-grotesk-medium'>
                 No news articles yet
               </h2>
-              <p className='text-gray-600 font-grotesk-regular'>
+              <p className='text-gray-600 font-grotesk-regular md:text-xl'>
                 Check back soon for insights, updates, and stories from The
                 Mindful Foundation.
               </p>
@@ -74,7 +74,7 @@ export default async function NewsPage() {
                   )}
                   <div className='p-6'>
                     <div className='mb-3'>
-                      <time className='text-sm text-gray-500 font-grotesk-regular'>
+                      <time className='text-sm md:text-xl text-gray-500 font-grotesk-regular'>
                         {new Date(post.publishedAt).toLocaleDateString(
                           'en-US',
                           {
@@ -89,12 +89,12 @@ export default async function NewsPage() {
                       {post.headline}
                     </h2>
                     {post.subheadline && (
-                      <p className='text-gray-600 mb-3 font-grotesk-regular'>
+                      <p className='text-gray-600 mb-3 font-grotesk-regular md:text-xl'>
                         {post.subheadline}
                       </p>
                     )}
                     {post.excerpt && (
-                      <p className='text-gray-700 mb-4 font-grotesk-regular line-clamp-3'>
+                      <p className='text-gray-700 mb-4 font-grotesk-regular line-clamp-3 md:text-xl'>
                         {post.excerpt}
                       </p>
                     )}

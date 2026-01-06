@@ -61,7 +61,7 @@ export const AnimatedApproachItem = ({
       ) : (
         <ApproachBulletIcon />
       )}
-      <p className='text-gray-700 font-grotesk-medium'>{approach.title}</p>
+      <p className='text-gray-700 font-grotesk-medium md:text-xl'>{approach.title}</p>
     </div>
   );
 };
