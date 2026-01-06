@@ -19,11 +19,9 @@ export default async function Home() {
   }
 
   const {
-    headerHeadline,
     headerSubheadline,
     mission,
     intro,
-    strandsSectionTitle,
     strands,
     whyItMattersTitle,
     stats,
