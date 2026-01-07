@@ -125,14 +125,20 @@ export default async function PerpetratorProgrammePage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className='bg-mf-blue text-chalk py-16 px-6'>
-        <div className='max-w-2xl mx-auto text-center'>
-          <h2 className='text-3xl font-bold mb-8 '>{callToActionTitle}</h2>
-          <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-            {primaryCta && <CTAButton cta={primaryCta} darkBackground={true} />}
+      {primaryCta && (
+        (primaryCta.actionType === 'url' && primaryCta.href) ||
+        (primaryCta.actionType === 'email' && primaryCta.email) ||
+        (primaryCta.actionType === 'pdf' && primaryCta.pdf?.asset?.url)
+      ) && (
+        <section className='bg-mf-blue text-chalk py-16 px-6'>
+          <div className='max-w-2xl mx-auto text-center'>
+            <h2 className='text-3xl font-bold mb-8 '>{callToActionTitle}</h2>
+            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+              <CTAButton cta={primaryCta} darkBackground={true} />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

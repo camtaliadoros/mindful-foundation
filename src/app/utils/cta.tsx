@@ -14,6 +14,24 @@ export function CTAButton({
 }: CTAButtonProps) {
   const { label, actionType, href, email, pdf, style } = cta;
 
+  // Check if button has valid link/file - hide if not
+  const hasValidLink = () => {
+    switch (actionType) {
+      case 'email':
+        return !!email;
+      case 'pdf':
+        return !!(pdf?.asset?.url);
+      case 'url':
+      default:
+        return !!href;
+    }
+  };
+
+  // Hide button if no valid link/file
+  if (!hasValidLink()) {
+    return null;
+  }
+
   // Generate the appropriate props based on action type
   const getLinkProps = () => {
     switch (actionType) {

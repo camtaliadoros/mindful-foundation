@@ -304,19 +304,25 @@ export default async function ThinkDifferentPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className='bg-mf-blue py-16 px-6'>
-        <div className='max-w-4xl mx-auto text-center'>
-          <h2 className='text-3xl font-bold text-chalk mb-8'>
-            {ctaTitle ||
-              'Bring Think Different to your school, organisation, or community.'}
-          </h2>
-          <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-            {ctaButtons.map((button) => (
-              <CTAButton key={button._key} cta={button} darkBackground={true} />
-            ))}
+      {ctaButtons && ctaButtons.some((button) => 
+        (button.actionType === 'url' && button.href) ||
+        (button.actionType === 'email' && button.email) ||
+        (button.actionType === 'pdf' && button.pdf?.asset?.url)
+      ) && (
+        <section className='bg-mf-blue py-16 px-6'>
+          <div className='max-w-4xl mx-auto text-center'>
+            <h2 className='text-3xl font-bold text-chalk mb-8'>
+              {ctaTitle ||
+                'Bring Think Different to your school, organisation, or community.'}
+            </h2>
+            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+              {ctaButtons.map((button) => (
+                <CTAButton key={button._key} cta={button} darkBackground={true} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

@@ -139,17 +139,27 @@ export default async function ListenAppPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className='bg-mf-blue text-chalk py-16 px-6'>
-        <div className='max-w-2xl mx-auto text-center'>
-          <h2 className='text-2xl font-bold mb-8 '>{callToActionTitle}</h2>
-          <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-            {primaryCta && <CTAButton cta={primaryCta} darkBackground={true} />}
-            {secondaryCta && (
-              <CTAButton cta={secondaryCta} darkBackground={true} />
-            )}
+      {((primaryCta && (
+        (primaryCta.actionType === 'url' && primaryCta.href) ||
+        (primaryCta.actionType === 'email' && primaryCta.email) ||
+        (primaryCta.actionType === 'pdf' && primaryCta.pdf?.asset?.url)
+      )) || (secondaryCta && (
+        (secondaryCta.actionType === 'url' && secondaryCta.href) ||
+        (secondaryCta.actionType === 'email' && secondaryCta.email) ||
+        (secondaryCta.actionType === 'pdf' && secondaryCta.pdf?.asset?.url)
+      ))) && (
+        <section className='bg-mf-blue text-chalk py-16 px-6'>
+          <div className='max-w-2xl mx-auto text-center'>
+            <h2 className='text-2xl font-bold mb-8 '>{callToActionTitle}</h2>
+            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+              {primaryCta && <CTAButton cta={primaryCta} darkBackground={true} />}
+              {secondaryCta && (
+                <CTAButton cta={secondaryCta} darkBackground={true} />
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

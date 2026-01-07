@@ -157,6 +157,10 @@ export default async function NewsArticlePage({
           Back to News
         </Link>
         {cta && (
+          (cta.actionType === 'url' && cta.href) ||
+          (cta.actionType === 'email' && cta.email) ||
+          (cta.actionType === 'pdf' && cta.pdf?.asset?.url)
+        ) && (
           <div className='max-w-4xl mx-auto text-center'>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <CTAButton cta={cta} darkBackground={true} />

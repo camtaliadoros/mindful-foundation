@@ -14,6 +14,24 @@ export const CTA = async () => {
   }
   const { callToActionTitle, primaryCta, secondaryCta } = CTAData;
 
+  // Check if buttons have valid links - hide section if neither has a link
+  const primaryHasLink = primaryCta && (
+    (primaryCta.actionType === 'url' && primaryCta.href) ||
+    (primaryCta.actionType === 'email' && primaryCta.email) ||
+    (primaryCta.actionType === 'pdf' && primaryCta.pdf?.asset?.url)
+  );
+  
+  const secondaryHasLink = secondaryCta && (
+    (secondaryCta.actionType === 'url' && secondaryCta.href) ||
+    (secondaryCta.actionType === 'email' && secondaryCta.email) ||
+    (secondaryCta.actionType === 'pdf' && secondaryCta.pdf?.asset?.url)
+  );
+
+  // Hide section if no buttons have valid links
+  if (!primaryHasLink && !secondaryHasLink) {
+    return null;
+  }
+
   return (
     <section className='bg-[#f8f5ed] py-16 px-6'>
       <div className='max-w-4xl mx-auto text-center'>
