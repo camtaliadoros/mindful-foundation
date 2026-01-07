@@ -6,6 +6,7 @@ import { ListenAppPageData } from '../types/listenApp';
 import { PerpetratorProgrammePageData } from '../types/perpetratorProgramme';
 import { BlogPost, BlogPageData } from '../types/blog';
 import { CTABlockData } from '../types/CTA';
+import { SiteSettings } from '../types/siteSettings';
 
 export async function getHomepageData(): Promise<HomepageData | null> {
   try {
@@ -501,6 +502,26 @@ export async function getBlogPostBySlug(
     return data;
   } catch (error) {
     console.error('Error fetching blog post:', error);
+    return null;
+  }
+}
+
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  try {
+    const query = `*[_type == "siteSettings"][0] {
+      _id,
+      _type,
+      siteName,
+      donateButton {
+        label,
+        href
+      }
+    }`;
+
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error('Error fetching site settings:', error);
     return null;
   }
 }

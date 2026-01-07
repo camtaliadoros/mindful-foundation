@@ -4,8 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import HeaderLink from './HeaderLink';
+import { DonateButton } from '../types/siteSettings';
 
-export default function Header() {
+interface HeaderProps {
+  donateButton?: DonateButton | null;
+}
+
+export default function Header({ donateButton }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -34,9 +39,16 @@ export default function Header() {
             Perpetrator Programme
           </HeaderLink>
           <HeaderLink href='/news'>News</HeaderLink>
-          <button className='px-8 py-3 rounded-full transition-all font-grotesk-medium border-2 border-mf-green text-ash bg-mf-green hover:bg-transparent hover:text-mf-green text-lg'>
-            Donate
-          </button>
+          {donateButton?.href && (
+            <a
+              href={donateButton.href}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='px-8 py-3 rounded-full transition-all font-grotesk-medium border-2 border-mf-green text-ash bg-mf-green hover:bg-transparent hover:text-mf-green text-lg'
+            >
+              {donateButton.label || 'Donate'}
+            </a>
+          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -110,11 +122,18 @@ export default function Header() {
           </div>
 
           {/* Donate Button - Anchored to Bottom */}
-          <div className='px-6 py-6 border-t border-mf-green/20'>
-            <button className='w-full bg-mf-green text-ash rounded-full px-6 py-4 hover:bg-opacity-90 transition-all font-grotesk-medium text-lg md:text-xl'>
-              Donate
-            </button>
-          </div>
+          {donateButton?.href && (
+            <div className='px-6 py-6 border-t border-mf-green/20'>
+              <a
+                href={donateButton.href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='w-full bg-mf-green text-ash rounded-full px-6 py-4 hover:bg-opacity-90 transition-all font-grotesk-medium text-lg md:text-xl text-center block'
+              >
+                {donateButton.label || 'Donate'}
+              </a>
+            </div>
+          )}
         </div>
       </nav>
     </header>
