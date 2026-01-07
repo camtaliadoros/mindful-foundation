@@ -64,6 +64,12 @@ export interface HomepageData {
   title: string;
   headerHeadline: string;
   headerSubheadline: string;
+  heroImage?: {
+    asset: {
+      url: string;
+    };
+    alt?: string;
+  };
   mission: BlockContent[]; // blockContent
   intro: BlockContent[]; // blockContent
   strandsSectionTitle?: string;

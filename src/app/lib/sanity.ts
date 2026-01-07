@@ -16,6 +16,12 @@ export async function getHomepageData(): Promise<HomepageData | null> {
       title,
       headerHeadline,
       headerSubheadline,
+      heroImage {
+        asset-> {
+          url
+        },
+        alt
+      },
       mission,
       intro,
       strandsSectionTitle,

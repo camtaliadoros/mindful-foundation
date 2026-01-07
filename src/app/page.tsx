@@ -20,6 +20,7 @@ export default async function Home() {
 
   const {
     headerSubheadline,
+    heroImage,
     mission,
     intro,
     strands,
@@ -50,10 +51,12 @@ export default async function Home() {
       <section
         className='relative h-[600px] bg-cover bg-center'
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
+          backgroundImage: `url('${heroImage?.asset?.url}')`,
         }}
+        role='img'
+        aria-label={heroImage?.alt || 'Hero section background'}
       >
-        <div className='absolute inset-0 bg-black bg-opacity-40'></div>
+        <div className='absolute inset-0 bg-mf-dark-blue opacity-10'></div>
         <div className='relative z-10 h-full flex items-center px-6'>
           <div className='text-white max-w-2xl'>
             <h1 className='text-5xl md:text-6xl font-bold leading-tight mb-6 animate-mf-fade-up'>
