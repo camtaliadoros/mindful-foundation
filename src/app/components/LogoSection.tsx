@@ -42,7 +42,7 @@ export const LogoSection = ({
                         alt={member.logo.alt || member.name}
                         width={200}
                         height={100}
-                        className='max-h-20 w-auto object-contain'
+                        className='max-h-20 min-h-10 w-auto object-contain'
                       />
                     </a>
                   ) : (
