@@ -2,10 +2,35 @@ import { AnimatedStatCard } from './components/AnimatedStatCard';
 import { CTA } from './components/CTA';
 import { TestimonialCard } from './components/TestimonialCard';
 import { WorkCard } from './components/WorkCard';
-import { getHomepageData } from './lib/sanity';
+import { getHomepageData, getSiteSettings } from './lib/sanity';
 import { HomepageData } from './types/homepage';
 import { renderBlockContent } from './utils/sanity';
 import Image from 'next/image';
+import { generateMetadata as generatePageMetadata } from './utils/metadata';
+import { Metadata } from 'next';
+import { StructuredData } from './components/StructuredData';
+
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.mindfulfoundation.org';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [homepageData, siteSettings] = await Promise.all([
+    getHomepageData(),
+    getSiteSettings(),
+  ]);
+
+  return generatePageMetadata(
+    {
+      title: homepageData?.seo?.title,
+      description: homepageData?.seo?.description,
+      keywords: homepageData?.seo?.keywords,
+      ogImage: homepageData?.seo?.ogImage,
+      canonical: baseUrl,
+    },
+    siteSettings,
+    '/'
+  );
+}
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -45,9 +70,16 @@ export default async function Home() {
 
   // Split the headerSubheadline into an array of strings
   const headerSubheadlineArray = headerSubheadline?.split('. ') || [];
+  const siteSettings = await getSiteSettings();
 
   return (
     <>
+      <StructuredData
+        siteSettings={siteSettings}
+        type='WebSite'
+        pageTitle='The Mindful Foundation'
+        pageDescription='Empowering Lives. Preventing Harm. Healing Futures.'
+      />
       {/* Hero Section */}
       <section
         className='relative h-[600px] bg-mf-blue overflow-hidden'

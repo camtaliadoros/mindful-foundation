@@ -542,6 +542,17 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       _id,
       _type,
       siteName,
+      defaultSeo {
+        title,
+        description,
+        keywords
+      },
+      socialImage {
+        asset-> {
+          url
+        }
+      },
+      twitterHandle,
       donateButton {
         label,
         href

@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import HeaderWrapper from './components/HeaderWrapper';
+import { getSiteSettings } from './lib/sanity';
+import { generateMetadata as generateSiteMetadata } from './utils/metadata';
+import { StructuredData } from './components/StructuredData';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -13,12 +16,12 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'The Mindful Foundation',
-  description: 'Empowering Lives. Preventing Harm. Healing Futures.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const siteSettings = await getSiteSettings();
+  return generateSiteMetadata(undefined, siteSettings);
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

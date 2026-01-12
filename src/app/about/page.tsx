@@ -1,6 +1,9 @@
-import { getAboutPageData } from '../lib/sanity';
+import { getAboutPageData, getSiteSettings } from '../lib/sanity';
 import { AboutPageData } from '../types/about';
 import { renderBlockContent } from '../utils/sanity';
+import { generateMetadata as generatePageMetadata } from '../utils/metadata';
+import { Metadata } from 'next';
+import { StructuredData } from '../components/StructuredData';
 
 import { PortableTextBlock } from 'next-sanity';
 import { BlockContent } from '../components/BlockContent';
@@ -8,6 +11,28 @@ import { CTA } from '../components/CTA';
 import { LogoSection } from '../components/LogoSection';
 import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import TwoColumnSection from '../components/TwoColumnSection';
+
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.mindfulfoundation.org';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [aboutPageData, siteSettings] = await Promise.all([
+    getAboutPageData(),
+    getSiteSettings(),
+  ]);
+
+  return generatePageMetadata(
+    {
+      title: aboutPageData?.seo?.title,
+      description: aboutPageData?.seo?.description,
+      keywords: aboutPageData?.seo?.keywords,
+      ogImage: aboutPageData?.seo?.ogImage,
+      canonical: `${baseUrl}/about`,
+    },
+    siteSettings,
+    '/about'
+  );
+}
 
 export default async function AboutPage() {
   const aboutPageData: AboutPageData | null = await getAboutPageData();
@@ -44,8 +69,16 @@ export default async function AboutPage() {
     specialThanks,
   } = aboutPageData;
 
+  const siteSettings = await getSiteSettings();
+
   return (
     <>
+      <StructuredData
+        siteSettings={siteSettings}
+        type='Organization'
+        pageTitle={aboutPageData.headerHeadline}
+        pageDescription={aboutPageData.headerSubheadline}
+      />
       {/* Header Section */}
       <section className='bg-mf-blue py-16 px-6' aria-label='Page header'>
         <div className='max-w-4xl mx-auto text-center'>
