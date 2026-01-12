@@ -66,6 +66,8 @@ export interface HomepageData {
   headerSubheadline: string;
   heroImage?: {
     asset: {
+      _id: string;
+      _ref?: string;
       url: string;
     };
     alt?: string;

@@ -18,6 +18,8 @@ export async function getHomepageData(): Promise<HomepageData | null> {
       headerSubheadline,
       heroImage {
         asset-> {
+          _id,
+          _ref,
           url
         },
         alt
