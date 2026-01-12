@@ -6,7 +6,6 @@ import { getHomepageData } from './lib/sanity';
 import { HomepageData } from './types/homepage';
 import { renderBlockContent } from './utils/sanity';
 import Image from 'next/image';
-import { getOptimizedHeroImageUrl } from './utils/imageUrl';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -56,7 +55,7 @@ export default async function Home() {
       >
         {heroImage && (
           <Image
-            src={getOptimizedHeroImageUrl(heroImage.asset, 1920, 600)}
+            src={heroImage.asset.url}
             alt={heroImage.alt || 'Hero section background'}
             fill
             priority
