@@ -27,7 +27,7 @@ export const LogoSection = ({
             >
               {title || 'Advisory Board'}
             </h2>
-            <div className='flex flex-wrap gap-12 items-center justify-center max-w-3xl mx-auto'>
+            <div className='flex flex-wrap gap-16 items-center justify-center max-w-2xl mx-auto'>
               {logos.map((member) => (
                 <div key={member._key} className='flex justify-center max-w-30'>
                   {member.logo ? (
@@ -42,7 +42,7 @@ export const LogoSection = ({
                         alt={member.logo.alt || member.name}
                         width={200}
                         height={100}
-                        className='max-h-20 min-h-10 w-auto object-contain'
+                        className='max-h-20 min-h-10 min-w-20 w-auto object-contain'
                       />
                     </a>
                   ) : (

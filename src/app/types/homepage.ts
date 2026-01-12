@@ -79,9 +79,6 @@ export interface HomepageData {
   whyItMattersFootnote?: string;
   testimonialsTitle?: string;
   testimonials: Testimonial[];
-  callToActionTitle?: string;
-  primaryCta?: CTA;
-  secondaryCta?: CTA;
   seo?: {
     title?: string;
     description?: string;

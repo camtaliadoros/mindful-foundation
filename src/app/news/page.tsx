@@ -31,7 +31,7 @@ export default async function NewsPage() {
   return (
     <>
       {/* Header Section */}
-      <section className='bg-mf-blue text-chalk py-16 px-6'>
+      <section className='bg-mf-blue text-chalk py-16 px-6' aria-label="Page header">
         <div className='max-w-4xl mx-auto text-center'>
           <h1 className='text-4xl md:text-5xl font-bold mb-4 font-grotesk-medium'>
             {headerHeadline}
@@ -42,6 +42,7 @@ export default async function NewsPage() {
         </div>
       </section>
 
+      <main>
       {/* News Articles Section */}
       <section className='py-16 px-6'>
         <div className='max-w-6xl mx-auto'>
@@ -118,6 +119,7 @@ export default async function NewsPage() {
           )}
         </div>
       </section>
+      </main>
     </>
   );
 }

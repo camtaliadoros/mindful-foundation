@@ -50,35 +50,6 @@ export async function getHomepageData(): Promise<HomepageData | null> {
         roleOrTitle,
         org
       },
-      callToActionTitle,
-      primaryCta {
-        _key,
-        label,
-        actionType,
-        href,
-        email,
-        pdf {
-          asset-> {
-            url,
-            originalFilename
-          }
-        },
-        style
-      },
-      secondaryCta {
-        _key,
-        label,
-        actionType,
-        href,
-        email,
-        pdf {
-          asset-> {
-            url,
-            originalFilename
-          }
-        },
-        style
-      },
       seo {
         title,
         description,
@@ -144,32 +115,44 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
         url
       },
       listenAppPartnersTitle,
-      listenAppPartners[] {
-        _key,
+      listenAppPartners-> {
+        _id,
         _type,
-        name,
-        logo {
-          asset-> {
-            _ref,
-            url
+        title,
+        colourScheme,
+        logos[] {
+          _key,
+          _type,
+          name,
+          logo {
+            asset-> {
+              _ref,
+              url
+            },
+            alt
           },
-          alt
-        },
-        url
+          url
+        }
       },
       specialThanksTitle,
-      specialThanks[] {
-        _key,
+      specialThanks-> {
+        _id,
         _type,
-        name,
-        logo {
-          asset-> {
-            _ref,
-            url
+        title,
+        colourScheme,
+        logos[] {
+          _key,
+          _type,
+          name,
+          logo {
+            asset-> {
+              _ref,
+              url
+            },
+            alt
           },
-          alt
-        },
-        url
+          url
+        }
       },
       seo {
         title,
@@ -302,6 +285,45 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
       },
       partnersTitle,
       partners,
+      listenAppPartners-> {
+        _id,
+        _type,
+        title,
+        colourScheme,
+        logos[] {
+          _key,
+          _type,
+          name,
+          logo {
+            asset-> {
+              _ref,
+              url
+            },
+            alt
+          },
+          url
+        }
+      },
+      specialThanksTitle,
+      specialThanks-> {
+        _id,
+        _type,
+        title,
+        colourScheme,
+        logos[] {
+          _key,
+          _type,
+          name,
+          logo {
+            asset-> {
+              _ref,
+              url
+            },
+            alt
+          },
+          url
+        }
+      },
       callToActionTitle,
       primaryCta {
         _key,
@@ -538,8 +560,34 @@ export async function getCTABlockData(): Promise<CTABlockData | null> {
       _id,
       _type,
       callToActionTitle,
-      primaryCta,
-      secondaryCta
+      primaryCta {
+        _key,
+        label,
+        actionType,
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      secondaryCta {
+        _key,
+        label,
+        actionType,
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      }
     }`;
     const data = await client.fetch(query);
     return data;

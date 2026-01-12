@@ -1,4 +1,5 @@
 import { BlockContent } from './homepage';
+import { LogoSection } from './about';
 
 export interface Feature {
   _key: string;
@@ -20,6 +21,9 @@ export interface ListenAppPageData {
   features: Feature[];
   partnersTitle: string;
   partners: BlockContent[];
+  listenAppPartners?: LogoSection | null;
+  specialThanksTitle?: string;
+  specialThanks?: LogoSection | null;
   callToActionTitle: string;
   primaryCta?: {
     _key: string;

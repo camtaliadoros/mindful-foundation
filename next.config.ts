@@ -10,7 +10,13 @@ const nextConfig: NextConfig = {
         pathname: '/images/**',
       },
     ],
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
   },
+  compress: true,
+  poweredByHeader: false,
+  // Enable production optimizations
+  swcMinify: true,
 };
 
 export default nextConfig;

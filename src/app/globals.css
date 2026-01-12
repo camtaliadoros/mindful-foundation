@@ -98,3 +98,12 @@ a[class*='rounded-full'] {
   padding-bottom: 6px;
   margin-bottom: 4px;
 }
+
+.hero-overlay {
+  background: linear-gradient(
+    115deg,
+    rgba(24, 22, 52, 0.9) 43%,
+    rgba(24, 22, 52, 0.75) 70%,
+    rgba(24, 22, 52, 0.22) 100%
+  );
+}

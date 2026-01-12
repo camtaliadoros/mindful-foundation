@@ -74,7 +74,7 @@ export default async function ThinkDifferentPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className='bg-mf-blue py-16 px-6'>
+      <section className='bg-mf-blue py-16 px-6' aria-label="Page header">
         <div className='max-w-2xl mx-auto text-center'>
           <h1 className='text-4xl md:text-5xl font-bold text-chalk mb-6'>
             {title}
@@ -85,6 +85,7 @@ export default async function ThinkDifferentPage() {
         </div>
       </section>
 
+      <main>
       {/* Overview Section */}
       <section className='bg-chalk py-16 px-12'>
         {overviewImage ? (
@@ -323,6 +324,7 @@ export default async function ThinkDifferentPage() {
           </div>
         </section>
       )}
+      </main>
     </>
   );
 }

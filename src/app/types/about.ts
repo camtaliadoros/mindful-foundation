@@ -14,6 +14,14 @@ export interface LinkableLogo {
   url: string;
 }
 
+export interface LogoSection {
+  _id: string;
+  _type: 'logoSection';
+  title: string;
+  colourScheme: 'light' | 'dark';
+  logos: LinkableLogo[];
+}
+
 export interface ApproachItem {
   _key: string;
   title: string;
@@ -51,9 +59,9 @@ export interface AboutPageData {
   advisoryBoardTitle?: string;
   advisoryBoard: LinkableLogo[];
   listenAppPartnersTitle?: string;
-  listenAppPartners: LinkableLogo[];
+  listenAppPartners?: LogoSection | null;
   specialThanksTitle?: string;
-  specialThanks: LinkableLogo[];
+  specialThanks?: LogoSection | null;
   seo?: {
     title?: string;
     description?: string;

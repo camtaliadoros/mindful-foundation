@@ -43,7 +43,7 @@ export default async function PerpetratorProgrammePage() {
   return (
     <>
       {/* Header Section */}
-      <section className='bg-mf-blue text-chalk py-16 px-6'>
+      <section className='bg-mf-blue text-chalk py-16 px-6' aria-label="Page header">
         <div className='max-w-2xl mx-auto text-center'>
           <h1 className='text-4xl md:text-5xl font-bold mb-4'>
             {headerHeadline}
@@ -54,6 +54,7 @@ export default async function PerpetratorProgrammePage() {
         </div>
       </section>
 
+      <main>
       {/* Why It's Needed Section */}
       <section className='py-16 px-6'>
         <div className='max-w-2xl mx-auto'>
@@ -139,6 +140,7 @@ export default async function PerpetratorProgrammePage() {
           </div>
         </section>
       )}
+      </main>
     </>
   );
 }

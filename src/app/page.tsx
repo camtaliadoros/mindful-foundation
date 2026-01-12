@@ -5,6 +5,7 @@ import { WorkCard } from './components/WorkCard';
 import { getHomepageData } from './lib/sanity';
 import { HomepageData } from './types/homepage';
 import { renderBlockContent } from './utils/sanity';
+import Image from 'next/image';
 
 export default async function Home() {
   const homepageData: HomepageData | null = await getHomepageData();
@@ -49,15 +50,29 @@ export default async function Home() {
     <>
       {/* Hero Section */}
       <section
-        className='relative h-[600px] bg-cover bg-center'
-        style={{
-          backgroundImage: `url('${heroImage?.asset?.url}')`,
-        }}
-        role='img'
-        aria-label={heroImage?.alt || 'Hero section background'}
+        className='relative h-[600px] bg-mf-blue overflow-hidden'
+        aria-label='Hero section'
       >
-        <div className='absolute inset-0 bg-mf-dark-blue opacity-10'></div>
-        <div className='relative z-10 h-full flex items-center px-6'>
+        {heroImage && (
+          <Image
+            src={heroImage.asset.url}
+            alt={heroImage.alt || 'Hero section background'}
+            fill
+            priority
+            className='object-cover'
+            sizes='100vw'
+            quality={90}
+            style={{ zIndex: 0 }}
+          />
+        )}
+        <div
+          className='absolute inset-0 hero-overlay'
+          style={{ zIndex: 1 }}
+        ></div>
+        <div
+          className='absolute top-0 left-0 z-10 h-full flex items-center px-6'
+          style={{ zIndex: 2 }}
+        >
           <div className='text-white max-w-2xl'>
             <h1 className='text-5xl md:text-6xl font-bold leading-tight mb-6 animate-mf-fade-up'>
               {headerSubheadlineArray.map((line, index) => (
@@ -71,112 +86,116 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Mission Section */}
-      {mission && (
-        <section className='bg-chalk py-16 px-6'>
-          <div className='max-w-4xl mx-auto text-gray-800 md:w-1/2 space-y-6'>
-            <h2 className='text-4xl font-bold text-center mb-8'>Our Mission</h2>
-            <div className='prose prose-lg prose-invert max-w-none font-extrabold [&>*]:text-lg md:[&>*]:text-xl '>
-              {renderBlockContent(mission)}
+      <main>
+        {/* Mission Section */}
+        {mission && (
+          <section className='bg-chalk py-16 px-6'>
+            <div className='max-w-4xl mx-auto text-gray-800 md:w-1/2 space-y-6'>
+              <h2 className='text-4xl font-bold text-center mb-8'>
+                Our Mission
+              </h2>
+              <div className='prose prose-lg prose-invert max-w-none font-extrabold [&>*]:text-lg md:[&>*]:text-xl '>
+                {renderBlockContent(mission)}
+              </div>
+              <div className='prose prose-xl [&>*]:text-lg'>
+                {intro && renderBlockContent(intro)}
+              </div>
             </div>
-            <div className='prose prose-xl [&>*]:text-lg'>
-              {intro && renderBlockContent(intro)}
-            </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
 
-      {/* Our Work Section */}
-      <section className='bg-mf-blue py-16 px-6'>
-        <div className='max-w-6xl mx-auto'>
-          <h2 className='text-3xl font-bold text-white text-center mb-2'>
-            Our Work
-          </h2>
-          <h3 className='text-center text-white/80 text-xl mt-2 mb-12 font-bold'>
-            Three Core Strands
-          </h3>
-
-          <div className='grid md:grid-cols-3 gap-8 lg:w-3/4 mx-auto'>
-            {/* Think Different */}
-            {thinkDifferent && (
-              <WorkCard
-                title={thinkDifferent.title}
-                description={thinkDifferent.description}
-                icon='think-different'
-              />
-            )}
-
-            {/* ListenApp */}
-            {listenApp && (
-              <WorkCard
-                title={listenApp.title}
-                description={listenApp.description}
-                icon='listen-app'
-              />
-            )}
-
-            {/* Perpetrator Programme */}
-            {perpetratorProgramme && (
-              <WorkCard
-                title={perpetratorProgramme.title}
-                description={perpetratorProgramme.description}
-                icon='perpetrator-programme'
-              />
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      {stats && stats.length > 0 && (
-        <section className='bg-chalk py-16 px-6'>
-          <div className='max-w-4xl mx-auto'>
-            <h2 className='text-3xl font-bold text-gray-800 text-center mb-12'>
-              {whyItMattersTitle || 'Why It Matters'}
-            </h2>
-            <div className='grid md:grid-cols-2 md:gap-x-16 gap-16 w-3/4 mx-auto'>
-              {stats.map((stat, index) => (
-                <AnimatedStatCard
-                  key={stat._key}
-                  value={stat.value}
-                  description={stat.description}
-                  delay={index * 200}
-                />
-              ))}
-            </div>
-            {whyItMattersFootnote && (
-              <p className='text-center text-gray-600 mt-8 font-extrabold text-2xl animate-mf-fade-in'>
-                {whyItMattersFootnote}
-              </p>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* Testimonials Section */}
-      {testimonials && testimonials.length > 0 && (
+        {/* Our Work Section */}
         <section className='bg-mf-blue py-16 px-6'>
-          <div className='max-w-4xl mx-auto'>
-            <h2 className='text-3xl font-bold text-white text-center mb-12'>
-              {testimonialsTitle || 'Testimonials'}
+          <div className='max-w-6xl mx-auto'>
+            <h2 className='text-3xl font-bold text-white text-center mb-2'>
+              Our Work
             </h2>
-            <div className='grid md:grid-cols-4 gap-8 '>
-              {testimonials.map((testimonial) => (
-                <TestimonialCard
-                  key={testimonial._key}
-                  author={testimonial.author}
-                  title={testimonial.roleOrTitle}
-                  organisation={testimonial.org}
-                  quote={testimonial.quote}
+            <h3 className='text-center text-white/80 text-xl mt-2 mb-12 font-bold'>
+              Three Core Strands
+            </h3>
+
+            <div className='grid md:grid-cols-3 gap-8 lg:w-3/4 mx-auto'>
+              {/* Think Different */}
+              {thinkDifferent && (
+                <WorkCard
+                  title={thinkDifferent.title}
+                  description={thinkDifferent.description}
+                  icon='think-different'
                 />
-              ))}
+              )}
+
+              {/* ListenApp */}
+              {listenApp && (
+                <WorkCard
+                  title={listenApp.title}
+                  description={listenApp.description}
+                  icon='listen-app'
+                />
+              )}
+
+              {/* Perpetrator Programme */}
+              {perpetratorProgramme && (
+                <WorkCard
+                  title={perpetratorProgramme.title}
+                  description={perpetratorProgramme.description}
+                  icon='perpetrator-programme'
+                />
+              )}
             </div>
           </div>
         </section>
-      )}
 
-      {/* Call to Action Section */}
-      <CTA />
+        {/* Stats Section */}
+        {stats && stats.length > 0 && (
+          <section className='bg-chalk py-16 px-6'>
+            <div className='max-w-4xl mx-auto'>
+              <h2 className='text-3xl font-bold text-gray-800 text-center mb-12'>
+                {whyItMattersTitle || 'Why It Matters'}
+              </h2>
+              <div className='grid md:grid-cols-2 md:gap-x-16 gap-16 w-3/4 mx-auto'>
+                {stats.map((stat, index) => (
+                  <AnimatedStatCard
+                    key={stat._key}
+                    value={stat.value}
+                    description={stat.description}
+                    delay={index * 200}
+                  />
+                ))}
+              </div>
+              {whyItMattersFootnote && (
+                <p className='text-center text-gray-600 mt-8 font-extrabold text-2xl animate-mf-fade-in'>
+                  {whyItMattersFootnote}
+                </p>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* Testimonials Section */}
+        {testimonials && testimonials.length > 0 && (
+          <section className='bg-mf-blue py-16 px-6'>
+            <div className='max-w-4xl mx-auto'>
+              <h2 className='text-3xl font-bold text-white text-center mb-12'>
+                {testimonialsTitle || 'Testimonials'}
+              </h2>
+              <div className='grid md:grid-cols-4 gap-8 '>
+                {testimonials.map((testimonial) => (
+                  <TestimonialCard
+                    key={testimonial._key}
+                    author={testimonial.author}
+                    title={testimonial.roleOrTitle}
+                    organisation={testimonial.org}
+                    quote={testimonial.quote}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Call to Action Section */}
+        <CTA />
+      </main>
     </>
   );
 }
