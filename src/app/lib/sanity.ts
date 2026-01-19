@@ -232,6 +232,11 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       trainingParticipantsReceiveTitle,
       trainingParticipantsReceive,
       trainingDelivery,
+      trainingButton {
+        label,
+        emailSubject,
+        emailAddress
+      },
       ctaTitle,
       ctaButtons[] {
         _key,

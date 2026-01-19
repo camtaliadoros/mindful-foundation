@@ -59,6 +59,11 @@ export interface ThinkDifferentPageData {
   trainingParticipantsReceiveTitle?: string;
   trainingParticipantsReceive: string[];
   trainingDelivery: string;
+  trainingButton?: {
+    label: string;
+    emailSubject: string;
+    emailAddress: string;
+  };
   ctaTitle?: string;
   ctaButtons: CTA[];
   seo?: {

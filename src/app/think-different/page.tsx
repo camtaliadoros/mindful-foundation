@@ -65,6 +65,7 @@ export default async function ThinkDifferentPage() {
     trainingParticipantsReceiveTitle,
     trainingParticipantsReceive,
     trainingDelivery,
+    trainingButton,
     ctaTitle,
     ctaButtons,
   } = pageData;
@@ -297,10 +298,21 @@ export default async function ThinkDifferentPage() {
               </div>
             )}
 
-          <div className='bg-white p-6 rounded-lg'>
+          <div className='bg-white p-6 rounded-lg mb-8'>
             <h3 className='text-xl font-bold text-mf-blue mb-4'>Delivery</h3>
             <p className='text-gray-700 md:text-xl'>{trainingDelivery}</p>
           </div>
+
+          {trainingButton && (
+            <div className='text-center'>
+              <a
+                href={`mailto:${trainingButton.emailAddress}?subject=${encodeURIComponent(trainingButton.emailSubject)}`}
+                className='inline-block px-8 py-3 rounded-full transition-all font-grotesk-medium text-xl border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-white'
+              >
+                {trainingButton.label}
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
