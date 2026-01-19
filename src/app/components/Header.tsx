@@ -22,11 +22,11 @@ export default function Header({ donateButton }: HeaderProps) {
         {/* Logo */}
         <Link href='/' className='flex items-center space-x-3'>
           <Image
-            src='/Mindful Foundation logo.jpeg'
+            src='/TheMindfulFoundation-Primary.svg'
             alt='The Mindful Foundation'
-            width={240}
-            height={80}
-            className='h-16 w-auto'
+            width={200}
+            height={50}
+            className='h-12 w-auto'
           />
         </Link>
 
