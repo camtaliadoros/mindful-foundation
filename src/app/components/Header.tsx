@@ -38,7 +38,7 @@ export default function Header({ donateButton }: HeaderProps) {
           <HeaderLink href='/perpetrator-programme'>
             Perpetrator Programme
           </HeaderLink>
-          <HeaderLink href='/news'>News</HeaderLink>
+          {/* <HeaderLink href='/news'>News</HeaderLink> */}
           {donateButton?.href && (
             <a
               href={donateButton.href}
