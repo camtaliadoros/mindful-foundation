@@ -15,6 +15,8 @@ import { ThinkDifferentPageData } from '../types/thinkDifferent';
 import { CTAButton } from '../utils/cta';
 import { renderBlockContent } from '../utils/sanity';
 
+export const revalidate = 0; // Disable static caching
+
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =
     await getThinkDifferentPageData();
@@ -75,7 +77,7 @@ export default async function ThinkDifferentPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className='bg-mf-blue py-16 px-6' aria-label="Page header">
+      <section className='bg-mf-blue py-16 px-6' aria-label='Page header'>
         <div className='max-w-2xl mx-auto text-center'>
           <h1 className='text-4xl md:text-5xl font-bold text-chalk mb-6'>
             {title}
@@ -87,210 +89,194 @@ export default async function ThinkDifferentPage() {
       </section>
 
       <main>
-      {/* Overview Section */}
-      <section className='bg-chalk py-16 px-12'>
-        {overviewImage ? (
-          <TwoColumnSection>
-            <div>
-              <h2 className='text-3xl font-bold text-mf-blue mb-8'>
+        {/* Overview Section */}
+        <section className='bg-chalk py-16 px-12'>
+          {overviewImage ? (
+            <TwoColumnSection>
+              <div>
+                <h2 className='text-3xl font-bold text-mf-blue mb-8'>
+                  {overviewHeadline}
+                </h2>
+                <div className='max-w-none'>
+                  {overview && renderBlockContent(overview)}
+                </div>
+              </div>
+              <ScrollAnimatedImage
+                src={overviewImage.asset.url}
+                alt={overviewImage.alt || 'Our Mission'}
+              />
+            </TwoColumnSection>
+          ) : (
+            <div className='max-w-2xl mx-auto'>
+              <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
                 {overviewHeadline}
               </h2>
-              <div className='max-w-none'>
+              <div className='prose prose-xl max-w-none [&>*]:text-lg'>
                 {overview && renderBlockContent(overview)}
               </div>
             </div>
-            <ScrollAnimatedImage
-              src={overviewImage.asset.url}
-              alt={overviewImage.alt || 'Our Mission'}
-            />
-          </TwoColumnSection>
-        ) : (
-          <div className='max-w-2xl mx-auto'>
-            <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
-              {overviewHeadline}
+          )}
+        </section>
+
+        {/* Why It's Different Section */}
+        <section className='bg-white py-16 px-6'>
+          <div className='max-w-2xl mx-auto flex flex-col items-center'>
+            <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center '>
+              {whyDifferentTitle || "Why It's Different"}
             </h2>
-            <div className='prose prose-xl max-w-none [&>*]:text-lg'>
-              {overview && renderBlockContent(overview)}
+            <div className='prose prose-xl max-w-2xl mb-8 text-center [&>*]:text-lg'>
+              {whyDifferentDescription &&
+                renderBlockContent(whyDifferentDescription)}
             </div>
-          </div>
-        )}
-      </section>
-
-      {/* Why It's Different Section */}
-      <section className='bg-white py-16 px-6'>
-        <div className='max-w-2xl mx-auto flex flex-col items-center'>
-          <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center '>
-            {whyDifferentTitle || "Why It's Different"}
-          </h2>
-          <div className='prose prose-xl max-w-2xl mb-8 text-center [&>*]:text-lg'>
-            {whyDifferentDescription &&
-              renderBlockContent(whyDifferentDescription)}
-          </div>
-          {whyDifferentApproaches && whyDifferentApproaches.length > 0 && (
-            <div className='mb-8'>
-              <h3 className='text-xl font-bold text-mf-blue mb-6'>
-                {whyDifferentApproachesTitle || 'The course draws on:'}
-              </h3>
-              <div className='grid md:grid-cols-2 gap-4 mb-6 '>
-                {whyDifferentApproaches.map((approach, index) => (
-                  <AnimatedApproachItem
-                    key={approach._key || index}
-                    approach={approach}
-                    index={index}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Course Structure Section */}
-      <section className='bg-mf-blue py-16 px-6'>
-        <div className='max-w-2xl mx-auto'>
-          <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
-            {courseStructureTitle || 'Course Structure'}
-          </h2>
-          <div className='prose prose-xl max-w-none mb-12 text-chalk text-center [&>*]:text-lg'>
-            {courseStructureDescription &&
-              renderBlockContent(courseStructureDescription)}
-          </div>
-          {modules && modules.length > 0 && (
-            <div>
-              <h3 className='text-2xl font-bold text-chalk mb-8 text-center'>
-                {modulesTitle || 'Modules include:'}
-              </h3>
-              <div className='flex flex-col gap-6'>
-                {modules.map((module, index) => (
-                  <AnimatedModuleItem
-                    key={module._key}
-                    module={module}
-                    index={index}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Course Aims Section */}
-      <section className='bg-white py-16 px-6'>
-        <div className='max-w-6xl mx-auto'>
-          <h2 className='text-3xl font-bold text-mf-blue mb-12 text-center'>
-            {courseAimsTitle || 'Course Aims'}
-          </h2>
-          {courseAimsImage ? (
-            <TwoColumnSection>
-              <ScrollAnimatedImage
-                src={courseAimsImage.asset.url}
-                alt={courseAimsImage.alt || 'Course Aims'}
-              />
-              <div>
-                <div className='flex flex-col space-y-3'>
-                  {courseAims.map((aim, index) => (
-                    <div
-                      key={index}
-                      className='flex items-start md:items-center gap-2'
-                    >
-                      <div className='mt-1 md:mt-0 bg-mf-blue h-3 w-3 shrink-0 rounded-full' />
-                      <p className='md:mt-1.5 text-mf-blue md:text-xl'>{aim}</p>
-                    </div>
+            {whyDifferentApproaches && whyDifferentApproaches.length > 0 && (
+              <div className='mb-8'>
+                <h3 className='text-xl font-bold text-mf-blue mb-6'>
+                  {whyDifferentApproachesTitle || 'The course draws on:'}
+                </h3>
+                <div className='grid md:grid-cols-2 gap-4 mb-6 '>
+                  {whyDifferentApproaches.map((approach, index) => (
+                    <AnimatedApproachItem
+                      key={approach._key || index}
+                      approach={approach}
+                      index={index}
+                    />
                   ))}
                 </div>
               </div>
-            </TwoColumnSection>
-          ) : (
-            <div className='grid md:grid-cols-2 gap-6'>
-              {courseAims.map((aim, index) => (
-                <div key={index} className='bg-chalk p-6 rounded-lg'>
-                  <p className='text-gray-700 md:text-xl'>{aim}</p>
+            )}
+          </div>
+        </section>
+
+        {/* Course Structure Section */}
+        <section className='bg-mf-blue py-16 px-6'>
+          <div className='max-w-2xl mx-auto'>
+            <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
+              {courseStructureTitle || 'Course Structure'}
+            </h2>
+            <div className='prose prose-xl max-w-none mb-12 text-chalk text-center [&>*]:text-lg'>
+              {courseStructureDescription &&
+                renderBlockContent(courseStructureDescription)}
+            </div>
+            {modules && modules.length > 0 && (
+              <div>
+                <h3 className='text-2xl font-bold text-chalk mb-8 text-center'>
+                  {modulesTitle || 'Modules include:'}
+                </h3>
+                <div className='flex flex-col gap-6'>
+                  {modules.map((module, index) => (
+                    <AnimatedModuleItem
+                      key={module._key}
+                      module={module}
+                      index={index}
+                    />
+                  ))}
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Impact Section */}
-      <section className='bg-mf-blue py-16 px-6'>
-        <div className='max-w-2xl mx-auto'>
-          <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
-            {impactTitle || 'Impact So Far'}
-          </h2>
-          <div className='prose prose-xl max-w-none mb-12 text-chalk [&>*]:text-lg'>
-            {impactDescription && renderBlockContent(impactDescription)}
+              </div>
+            )}
           </div>
+        </section>
 
-          {impactOutcomes && impactOutcomes.length > 0 && (
-            <div className='flex flex-col gap-6 mb-12 space-y-2'>
-              {impactOutcomes.map((outcome, index) => {
-                const IconComponent =
-                  index === 0
-                    ? ArrowDownIcon
-                    : index === 1
-                      ? StarIcon
-                      : index === 2
-                        ? HeartIcon
-                        : ArrowUpIcon;
-                return (
-                  <div key={index} className='flex gap-3 items-center'>
-                    <IconComponent />
-                    <p className='text-chalk font-bold mt-1 md:text-xl'>{outcome}</p>
+        {/* Course Aims Section */}
+        <section className='bg-white py-16 px-6'>
+          <div className='max-w-6xl mx-auto'>
+            <h2 className='text-3xl font-bold text-mf-blue mb-12 text-center'>
+              {courseAimsTitle || 'Course Aims'}
+            </h2>
+            {courseAimsImage ? (
+              <TwoColumnSection>
+                <ScrollAnimatedImage
+                  src={courseAimsImage.asset.url}
+                  alt={courseAimsImage.alt || 'Course Aims'}
+                />
+                <div>
+                  <div className='flex flex-col space-y-3'>
+                    {courseAims.map((aim, index) => (
+                      <div
+                        key={index}
+                        className='flex items-start md:items-center gap-2'
+                      >
+                        <div className='mt-1 md:mt-0 bg-mf-blue h-3 w-3 shrink-0 rounded-full' />
+                        <p className='md:mt-1.5 text-mf-blue md:text-xl'>
+                          {aim}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                );
-              })}
-            </div>
-          )}
-
-          <div className='prose prose-xl max-w-none text-chalk [&>*]:text-lg'>
-            {impactStories && renderBlockContent(impactStories)}
-          </div>
-        </div>
-      </section>
-
-      {/* Training Section */}
-      <section className='bg-chalk py-16 px-6'>
-        <div className='max-w-2xl mx-auto'>
-          <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
-            {trainingTitle || 'Training for Educators & Staff'}
-          </h2>
-          <div className='prose prose-xl max-w-none mb-8 [&>*]:text-lg'>
-            {trainingDescription && renderBlockContent(trainingDescription)}
-          </div>
-
-          {trainingCovers && trainingCovers.length > 0 && (
-            <div className='mb-8'>
-              <h3 className='text-xl font-bold text-mf-blue mb-4'>
-                {trainingCoversTitle || 'Training covers:'}
-              </h3>
-              <div className='grid gap-4'>
-                {trainingCovers.map((cover, index) => (
-                  <BulletItemCard
-                    key={index}
-                    backgroundColour='bg-white'
-                    discColour='bg-mf-blue'
-                    content={cover}
-                    index={index}
-                  />
+                </div>
+              </TwoColumnSection>
+            ) : (
+              <div className='grid md:grid-cols-2 gap-6'>
+                {courseAims.map((aim, index) => (
+                  <div key={index} className='bg-chalk p-6 rounded-lg'>
+                    <p className='text-gray-700 md:text-xl'>{aim}</p>
+                  </div>
                 ))}
               </div>
-            </div>
-          )}
+            )}
+          </div>
+        </section>
 
-          {trainingParticipantsReceive &&
-            trainingParticipantsReceive.length > 0 && (
+        {/* Impact Section */}
+        <section className='bg-mf-blue py-16 px-6'>
+          <div className='max-w-2xl mx-auto'>
+            <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
+              {impactTitle || 'Impact So Far'}
+            </h2>
+            <div className='prose prose-xl max-w-none mb-12 text-chalk [&>*]:text-lg'>
+              {impactDescription && renderBlockContent(impactDescription)}
+            </div>
+
+            {impactOutcomes && impactOutcomes.length > 0 && (
+              <div className='flex flex-col gap-6 mb-12 space-y-2'>
+                {impactOutcomes.map((outcome, index) => {
+                  const IconComponent =
+                    index === 0
+                      ? ArrowDownIcon
+                      : index === 1
+                        ? StarIcon
+                        : index === 2
+                          ? HeartIcon
+                          : ArrowUpIcon;
+                  return (
+                    <div key={index} className='flex gap-3 items-center'>
+                      <IconComponent />
+                      <p className='text-chalk font-bold mt-1 md:text-xl'>
+                        {outcome}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            <div className='prose prose-xl max-w-none text-chalk [&>*]:text-lg'>
+              {impactStories && renderBlockContent(impactStories)}
+            </div>
+          </div>
+        </section>
+
+        {/* Training Section */}
+        <section className='bg-chalk py-16 px-6'>
+          <div className='max-w-2xl mx-auto'>
+            <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
+              {trainingTitle || 'Training for Educators & Staff'}
+            </h2>
+            <div className='prose prose-xl max-w-none mb-8 [&>*]:text-lg'>
+              {trainingDescription && renderBlockContent(trainingDescription)}
+            </div>
+
+            {trainingCovers && trainingCovers.length > 0 && (
               <div className='mb-8'>
                 <h3 className='text-xl font-bold text-mf-blue mb-4'>
-                  {trainingParticipantsReceiveTitle || 'Participants receive:'}
+                  {trainingCoversTitle || 'Training covers:'}
                 </h3>
                 <div className='grid gap-4'>
-                  {trainingParticipantsReceive.map((item, index) => (
+                  {trainingCovers.map((cover, index) => (
                     <BulletItemCard
                       key={index}
                       backgroundColour='bg-white'
                       discColour='bg-mf-blue'
-                      content={item}
+                      content={cover}
                       index={index}
                     />
                   ))}
@@ -298,44 +284,71 @@ export default async function ThinkDifferentPage() {
               </div>
             )}
 
-          <div className='bg-white p-6 rounded-lg mb-8'>
-            <h3 className='text-xl font-bold text-mf-blue mb-4'>Delivery</h3>
-            <p className='text-gray-700 md:text-xl'>{trainingDelivery}</p>
-          </div>
+            {trainingParticipantsReceive &&
+              trainingParticipantsReceive.length > 0 && (
+                <div className='mb-8'>
+                  <h3 className='text-xl font-bold text-mf-blue mb-4'>
+                    {trainingParticipantsReceiveTitle ||
+                      'Participants receive:'}
+                  </h3>
+                  <div className='grid gap-4'>
+                    {trainingParticipantsReceive.map((item, index) => (
+                      <BulletItemCard
+                        key={index}
+                        backgroundColour='bg-white'
+                        discColour='bg-mf-blue'
+                        content={item}
+                        index={index}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
 
-          {trainingButton && (
-            <div className='text-center'>
-              <a
-                href={`mailto:${trainingButton.emailAddress}?subject=${encodeURIComponent(trainingButton.emailSubject)}`}
-                className='inline-block px-8 py-3 rounded-full transition-all font-grotesk-medium text-xl border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-white'
-              >
-                {trainingButton.label}
-              </a>
+            <div className='bg-white p-6 rounded-lg mb-8'>
+              <h3 className='text-xl font-bold text-mf-blue mb-4'>Delivery</h3>
+              <p className='text-gray-700 md:text-xl'>{trainingDelivery}</p>
             </div>
-          )}
-        </div>
-      </section>
 
-      {/* Call to Action Section */}
-      {ctaButtons && ctaButtons.some((button) => 
-        (button.actionType === 'url' && button.href) ||
-        (button.actionType === 'email' && button.email) ||
-        (button.actionType === 'pdf' && button.pdf?.asset?.url)
-      ) && (
-        <section className='bg-mf-blue py-16 px-6'>
-          <div className='max-w-4xl mx-auto text-center'>
-            <h2 className='text-3xl font-bold text-chalk mb-8'>
-              {ctaTitle ||
-                'Bring Think Different to your school, organisation, or community.'}
-            </h2>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-              {ctaButtons.map((button) => (
-                <CTAButton key={button._key} cta={button} darkBackground={true} />
-              ))}
-            </div>
+            {trainingButton && (
+              <div className='text-center'>
+                <a
+                  href={`mailto:${trainingButton.emailAddress}?subject=${encodeURIComponent(trainingButton.emailSubject)}`}
+                  className='inline-block px-8 py-3 rounded-full transition-all font-grotesk-medium text-xl border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-white'
+                >
+                  {trainingButton.label}
+                </a>
+              </div>
+            )}
           </div>
         </section>
-      )}
+
+        {/* Call to Action Section */}
+        {ctaButtons &&
+          ctaButtons.some(
+            (button) =>
+              (button.actionType === 'url' && button.href) ||
+              (button.actionType === 'email' && button.email) ||
+              (button.actionType === 'pdf' && button.pdf?.asset?.url)
+          ) && (
+            <section className='bg-mf-blue py-16 px-6'>
+              <div className='max-w-4xl mx-auto text-center'>
+                <h2 className='text-3xl font-bold text-chalk mb-8'>
+                  {ctaTitle ||
+                    'Bring Think Different to your school, organisation, or community.'}
+                </h2>
+                <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                  {ctaButtons.map((button) => (
+                    <CTAButton
+                      key={button._key}
+                      cta={button}
+                      darkBackground={true}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
       </main>
     </>
   );

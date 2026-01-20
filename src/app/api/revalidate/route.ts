@@ -1,6 +1,10 @@
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
+// Force this route to be dynamic
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 export async function POST(request: NextRequest) {
   try {
     // Verify the secret token for security
@@ -8,6 +12,7 @@ export async function POST(request: NextRequest) {
     const expectedSecret = process.env.SANITY_REVALIDATE_SECRET;
 
     if (!expectedSecret) {
+      console.error('SANITY_REVALIDATE_SECRET not configured');
       return NextResponse.json(
         { message: 'Revalidation secret not configured' },
         { status: 500 }
@@ -15,76 +20,58 @@ export async function POST(request: NextRequest) {
     }
 
     if (secret !== expectedSecret) {
+      console.error('Invalid secret token provided');
       return NextResponse.json(
         { message: 'Invalid secret token' },
         { status: 401 }
       );
     }
 
-    // Get the document type from the request body (if provided)
-    // Sanity webhooks send the document data in the body
+    // Get the document type from the request body
     let documentType: string | undefined;
     try {
       const body = await request.json();
       documentType = body._type;
-    } catch {
-      // If no body or invalid JSON, continue with full revalidation
+      console.log('Revalidating for document type:', documentType);
+    } catch (error) {
+      console.log('No body provided, performing full revalidation');
     }
 
-    // Revalidate all pages that might be affected
-    // This ensures all content updates are reflected immediately
+    // Always revalidate all pages to ensure consistency
+    const pathsToRevalidate = [
+      '/',
+      '/about',
+      '/think-different',
+      '/listen-app',
+      '/perpetrator-programme',
+      '/news',
+    ];
+
+    pathsToRevalidate.forEach((path) => {
+      revalidatePath(path, 'page');
+    });
+
+    // Also revalidate layout for global components
     revalidatePath('/', 'layout');
-    revalidatePath('/about');
-    revalidatePath('/think-different');
-    revalidatePath('/listen-app');
-    revalidatePath('/perpetrator-programme');
-    revalidatePath('/news');
+
+    // Revalidate dynamic routes
     revalidatePath('/news/[slug]', 'page');
 
-    // If a specific document type is provided, we can be more selective
-    if (documentType) {
-      switch (documentType) {
-        case 'homepage':
-          revalidatePath('/');
-          break;
-        case 'aboutPage':
-          revalidatePath('/about');
-          break;
-        case 'thinkDifferentPage':
-          revalidatePath('/think-different');
-          break;
-        case 'listenAppPage':
-          revalidatePath('/listen-app');
-          break;
-        case 'perpetratorProgrammePage':
-          revalidatePath('/perpetrator-programme');
-          break;
-        case 'article':
-          revalidatePath('/news');
-          revalidatePath('/news/[slug]', 'page');
-          break;
-        case 'ctaBlock':
-        case 'siteSettings':
-        case 'logoSection':
-          // These affect multiple pages, so revalidate all
-          revalidatePath('/', 'layout');
-          revalidatePath('/about');
-          revalidatePath('/think-different');
-          revalidatePath('/listen-app');
-          revalidatePath('/perpetrator-programme');
-          break;
-      }
-    }
+    console.log('Revalidation completed successfully');
 
     return NextResponse.json({
       revalidated: true,
       message: 'Revalidation successful',
       timestamp: new Date().toISOString(),
+      documentType: documentType || 'all',
     });
   } catch (error) {
     console.error('Revalidation error:', error);
     return NextResponse.json(
-      { message: 'Error revalidating', error: String(error) },
+      {
+        message: 'Error revalidating',
+        error: error instanceof Error ? error.message : String(error),
+      },
       { status: 500 }
     );
   }

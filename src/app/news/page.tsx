@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { formatDate } from '../utils/dateFormat';
 
+export const revalidate = 0; // Disable static caching
+
 export default async function NewsPage() {
   const [newsPageData, newsPosts] = await Promise.all([
     getBlogPageData(),

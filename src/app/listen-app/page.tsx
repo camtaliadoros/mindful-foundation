@@ -15,6 +15,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+export const revalidate = 0; // Disable static caching
+
 export default async function ListenAppPage() {
   const listenAppData = await getListenAppPageData();
 

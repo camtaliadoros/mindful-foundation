@@ -60,7 +60,9 @@ export async function getHomepageData(): Promise<HomepageData | null> {
       }
     }`;
 
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching homepage data:', error);
@@ -168,7 +170,9 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
       }
     }`;
 
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching about page data:', error);
@@ -264,7 +268,9 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       }
     }`;
 
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching Think Different page data:', error);
@@ -368,7 +374,9 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
       }
     }`;
 
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching ListenApp page data:', error);
@@ -420,7 +428,9 @@ export async function getPerpetratorProgrammePageData(): Promise<PerpetratorProg
       }
     }`;
 
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching Perpetrator Programme page data:', error);
@@ -444,7 +454,9 @@ export async function getBlogPageData(): Promise<BlogPageData | null> {
       }
     }`;
 
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching blog page data:', error);
@@ -472,7 +484,9 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
       excerpt
     }`;
 
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
@@ -533,7 +547,9 @@ export async function getBlogPostBySlug(
       }
     }`;
 
-    const data = await client.fetch(query, { slug });
+    const data = await client.fetch(query, { slug }, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching blog post:', error);
@@ -564,7 +580,9 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       }
     }`;
 
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching site settings:', error);
@@ -607,7 +625,9 @@ export async function getCTABlockData(): Promise<CTABlockData | null> {
         style
       }
     }`;
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 } // Disable caching
+    });
     return data;
   } catch (error) {
     console.error('Error fetching CTABlock data:', error);

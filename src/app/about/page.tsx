@@ -15,6 +15,8 @@ import TwoColumnSection from '../components/TwoColumnSection';
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://www.mindfulfoundation.org';
 
+export const revalidate = 0; // Disable static caching
+
 export async function generateMetadata(): Promise<Metadata> {
   const [aboutPageData, siteSettings] = await Promise.all([
     getAboutPageData(),

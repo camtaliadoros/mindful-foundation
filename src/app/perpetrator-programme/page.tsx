@@ -4,6 +4,8 @@ import { CTAButton } from '../utils/cta';
 import Header from '../components/Header';
 import { ProgrammeFeature } from '../types/perpetratorProgramme';
 
+export const revalidate = 0; // Disable static caching
+
 export default async function PerpetratorProgrammePage() {
   const perpetratorData = await getPerpetratorProgrammePageData();
 
