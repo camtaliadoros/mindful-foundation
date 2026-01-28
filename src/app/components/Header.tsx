@@ -18,7 +18,7 @@ export default function Header({ donateButton }: HeaderProps) {
 
   return (
     <header className='bg-mf-blue text-chalk px-6 py-4 font-grotesk-regular sticky top-0 z-50'>
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center justify-between gap-6'>
         {/* Logo */}
         <Link href='/' className='flex items-center space-x-3'>
           <Image
@@ -38,7 +38,7 @@ export default function Header({ donateButton }: HeaderProps) {
           <HeaderLink href='/perpetrator-programme'>
             Perpetrator Programme
           </HeaderLink>
-          {/* <HeaderLink href='/news'>News</HeaderLink> */}
+          <HeaderLink href='/news'>News</HeaderLink>
           {donateButton?.href && (
             <a
               href={donateButton.href}

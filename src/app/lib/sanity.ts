@@ -525,7 +525,7 @@ export async function getBlogPostBySlug(
           caption
         }
       },
-      cta-> {
+      articleCTA-> {
         _id,
         _type,
         title,

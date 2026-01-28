@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllBlogPosts, getBlogPostBySlug } from '../../lib/sanity';
-import { CTAButton } from '../../utils/cta';
 import { formatDate } from '../../utils/dateFormat';
 import { renderBlockContent } from '../../utils/sanity';
+import { CTAButton } from '../../utils/cta';
 
 interface NewsArticlePageProps {
   params: Promise<{
@@ -37,7 +37,7 @@ export default async function NewsArticlePage({
     featuredImage,
     publishedAt,
     contentBlocks,
-    cta,
+    articleCTA,
   } = post;
 
   return (
@@ -115,7 +115,7 @@ export default async function NewsArticlePage({
 
               {/* Optional Image */}
               {block.image?.asset?.url && (
-                <div className='my-8'>
+                <div className='my-12'>
                   <div className='aspect-video relative  overflow-hidden'>
                     <Image
                       src={block.image.asset.url}
@@ -136,36 +136,45 @@ export default async function NewsArticlePage({
         </div>
       </section>
 
-      {/* Call to Action */}
+<section className='md:grid md:grid-cols-3 flex flex-col-reverse gap-8 md:gap-0 bg-mf-blue py-16 px-6 items-center'>
+  {/* Back to News Section */}
 
-      <section className='bg-mf-blue py-16 px-6 flex flex-col-reverse items-center justify-center md:grid md:grid-cols-3 gap-4'>
-        <Link
-          href='/news'
-          className='flex items-center text-lg text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
-        >
-          <svg
-            className='mr-2 w-4 h-4 mb-1'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
+  <div>
+          <Link
+            href='/news'
+            className='inline-flex items-center text-lg text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
           >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M15 19l-7-7 7-7'
-            />
-          </svg>
-          Back to News
-        </Link>
-        {cta && (
+            <svg
+              className='mr-2 w-4 h-4 mb-1'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M15 19l-7-7 7-7'
+              />
+            </svg>
+            Back to News
+          </Link>
+        </div>
+      {/* Call to Action Section */}
+      {articleCTA && (
+
           <div className='max-w-4xl mx-auto text-center'>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-              <CTAButton cta={cta} darkBackground={true} />
-            </div>
+            {articleCTA.label && (
+              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                <CTAButton cta={articleCTA} darkBackground={true} />
+              </div>
+            )}
           </div>
-        )}
-      </section>
+
+      )}
+</section>
+      
+
     </>
   );
 }

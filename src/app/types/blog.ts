@@ -27,7 +27,7 @@ export interface BlogPost {
   publishedAt: string;
   excerpt?: string;
   contentBlocks: BlogPostContentBlock[];
-  cta?: {
+  articleCTA?: {
     _id: string;
     _type: 'articleCTA';
     title: string;
