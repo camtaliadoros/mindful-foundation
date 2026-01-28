@@ -10,7 +10,7 @@ export const portableTextComponents: PortableTextComponents = {
       if (!value?.asset) return null;
 
       return (
-        <div>
+        <div className='my-8'>
           <Image
             src={urlFor(value).width(800).height(600).url()}
             alt={value.alt || 'Image'}
