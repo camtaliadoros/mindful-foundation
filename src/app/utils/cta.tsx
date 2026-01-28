@@ -1,8 +1,26 @@
 import React from 'react';
 import { CTA } from '../types/homepage';
 
+// Extended CTA type that works for both embedded and referenced CTAs
+type FlexibleCTA = CTA | {
+  _id?: string;
+  _key?: string;
+  _type?: string;
+  label?: string;
+  actionType?: 'url' | 'email' | 'pdf';
+  href?: string;
+  email?: string;
+  pdf?: {
+    asset: {
+      url: string;
+      originalFilename?: string;
+    };
+  };
+  style?: 'primary' | 'secondary' | 'link';
+};
+
 interface CTAButtonProps {
-  cta: CTA;
+  cta: FlexibleCTA;
   className?: string;
   darkBackground?: boolean;
 }

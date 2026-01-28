@@ -525,8 +525,10 @@ export async function getBlogPostBySlug(
           caption
         }
       },
-      cta {
-        _key,
+      cta-> {
+        _id,
+        _type,
+        title,
         label,
         actionType,
         href,

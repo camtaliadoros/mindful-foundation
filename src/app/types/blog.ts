@@ -28,9 +28,11 @@ export interface BlogPost {
   excerpt?: string;
   contentBlocks: BlogPostContentBlock[];
   cta?: {
-    _key: string;
-    label: string;
-    actionType: 'url' | 'email' | 'pdf';
+    _id: string;
+    _type: 'articleCTA';
+    title: string;
+    label?: string;
+    actionType?: 'url' | 'email' | 'pdf';
     href?: string;
     email?: string;
     pdf?: {
@@ -39,7 +41,7 @@ export interface BlogPost {
         originalFilename?: string;
       };
     };
-    style: 'primary' | 'secondary' | 'link';
+    style?: 'primary' | 'secondary' | 'link';
   };
   seo?: {
     title?: string;

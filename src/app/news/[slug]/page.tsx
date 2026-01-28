@@ -83,7 +83,7 @@ export default async function NewsArticlePage({
       </section>
 
       {/* Featured Image */}
-      {featuredImage && (
+      {featuredImage?.asset?.url && (
         <section className='py-8 px-6'>
           <div className='max-w-2xl mx-auto'>
             <div className='aspect-video relative  overflow-hidden'>
@@ -114,7 +114,7 @@ export default async function NewsArticlePage({
               </div>
 
               {/* Optional Image */}
-              {block.image && (
+              {block.image?.asset?.url && (
                 <div className='my-8'>
                   <div className='aspect-video relative  overflow-hidden'>
                     <Image
@@ -159,10 +159,6 @@ export default async function NewsArticlePage({
           Back to News
         </Link>
         {cta && (
-          (cta.actionType === 'url' && cta.href) ||
-          (cta.actionType === 'email' && cta.email) ||
-          (cta.actionType === 'pdf' && cta.pdf?.asset?.url)
-        ) && (
           <div className='max-w-4xl mx-auto text-center'>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <CTAButton cta={cta} darkBackground={true} />
