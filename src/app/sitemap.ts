@@ -2,7 +2,9 @@ import { MetadataRoute } from 'next';
 import { client } from './sanity/client';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.mindfulfoundation.org';
+  // Canonical production URL for all sitemap entries
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.themindfulfoundation.org';
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [

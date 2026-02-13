@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.mindfulfoundation.org/sitemap.xml
+Sitemap: https://www.themindfulfoundation.org/sitemap.xml
