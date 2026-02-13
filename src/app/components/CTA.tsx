@@ -35,7 +35,7 @@ export const CTA = async () => {
   return (
     <section className='bg-[#f8f5ed] py-16 px-6'>
       <div className='max-w-4xl mx-auto text-center'>
-        <h2 className='text-3xl font-bold text-gray-800 mb-8'>
+        <h2 className='text-3xl font-bold text-mf-dark-blue mb-8'>
           {callToActionTitle || 'Together, we can build safer futures.'}
         </h2>
         <div className='flex flex-col sm:flex-row gap-4 justify-center'>

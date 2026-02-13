@@ -17,7 +17,7 @@ export default async function PerpetratorProgrammePage() {
           <h1 className='text-3xl font-bold text-mf-blue mb-4'>
             Page Not Found
           </h1>
-          <p className='text-gray-600 md:text-xl'>
+          <p className='text-mf-dark-blue md:text-xl'>
             The Perpetrator Programme page content could not be loaded.
           </p>
         </div>
@@ -63,7 +63,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {whyItsNeededTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
+          <div className='prose prose-xl max-w-none text-mf-dark-blue font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(whyItsNeeded)}
           </div>
         </div>
@@ -75,7 +75,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8'>
             {ourApproachTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
+          <div className='prose prose-xl max-w-none text-mf-dark-blue font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(ourApproach)}
           </div>
         </div>
@@ -109,7 +109,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 '>
             {outcomesTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
+          <div className='prose prose-xl max-w-none text-mf-dark-blue font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(outcomes)}
           </div>
         </div>
@@ -121,7 +121,7 @@ export default async function PerpetratorProgrammePage() {
           <h2 className='text-3xl font-bold text-mf-blue mb-8 '>
             {expansionTitle}
           </h2>
-          <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
+          <div className='prose prose-xl max-w-none text-mf-dark-blue font-grotesk-regular [&>*]:text-lg'>
             {renderBlockContent(expansion)}
           </div>
         </div>

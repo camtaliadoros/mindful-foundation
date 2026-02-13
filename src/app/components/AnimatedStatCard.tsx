@@ -59,7 +59,7 @@ export const AnimatedStatCard = ({
         {value}
       </h3>
       <p
-        className={`text-gray-700 transition-all duration-600 ease-out text-lg md:text-xl leading-snug ${
+        className={`text-mf-dark-blue transition-all duration-600 ease-out text-lg md:text-xl leading-snug ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
         }`}
         style={{

@@ -125,7 +125,7 @@ export default async function Home() {
         {/* Mission Section */}
         {mission && (
           <section className='bg-chalk py-16 px-6'>
-            <div className='max-w-4xl mx-auto text-gray-800 md:w-1/2 space-y-6'>
+            <div className='max-w-4xl mx-auto text-mf-dark-blue md:w-1/2 space-y-6'>
               <h2 className='text-4xl font-bold text-center mb-8'>
                 Our Mission
               </h2>
@@ -184,7 +184,7 @@ export default async function Home() {
         {stats && stats.length > 0 && (
           <section className='bg-chalk py-16 px-6'>
             <div className='max-w-4xl mx-auto'>
-              <h2 className='text-3xl font-bold text-gray-800 text-center mb-12'>
+              <h2 className='text-3xl font-bold text-mf-dark-blue text-center mb-12'>
                 {whyItMattersTitle || 'Why It Matters'}
               </h2>
               <div className='grid md:grid-cols-2 md:gap-x-16 gap-16 w-3/4 mx-auto'>
@@ -198,7 +198,7 @@ export default async function Home() {
                 ))}
               </div>
               {whyItMattersFootnote && (
-                <p className='text-center text-gray-600 mt-8 font-extrabold text-2xl animate-mf-fade-in'>
+                <p className='text-center text-mf-dark-blue mt-8 font-extrabold text-2xl animate-mf-fade-in'>
                   {whyItMattersFootnote}
                 </p>
               )}

@@ -54,7 +54,7 @@ export const BulletItemCard = ({
       }`}
     >
       <div className={`h-3 w-3 ${discColour} rounded-full shrink-0`} />
-      <p className='text-gray-700 mt-1 md:text-xl'>{content}</p>
+      <p className='text-mf-dark-blue mt-1 md:text-xl'>{content}</p>
     </div>
   );
 };

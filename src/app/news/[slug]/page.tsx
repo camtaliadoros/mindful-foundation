@@ -95,7 +95,7 @@ export default async function NewsArticlePage({
               />
             </div>
             {featuredImage.caption && (
-              <p className='text-center text-gray-600 mt-4 font-grotesk-regular md:text-xl'>
+              <p className='text-center text-mf-dark-blue mt-4 font-grotesk-regular md:text-xl'>
                 {featuredImage.caption}
               </p>
             )}
@@ -109,7 +109,7 @@ export default async function NewsArticlePage({
           {contentBlocks?.map((block) => (
             <div key={block._key} className='mb-12'>
               {/* Content */}
-              <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular mb-8 [&>*]:text-lg'>
+              <div className='prose prose-xl max-w-none text-mf-dark-blue font-grotesk-regular mb-8 [&>*]:text-lg'>
                 {renderBlockContent(block.content)}
               </div>
 
@@ -125,7 +125,7 @@ export default async function NewsArticlePage({
                     />
                   </div>
                   {block.image.caption && (
-                    <p className='text-center text-gray-600 mt-4 font-grotesk-regular md:text-xl'>
+                    <p className='text-center text-mf-dark-blue mt-4 font-grotesk-regular md:text-xl'>
                       {block.image.caption}
                     </p>
                   )}

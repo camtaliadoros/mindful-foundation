@@ -28,7 +28,7 @@ export default async function ListenAppPage() {
           <h1 className='text-3xl font-bold text-mf-blue mb-4'>
             Page Not Found
           </h1>
-          <p className='text-gray-600 md:text-xl'>
+          <p className='text-mf-dark-blue md:text-xl'>
             The ListenApp page content could not be loaded.
           </p>
         </div>
@@ -79,7 +79,7 @@ export default async function ListenAppPage() {
             <h2 className='text-3xl font-bold text-mf-blue mb-8'>
               {whatItIsTitle}
             </h2>
-            <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
+            <div className='prose prose-xl max-w-none text-mf-dark-blue font-grotesk-regular [&>*]:text-lg'>
               {renderBlockContent(whatItIs)}
             </div>
           </div>
@@ -91,7 +91,7 @@ export default async function ListenAppPage() {
             <h2 className='text-3xl font-bold text-mf-blue mb-8'>
               {whyItMattersTitle}
             </h2>
-            <div className='prose prose-xl max-w-none text-gray-700 [&>*]:text-lg'>
+            <div className='prose prose-xl max-w-none text-mf-dark-blue [&>*]:text-lg'>
               {renderBlockContent(whyItMatters)}
             </div>
           </div>
