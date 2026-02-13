@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+  [[redirects]]
+  from = "https://www.themindfulfoundation.org/*"
+  to = "https://themindfulfoundation.org/:splat"
+  status = 301
+  force = true
