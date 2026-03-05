@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: baseUrl,
     },
     siteSettings,
-    '/'
+    '/',
   );
 }
 
@@ -61,13 +61,13 @@ export default async function Home() {
 
   // Get the three core strands
   const thinkDifferent = strands?.find((strand) =>
-    strand.title.toLowerCase().includes('think different')
+    strand.title.toLowerCase().includes('think different'),
   );
   const listenApp = strands?.find((strand) =>
-    strand.title.toLowerCase().includes('listenapp')
+    strand.title.toLowerCase().includes('listenapp'),
   );
   const perpetratorProgramme = strands?.find((strand) =>
-    strand.title.toLowerCase().includes('perpetrator')
+    strand.title.toLowerCase().includes('perpetrator'),
   );
 
   // Split the headerSubheadline into an array of strings
@@ -125,14 +125,14 @@ export default async function Home() {
         {/* Mission Section */}
         {mission && (
           <section className='bg-chalk py-16 px-6'>
-            <div className='max-w-4xl mx-auto text-gray-800 md:w-1/2 space-y-6'>
+            <div className='max-w-4xl mx-auto text-mf-dark-blue [&>*]:text-mf-dark-blue md:w-1/2 space-y-6'>
               <h2 className='text-4xl font-bold text-center mb-8'>
                 Our Mission
               </h2>
-              <div className='prose prose-lg prose-invert max-w-none font-extrabold [&>*]:text-lg md:[&>*]:text-xl '>
+              <div className='[&>*]:text-mf-dark-blue space-y-3 max-w-none font-extrabold [&>*]:text-lg md:[&>*]:text-xl '>
                 {renderBlockContent(mission)}
               </div>
-              <div className='prose prose-xl [&>*]:text-lg'>
+              <div className='[&>*]:text-mf-dark-blue space-y-3 [&>*]:text-lg'>
                 {intro && renderBlockContent(intro)}
               </div>
             </div>

@@ -76,10 +76,10 @@ export default async function ListenAppPage() {
         {/* What It Is Section */}
         <section className='py-16 px-6'>
           <div className='max-w-2xl mx-auto'>
-            <h2 className='text-3xl font-bold text-mf-blue mb-8'>
+            <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
               {whatItIsTitle}
             </h2>
-            <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular [&>*]:text-lg'>
+            <div className='[&>*]:text-mf-dark-blue max-w-none space-y-3 font-grotesk-regular [&>*]:text-lg'>
               {renderBlockContent(whatItIs)}
             </div>
           </div>
@@ -88,10 +88,10 @@ export default async function ListenAppPage() {
         {/* Why It Matters Section */}
         <section className='bg-white py-16 px-6'>
           <div className='max-w-2xl mx-auto'>
-            <h2 className='text-3xl font-bold text-mf-blue mb-8'>
+            <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
               {whyItMattersTitle}
             </h2>
-            <div className='prose prose-xl max-w-none text-gray-700 [&>*]:text-lg'>
+            <div className='[&>*]:text-mf-dark-blue space-y-3 max-w-none  [&>*]:text-lg'>
               {renderBlockContent(whyItMatters)}
             </div>
           </div>
