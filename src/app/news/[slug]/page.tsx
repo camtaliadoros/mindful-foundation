@@ -75,9 +75,7 @@ export default async function NewsArticlePage({
             </p>
           )}
           <div className='text-lg text-chalk/80 font-grotesk-regular'>
-            <time dateTime={publishedAt}>
-              {formatDate(publishedAt)}
-            </time>
+            <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
           </div>
         </div>
       </section>
@@ -109,7 +107,7 @@ export default async function NewsArticlePage({
           {contentBlocks?.map((block) => (
             <div key={block._key} className='mb-12'>
               {/* Content */}
-              <div className='prose prose-xl max-w-none text-mf-dark-blue font-grotesk-regular mb-8 [&>*]:text-lg'>
+              <div className='prose prose-xl max-w-none text-gray-700 font-grotesk-regular mb-8 [&>*]:text-lg'>
                 {renderBlockContent(block.content)}
               </div>
 
@@ -136,10 +134,10 @@ export default async function NewsArticlePage({
         </div>
       </section>
 
-<section className='md:grid md:grid-cols-3 flex flex-col-reverse gap-8 md:gap-0 bg-mf-blue py-16 px-6 items-center'>
-  {/* Back to News Section */}
+      <section className='md:grid md:grid-cols-3 flex flex-col-reverse gap-8 md:gap-0 bg-mf-blue py-16 px-6 items-center'>
+        {/* Back to News Section */}
 
-  <div>
+        <div>
           <Link
             href='/news'
             className='inline-flex items-center text-lg text-mf-green hover:text-chalk transition-colors font-grotesk-medium'
@@ -160,9 +158,8 @@ export default async function NewsArticlePage({
             Back to News
           </Link>
         </div>
-      {/* Call to Action Section */}
-      {articleCTA && (
-
+        {/* Call to Action Section */}
+        {articleCTA && (
           <div className='max-w-4xl mx-auto text-center'>
             {articleCTA.label && (
               <div className='flex flex-col sm:flex-row gap-4 justify-center'>
@@ -170,11 +167,8 @@ export default async function NewsArticlePage({
               </div>
             )}
           </div>
-
-      )}
-</section>
-      
-
+        )}
+      </section>
     </>
   );
 }

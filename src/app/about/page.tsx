@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: `${baseUrl}/about`,
     },
     siteSettings,
-    '/about'
+    '/about',
   );
 }
 
@@ -95,7 +95,7 @@ export default async function AboutPage() {
         {/* Who We Are Section */}
         {whoWeAre && (
           <section className='bg-white py-16 px-6 mx-auto'>
-            <div className='max-w-4xl md:w-1/2 mx-auto'>
+            <div className='max-w-4xl md:w-1/2 mx-auto [&>*]:text-mf-dark-blue'>
               <h2 className='text-3xl font-bold text-mf-dark-blue mb-8 text-center'>
                 {whoWeAreTitle || 'Who We Are'}
               </h2>
@@ -176,7 +176,9 @@ export default async function AboutPage() {
                 <h2 className='text-3xl font-bold text-mf-dark-blue mb-8 text-center'>
                   {teamTitle || 'The Team'}
                 </h2>
-                <div className='text-mf-dark-blue'>{renderBlockContent(team)}</div>
+                <div className='[&>*]:text-mf-dark-blue space-y-3'>
+                  {renderBlockContent(team)}
+                </div>
               </div>
             </TwoColumnSection>
           </section>

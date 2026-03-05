@@ -97,7 +97,7 @@ export default async function ThinkDifferentPage() {
                 <h2 className='text-3xl font-bold text-mf-blue mb-8'>
                   {overviewHeadline}
                 </h2>
-                <div className='max-w-none'>
+                <div className='max-w-none [&>*]:text-mf-dark-blue'>
                   {overview && renderBlockContent(overview)}
                 </div>
               </div>
@@ -108,10 +108,10 @@ export default async function ThinkDifferentPage() {
             </TwoColumnSection>
           ) : (
             <div className='max-w-2xl mx-auto'>
-              <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
+              <h2 className='text-3xl font-bold text-mf-dark-blue mb-8 text-center'>
                 {overviewHeadline}
               </h2>
-              <div className='prose prose-xl max-w-none [&>*]:text-lg'>
+              <div className='[&>*]:text-mf-dark-blue max-w-none [&>*]:text-lg'>
                 {overview && renderBlockContent(overview)}
               </div>
             </div>
@@ -121,10 +121,10 @@ export default async function ThinkDifferentPage() {
         {/* Why It's Different Section */}
         <section className='bg-white py-16 px-6'>
           <div className='max-w-2xl mx-auto flex flex-col items-center'>
-            <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center '>
+            <h2 className='text-3xl font-bold text-mf-dark-blue mb-8 text-center '>
               {whyDifferentTitle || "Why It's Different"}
             </h2>
-            <div className='prose prose-xl max-w-2xl mb-8 text-center [&>*]:text-lg'>
+            <div className='[&>*]:text-mf-dark-blue space-y-3 max-w-2xl mb-8 text-center [&>*]:text-lg'>
               {whyDifferentDescription &&
                 renderBlockContent(whyDifferentDescription)}
             </div>
@@ -153,7 +153,7 @@ export default async function ThinkDifferentPage() {
             <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
               {courseStructureTitle || 'Course Structure'}
             </h2>
-            <div className='prose prose-xl max-w-none mb-12 text-chalk text-center [&>*]:text-lg'>
+            <div className='space-y-3 max-w-none mb-12 text-chalk text-center [&>*]:text-lg'>
               {courseStructureDescription &&
                 renderBlockContent(courseStructureDescription)}
             </div>
@@ -222,7 +222,7 @@ export default async function ThinkDifferentPage() {
             <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
               {impactTitle || 'Impact So Far'}
             </h2>
-            <div className='prose prose-xl max-w-none mb-12 text-chalk [&>*]:text-lg'>
+            <div className='space-y-3 max-w-none mb-12 text-chalk [&>*]:text-lg'>
               {impactDescription && renderBlockContent(impactDescription)}
             </div>
 
@@ -249,7 +249,7 @@ export default async function ThinkDifferentPage() {
               </div>
             )}
 
-            <div className='prose prose-xl max-w-none text-chalk [&>*]:text-lg'>
+            <div className='space-y-3 max-w-none text-chalk [&>*]:text-lg'>
               {impactStories && renderBlockContent(impactStories)}
             </div>
           </div>
@@ -261,7 +261,7 @@ export default async function ThinkDifferentPage() {
             <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
               {trainingTitle || 'Training for Educators & Staff'}
             </h2>
-            <div className='prose prose-xl max-w-none mb-8 [&>*]:text-lg'>
+            <div className='[&>*]:text-mf-dark-blue space-y-3 max-w-none mb-8 [&>*]:text-lg'>
               {trainingDescription && renderBlockContent(trainingDescription)}
             </div>
 
@@ -329,7 +329,7 @@ export default async function ThinkDifferentPage() {
             (button) =>
               (button.actionType === 'url' && button.href) ||
               (button.actionType === 'email' && button.email) ||
-              (button.actionType === 'pdf' && button.pdf?.asset?.url)
+              (button.actionType === 'pdf' && button.pdf?.asset?.url),
           ) && (
             <section className='bg-mf-blue py-16 px-6'>
               <div className='max-w-4xl mx-auto text-center'>

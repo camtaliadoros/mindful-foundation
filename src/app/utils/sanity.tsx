@@ -23,7 +23,9 @@ export const portableTextComponents: PortableTextComponents = {
     },
   },
   block: {
-    normal: ({ children }) => <p className='text-lg mb-3'>{children}</p>,
+    normal: ({ children }) => (
+      <p className='text-lg leading-snug'>{children}</p>
+    ),
     h2: ({ children }) => <h2 className='text-lg'>{children}</h2>,
     h3: ({ children }) => <h3 className='text-lg'>{children}</h3>,
     blockquote: ({ children }) => (

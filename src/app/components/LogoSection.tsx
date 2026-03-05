@@ -11,8 +11,10 @@ export const LogoSection = ({
   logos: LinkableLogo[];
 }) => {
   const backgroundColor = colourScheme === 'light' ? 'bg-white' : 'bg-mf-blue';
-  const textColor = colourScheme === 'light' ? 'text-mf-dark-blue' : 'text-white';
-  const titleColor = colourScheme === 'light' ? 'text-mf-dark-blue' : 'text-white';
+  const textColor =
+    colourScheme === 'light' ? 'text-mf-dark-blue' : 'text-white';
+  const titleColor =
+    colourScheme === 'light' ? 'text-mf-dark-blue' : 'text-white';
   const linkColor = colourScheme === 'light' ? 'text-mf-blue' : 'text-mf-green';
   const linkHoverColor =
     colourScheme === 'light' ? 'text-mf-dark-green' : 'text-mf-dark-blue';

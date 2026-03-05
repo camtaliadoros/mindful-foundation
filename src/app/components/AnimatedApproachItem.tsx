@@ -28,7 +28,7 @@ export const AnimatedApproachItem = ({
       {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px',
-      }
+      },
     );
 
     const currentCard = cardRef.current;
@@ -62,7 +62,9 @@ export const AnimatedApproachItem = ({
       ) : (
         <ApproachBulletIcon />
       )}
-      <p className='text-mf-dark-blue font-grotesk-medium md:text-xl'>{approach.title}</p>
+      <p className='text-mf-dark-blue font-grotesk-medium md:text-xl'>
+        {approach.title}
+      </p>
     </div>
   );
 };
