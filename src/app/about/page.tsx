@@ -110,10 +110,10 @@ export default async function AboutPage() {
             {missionImage ? (
               <TwoColumnSection>
                 <div>
-                  <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
+                  <h2 className='text-3xl font-bold text-mf-dark-blue mb-12 text-center'>
                     {missionTitle || 'Our Mission'}
                   </h2>
-                  <p className='text-xl text-gray-700 leading-snug font-semibold'>
+                  <p className='text-xl text-mf-dark-blue leading-snug font-semibold'>
                     {mission}
                   </p>
                 </div>
@@ -124,10 +124,10 @@ export default async function AboutPage() {
               </TwoColumnSection>
             ) : (
               <div className='max-w-4xl mx-auto text-center'>
-                <h2 className='text-3xl font-bold text-gray-800 mb-12 text-center'>
+                <h2 className='text-3xl font-bold text-mf-dark-blue mb-12 text-center'>
                   {missionTitle || 'Our Mission'}
                 </h2>
-                <p className='text-lg md:text-xl text-gray-700 leading-relaxed'>
+                <p className='text-lg md:text-xl text-mf-dark-blue leading-relaxed'>
                   {mission}
                 </p>
               </div>

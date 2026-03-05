@@ -30,7 +30,7 @@ export default async function ThinkDifferentPage() {
             <h1 className='text-4xl md:text-5xl font-bold text-mf-blue mb-4'>
               Error Loading Think Different Page
             </h1>
-            <p className='text-xl text-gray-600'>
+            <p className='text-xl text-mf-dark-blue'>
               Unable to load Think Different content from Sanity.
             </p>
           </div>
@@ -208,7 +208,7 @@ export default async function ThinkDifferentPage() {
               <div className='grid md:grid-cols-2 gap-6'>
                 {courseAims.map((aim, index) => (
                   <div key={index} className='bg-chalk p-6 rounded-lg'>
-                    <p className='text-gray-700 md:text-xl'>{aim}</p>
+                    <p className='text-mf-dark-blue md:text-xl'>{aim}</p>
                   </div>
                 ))}
               </div>
@@ -307,7 +307,7 @@ export default async function ThinkDifferentPage() {
 
             <div className='bg-white p-6 rounded-lg mb-8'>
               <h3 className='text-xl font-bold text-mf-blue mb-4'>Delivery</h3>
-              <p className='text-gray-700 md:text-xl'>{trainingDelivery}</p>
+              <p className='text-mf-dark-blue md:text-xl'>{trainingDelivery}</p>
             </div>
 
             {trainingButton && (

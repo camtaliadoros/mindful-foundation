@@ -93,7 +93,7 @@ export default async function NewsArticlePage({
               />
             </div>
             {featuredImage.caption && (
-              <p className='text-center text-gray-600 mt-4 font-grotesk-regular md:text-xl'>
+              <p className='text-center text-mf-dark-blue mt-4 font-grotesk-regular md:text-xl'>
                 {featuredImage.caption}
               </p>
             )}
@@ -123,7 +123,7 @@ export default async function NewsArticlePage({
                     />
                   </div>
                   {block.image.caption && (
-                    <p className='text-center text-gray-600 mt-4 font-grotesk-regular md:text-xl'>
+                    <p className='text-center text-mf-dark-blue mt-4 font-grotesk-regular md:text-xl'>
                       {block.image.caption}
                     </p>
                   )}

@@ -29,7 +29,7 @@ export default function NotFound() {
           </Link>
         </div>
         <div className='mt-12 pt-8 border-t border-gray-300'>
-          <p className='text-lg text-gray-600 font-grotesk-regular mb-4'>
+          <p className='text-lg text-mf-blue font-grotesk-regular mb-4'>
             You might also be interested in:
           </p>
           <nav className='flex flex-wrap justify-center gap-4'>
