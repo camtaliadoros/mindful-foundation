@@ -84,15 +84,6 @@ export default async function ContactPage() {
                 </a>
               </div>
 
-              <div>
-                <p className='text-xs font-bold tracking-widest uppercase text-mf-green mb-1'>
-                  Response Time
-                </p>
-                <p className='text-mf-blue/70 text-sm leading-relaxed'>
-                  We aim to respond to all enquiries within{' '}
-                  <strong className='text-mf-blue'>2-3 working days</strong>.
-                </p>
-              </div>
             </div>
 
             {/* Right -- form */}
