@@ -21,7 +21,12 @@ const encode = (data: Record<string, string>) =>
     .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&');
 
-export default function ContactForm() {
+interface ContactFormProps {
+  successHeading: string;
+  successMessage: string;
+}
+
+export default function ContactForm({ successHeading, successMessage }: ContactFormProps) {
   const [status, setStatus] = useState<Status>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [honeypot, setHoneypot] = useState('');
@@ -101,10 +106,8 @@ export default function ContactForm() {
             />
           </svg>
         </div>
-        <h2 className='text-2xl font-bold text-mf-blue'>Message sent</h2>
-        <p className='text-mf-blue/70'>
-          Thank you for reaching out. We aim to respond within 2-3 working days.
-        </p>
+        <h2 className='text-2xl font-bold text-mf-blue'>{successHeading}</h2>
+        <p className='text-mf-blue/70'>{successMessage}</p>
       </div>
     );
   }

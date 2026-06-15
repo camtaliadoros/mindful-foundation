@@ -6,6 +6,8 @@ export interface ContactPageData {
   headerSubheadline: string;
   introText?: string;
   email: string;
+  successHeading?: string;
+  successMessage?: string;
   seo?: {
     title?: string;
     description?: string;

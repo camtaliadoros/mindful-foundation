@@ -39,6 +39,10 @@ export default async function ContactPage() {
     contactPageData?.introText ??
     "Whether you're seeking support, looking to partner with us, or want to learn more about our work -- reach out and we'll get back to you within 2-3 working days.";
   const email = contactPageData?.email ?? 'info@themindfulfoundation.org';
+  const successHeading = contactPageData?.successHeading ?? 'Message sent';
+  const successMessage =
+    contactPageData?.successMessage ??
+    'Thank you for reaching out. We aim to respond within 2-3 working days.';
 
   return (
     <>
@@ -103,7 +107,7 @@ export default async function ContactPage() {
             </div>
 
             {/* Right -- form */}
-            <ContactForm />
+            <ContactForm successHeading={successHeading} successMessage={successMessage} />
 
           </div>
         </section>

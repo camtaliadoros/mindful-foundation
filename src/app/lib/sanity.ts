@@ -647,6 +647,8 @@ export async function getContactPageData(): Promise<import('../types/contact').C
       headerSubheadline,
       introText,
       email,
+      successHeading,
+      successMessage,
       seo {
         title,
         description,
