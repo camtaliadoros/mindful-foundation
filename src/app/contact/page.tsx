@@ -49,6 +49,22 @@ export default async function ContactPage() {
         pageDescription={subheadline}
       />
 
+      {/* Hidden form for Netlify build-time detection.
+           ContactForm (client component) submits via fetch so Netlify can't
+           detect it at build time. This static markup lets the build bot
+           register the form; the client component handles actual submissions. */}
+      <form name='contact' data-netlify='true' netlify-honeypot='bot-field' hidden aria-hidden='true'>
+        <input type='hidden' name='form-name' value='contact' />
+        <input name='bot-field' />
+        <input name='firstName' />
+        <input name='lastName' />
+        <input name='email' type='email' />
+        <input name='subject' />
+        <input name='organisation' />
+        <textarea name='message'></textarea>
+        <input name='consent' type='checkbox' />
+      </form>
+
       {/* Page header -- matches all inner pages */}
       <section className='bg-mf-blue py-16 px-6' aria-label='Page header'>
         <div className='max-w-4xl mx-auto text-center'>
