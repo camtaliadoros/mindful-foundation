@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "cp public/netlify-forms.html .next/netlify-forms.html",
     "start": "next start",
     "lint": "eslint"
   },
