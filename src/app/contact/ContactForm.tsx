@@ -25,6 +25,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [honeypot, setHoneypot] = useState('');
+  const [consentError, setConsentError] = useState(false);
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -39,10 +40,12 @@ export default function ContactForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
     setForm((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
+    if (name === 'consent' && checked) setConsentError(false);
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -50,7 +53,7 @@ export default function ContactForm() {
     setErrorMessage('');
 
     if (!form.consent) {
-      setErrorMessage('Please tick the privacy policy checkbox to continue.');
+      setConsentError(true);
       return;
     }
 
@@ -254,7 +257,7 @@ export default function ContactForm() {
         </div>
 
         {/* Consent */}
-        <div className='flex items-start gap-3'>
+        <div className={`flex items-start gap-3 rounded-lg transition-colors ${consentError ? 'bg-mf-coral/10 border border-mf-coral/40 p-3 -mx-3' : ''}`}>
           <input
             id='consent'
             name='consent'
@@ -264,20 +267,27 @@ export default function ContactForm() {
             onChange={handleChange}
             className='mt-0.5 w-4 h-4 accent-mf-green cursor-pointer flex-shrink-0'
           />
-          <label
-            htmlFor='consent'
-            className='text-xs text-mf-blue/60 leading-relaxed cursor-pointer'
-          >
-            I agree to The Mindful Foundation storing my data to respond to this
-            enquiry, in accordance with the{' '}
-            <a
-              href='/privacy'
-              className='font-semibold text-mf-blue underline underline-offset-2'
+          <div>
+            <label
+              htmlFor='consent'
+              className={`text-xs leading-relaxed cursor-pointer transition-colors ${consentError ? 'text-mf-coral font-medium' : 'text-mf-blue/60'}`}
             >
-              Privacy Policy
-            </a>
-            .
-          </label>
+              I agree to The Mindful Foundation storing my data to respond to this
+              enquiry, in accordance with the{' '}
+              <a
+                href='/privacy'
+                className={`underline underline-offset-2 font-semibold ${consentError ? 'text-mf-coral' : 'text-mf-blue'}`}
+              >
+                Privacy Policy
+              </a>
+              .
+            </label>
+            {consentError && (
+              <p className='text-xs text-mf-coral mt-1 font-medium'>
+                Please tick this box to continue.
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Error message */}
