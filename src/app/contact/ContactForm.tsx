@@ -47,8 +47,14 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setStatus('submitting');
     setErrorMessage('');
+
+    if (!form.consent) {
+      setErrorMessage('Please tick the privacy policy checkbox to continue.');
+      return;
+    }
+
+    setStatus('submitting');
 
     try {
       const res = await fetch('/', {
