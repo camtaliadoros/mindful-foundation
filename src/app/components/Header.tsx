@@ -39,6 +39,7 @@ export default function Header({ donateButton }: HeaderProps) {
             Perpetrator Programme
           </HeaderLink>
           <HeaderLink href='/news'>News</HeaderLink>
+          <HeaderLink href='/contact'>Contact</HeaderLink>
           {donateButton?.href && (
             <a
               href={donateButton.href}
@@ -118,6 +119,13 @@ export default function Header({ donateButton }: HeaderProps) {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               News
+            </Link>
+            <Link
+              href='/contact'
+              className='block text-xl hover:text-mf-green transition-colors py-3'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Contact
             </Link>
           </div>
 
