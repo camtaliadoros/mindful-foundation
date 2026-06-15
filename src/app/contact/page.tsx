@@ -8,7 +8,7 @@ import ContactForm from './ContactForm';
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://www.themindfulfoundation.org';
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const [contactPageData, siteSettings] = await Promise.all([
