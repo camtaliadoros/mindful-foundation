@@ -636,3 +636,35 @@ export async function getCTABlockData(): Promise<CTABlockData | null> {
     return null;
   }
 }
+
+export async function getContactPageData(): Promise<import('../types/contact').ContactPageData | null> {
+  try {
+    const query = `*[_type == "contactPage"][0] {
+      _id,
+      _type,
+      title,
+      headerHeadline,
+      headerSubheadline,
+      introText,
+      email,
+      seo {
+        title,
+        description,
+        keywords,
+        ogImage {
+          asset-> {
+            url
+          }
+        }
+      }
+    }`;
+
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 },
+    });
+    return data;
+  } catch (error) {
+    console.error('Error fetching contact page data:', error);
+    return null;
+  }
+}
