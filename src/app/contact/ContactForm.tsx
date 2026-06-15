@@ -16,11 +16,6 @@ const ENQUIRY_TYPES = [
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
-const encode = (data: Record<string, string>) =>
-  Object.keys(data)
-    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&');
-
 interface ContactFormProps {
   successHeading: string;
   successMessage: string;
@@ -65,12 +60,12 @@ export default function ContactForm({ successHeading, successMessage }: ContactF
     setStatus('submitting');
 
     try {
-      const res = await fetch('/', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({
-          'form-name': 'contact',
-          'bot-field': honeypot,
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: '9a518f47-c7e7-4f68-b9cd-fb939d247b68',
+          botcheck: honeypot,
           firstName: form.firstName,
           lastName: form.lastName,
           email: form.email,
@@ -81,8 +76,9 @@ export default function ContactForm({ successHeading, successMessage }: ContactF
         }),
       });
 
-      if (!res.ok) {
-        throw new Error('Submission failed');
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Submission failed');
       }
 
       setStatus('success');
@@ -120,25 +116,17 @@ export default function ContactForm({ successHeading, successMessage }: ContactF
       </p>
 
       <form
-        name='contact'
         onSubmit={handleSubmit}
         noValidate
         className='space-y-5'
-        data-netlify='true'
-        netlify-honeypot='bot-field'
       >
-        {/* Required hidden fields for Netlify */}
-        <input type='hidden' name='form-name' value='contact' />
-
-        {/* Honeypot — visually hidden, bots fill it in, Netlify discards those submissions */}
+        {/* Honeypot — Web3Forms botcheck, visually hidden */}
         <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden='true'>
-          <label htmlFor='bot-field'>
-            Leave this field empty
-          </label>
+          <label htmlFor='botcheck'>Leave this field empty</label>
           <input
-            id='bot-field'
-            name='bot-field'
-            type='text'
+            id='botcheck'
+            name='botcheck'
+            type='checkbox'
             tabIndex={-1}
             autoComplete='off'
             value={honeypot}
