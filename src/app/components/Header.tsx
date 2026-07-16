@@ -41,14 +41,12 @@ export default function Header({ donateButton }: HeaderProps) {
           <HeaderLink href='/news'>News</HeaderLink>
           <HeaderLink href='/contact'>Contact</HeaderLink>
           {donateButton?.href && (
-            <a
-              href={donateButton.href}
-              target='_blank'
-              rel='noopener noreferrer'
+            <Link
+              href='/donate'
               className='px-8 py-3 rounded-full transition-all font-grotesk-medium border-2 border-mf-green text-ash bg-mf-green hover:bg-transparent hover:text-mf-green text-lg'
             >
               {donateButton.label || 'Donate'}
-            </a>
+            </Link>
           )}
         </nav>
 
@@ -132,14 +130,13 @@ export default function Header({ donateButton }: HeaderProps) {
           {/* Donate Button - Anchored to Bottom */}
           {donateButton?.href && (
             <div className='px-6 py-6 border-t border-mf-green/20'>
-              <a
-                href={donateButton.href}
-                target='_blank'
-                rel='noopener noreferrer'
+              <Link
+                href='/donate'
+                onClick={() => setIsMobileMenuOpen(false)}
                 className='w-full bg-mf-green text-ash rounded-full px-6 py-4 hover:bg-opacity-90 transition-all font-grotesk-medium text-lg md:text-xl text-center block'
               >
                 {donateButton.label || 'Donate'}
-              </a>
+              </Link>
             </div>
           )}
         </div>
