@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { reportContactConversion } from '../utils/gtag';
 
 const ENQUIRY_TYPES = [
   { value: 'general', label: 'General enquiry' },
@@ -81,6 +82,8 @@ export default function ContactForm({ successHeading, successMessage }: ContactF
         throw new Error(data.message || 'Submission failed');
       }
 
+      // Report the Google Ads conversion only on a genuinely successful submission.
+      reportContactConversion();
       setStatus('success');
     } catch {
       setErrorMessage('Something went wrong. Please try again or email us directly.');
