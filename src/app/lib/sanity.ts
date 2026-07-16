@@ -670,3 +670,40 @@ export async function getContactPageData(): Promise<import('../types/contact').C
     return null;
   }
 }
+
+export async function getDonatePageData(): Promise<import('../types/donate').DonatePageData | null> {
+  try {
+    const query = `*[_type == "donatePage"][0] {
+      _id,
+      _type,
+      title,
+      headerHeadline,
+      headerSubheadline,
+      body,
+      paymentMode,
+      donateUrl,
+      buttonLabel,
+      stripePublishableKey,
+      stripeBuyButtonId,
+      securePaymentNote,
+      seo {
+        title,
+        description,
+        keywords,
+        ogImage {
+          asset-> {
+            url
+          }
+        }
+      }
+    }`;
+
+    const data = await client.fetch(query, {}, {
+      next: { revalidate: 0 },
+    });
+    return data;
+  } catch (error) {
+    console.error('Error fetching donate page data:', error);
+    return null;
+  }
+}
