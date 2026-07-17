@@ -61,7 +61,7 @@ export async function getHomepageData(): Promise<HomepageData | null> {
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'homepage'] }
     });
     return data;
   } catch (error) {
@@ -171,7 +171,7 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'aboutPage'] }
     });
     return data;
   } catch (error) {
@@ -269,7 +269,7 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'thinkDifferentPage'] }
     });
     return data;
   } catch (error) {
@@ -375,7 +375,7 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'listenAppPage'] }
     });
     return data;
   } catch (error) {
@@ -429,7 +429,7 @@ export async function getPerpetratorProgrammePageData(): Promise<PerpetratorProg
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'perpetratorProgrammePage'] }
     });
     return data;
   } catch (error) {
@@ -455,7 +455,7 @@ export async function getBlogPageData(): Promise<BlogPageData | null> {
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'blogPage'] }
     });
     return data;
   } catch (error) {
@@ -485,7 +485,7 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'blogPost'] }
     });
     return data;
   } catch (error) {
@@ -550,7 +550,7 @@ export async function getBlogPostBySlug(
     }`;
 
     const data = await client.fetch(query, { slug }, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'blogPost'] }
     });
     return data;
   } catch (error) {
@@ -583,7 +583,7 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'siteSettings'] }
     });
     return data;
   } catch (error) {
@@ -628,7 +628,7 @@ export async function getCTABlockData(): Promise<CTABlockData | null> {
       }
     }`;
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 } // Disable caching
+      next: { revalidate: 3600, tags: ['sanity', 'CTABlock'] }
     });
     return data;
   } catch (error) {
@@ -662,7 +662,7 @@ export async function getContactPageData(): Promise<import('../types/contact').C
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 },
+      next: { revalidate: 3600, tags: ['sanity', 'contactPage'] },
     });
     return data;
   } catch (error) {
@@ -699,7 +699,7 @@ export async function getDonatePageData(): Promise<import('../types/donate').Don
     }`;
 
     const data = await client.fetch(query, {}, {
-      next: { revalidate: 0 },
+      next: { revalidate: 3600, tags: ['sanity', 'donatePage'] },
     });
     return data;
   } catch (error) {

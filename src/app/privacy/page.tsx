@@ -6,7 +6,6 @@ import { StructuredData } from '../components/StructuredData';
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://www.themindfulfoundation.org';
 
-export const revalidate = 0;
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();

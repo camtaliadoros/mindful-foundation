@@ -15,7 +15,6 @@ import { ThinkDifferentPageData } from '../types/thinkDifferent';
 import { CTAButton } from '../utils/cta';
 import { renderBlockContent } from '../utils/sanity';
 
-export const revalidate = 0; // Disable static caching
 
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =

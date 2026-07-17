@@ -9,7 +9,6 @@ import StripeBuyButton from '../components/StripeBuyButton';
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://www.themindfulfoundation.org';
 
-export const revalidate = 0;
 
 export async function generateMetadata(): Promise<Metadata> {
   const [donatePageData, siteSettings] = await Promise.all([

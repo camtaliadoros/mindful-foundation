@@ -1,4 +1,4 @@
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
 // Force this route to be dynamic
@@ -27,43 +27,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get the document type from the request body
+    // Document type from the Sanity webhook payload
     let documentType: string | undefined;
     try {
       const body = await request.json();
-      documentType = body._type;
-      console.log('Revalidating for document type:', documentType);
-    } catch (error) {
-      console.log('No body provided, performing full revalidation');
+      documentType = body?._type;
+    } catch {
+      // No body is fine — the global tag below still refreshes all content.
     }
 
-    // Always revalidate all pages to ensure consistency
-    const pathsToRevalidate = [
-      '/',
-      '/about',
-      '/think-different',
-      '/listen-app',
-      '/perpetrator-programme',
-      '/news',
-    ];
+    // `expire: 0` expires immediately rather than serving stale-while-revalidate,
+    // so an editor publishing in Sanity sees the change on the next request.
+    const profile = { expire: 0 };
 
-    pathsToRevalidate.forEach((path) => {
-      revalidatePath(path, 'page');
-    });
+    // Every Sanity fetch carries the 'sanity' tag, so this refreshes everything.
+    const revalidated = ['sanity'];
+    revalidateTag('sanity', profile);
 
-    // Also revalidate layout for global components
-    revalidatePath('/', 'layout');
+    // Also purge the specific document type, for targeted invalidation.
+    if (documentType) {
+      revalidateTag(documentType, profile);
+      revalidated.push(documentType);
+    }
 
-    // Revalidate dynamic routes
-    revalidatePath('/news/[slug]', 'page');
-
-    console.log('Revalidation completed successfully');
+    console.log('Revalidated tags:', revalidated.join(', '));
 
     return NextResponse.json({
       revalidated: true,
-      message: 'Revalidation successful',
+      tags: revalidated,
+      documentType: documentType || 'unknown',
       timestamp: new Date().toISOString(),
-      documentType: documentType || 'all',
     });
   } catch (error) {
     console.error('Revalidation error:', error);

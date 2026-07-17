@@ -12,7 +12,6 @@ interface NewsArticlePageProps {
   }>;
 }
 
-export const revalidate = 0; // Disable static caching
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();
