@@ -6,6 +6,7 @@ import HeaderWrapper from './components/HeaderWrapper';
 import { getSiteSettings } from './lib/sanity';
 import { generateMetadata as generateSiteMetadata } from './utils/metadata';
 import { StructuredData } from './components/StructuredData';
+import GoogleAdsPageView from './components/GoogleAdsPageView';
 
 const GTAG_ID = process.env.NEXT_PUBLIC_GTAG_ID || 'AW-18020600681';
 
@@ -50,6 +51,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
+        <GoogleAdsPageView />
         <div className='min-h-screen bg-chalk'>
           <HeaderWrapper />
           {children}
