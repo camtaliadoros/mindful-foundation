@@ -7,6 +7,7 @@ import { getSiteSettings } from './lib/sanity';
 import { generateMetadata as generateSiteMetadata } from './utils/metadata';
 import { StructuredData } from './components/StructuredData';
 import GoogleAdsPageView from './components/GoogleAdsPageView';
+import CookieConsent from './components/CookieConsent';
 
 const GTAG_ID = process.env.NEXT_PUBLIC_GTAG_ID || 'AW-18020600681';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-7Y120MYVX9';
@@ -43,6 +44,29 @@ export default async function RootLayout({
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+
+            // Consent Mode v2 — deny analytics/advertising cookies until the
+            // visitor accepts via the cookie banner.
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied',
+              wait_for_update: 500,
+            });
+
+            // Restore a returning visitor's previous acceptance.
+            try {
+              if (localStorage.getItem('cookie-consent') === 'granted') {
+                gtag('consent', 'update', {
+                  ad_storage: 'granted',
+                  ad_user_data: 'granted',
+                  ad_personalization: 'granted',
+                  analytics_storage: 'granted',
+                });
+              }
+            } catch (e) {}
+
             gtag('js', new Date());
             gtag('config', '${GTAG_ID}');
             gtag('config', '${GA_ID}');
@@ -58,6 +82,7 @@ export default async function RootLayout({
           <HeaderWrapper />
           {children}
         </div>
+        <CookieConsent />
       </body>
     </html>
   );

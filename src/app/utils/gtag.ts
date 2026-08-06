@@ -6,6 +6,44 @@ declare global {
   }
 }
 
+// localStorage key holding the visitor's cookie choice ('granted' | 'denied').
+export const CONSENT_STORAGE_KEY = 'cookie-consent';
+
+export type ConsentChoice = 'granted' | 'denied';
+
+/**
+ * Applies a consent choice to Google Consent Mode and persists it, so Google
+ * Ads and GA4 only set cookies once the visitor has accepted.
+ */
+export function setConsent(choice: ConsentChoice) {
+  if (typeof window === 'undefined') return;
+
+  try {
+    window.localStorage.setItem(CONSENT_STORAGE_KEY, choice);
+  } catch {
+    // Storage may be unavailable (private mode); consent still updates for this page.
+  }
+
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('consent', 'update', {
+    ad_storage: choice,
+    ad_user_data: choice,
+    ad_personalization: choice,
+    analytics_storage: choice,
+  });
+}
+
+/** Reads the stored consent choice, or null if the visitor hasn't chosen yet. */
+export function getStoredConsent(): ConsentChoice | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const value = window.localStorage.getItem(CONSENT_STORAGE_KEY);
+    return value === 'granted' || value === 'denied' ? value : null;
+  } catch {
+    return null;
+  }
+}
+
 // Google Ads conversion action for a successful contact/lead form submission.
 const CONTACT_CONVERSION_SEND_TO = 'AW-18020600681/T06YCJqd-tAcEOmW8pBD';
 

@@ -51,7 +51,7 @@ export default async function PrivacyPage() {
           <div className='max-w-3xl mx-auto prose-styles'>
 
             <p className='text-sm text-mf-blue/50 mb-12'>
-              Last updated: June 2026
+              Last updated: August 2026
             </p>
 
             {/* 1 */}
@@ -197,6 +197,12 @@ export default async function PrivacyPage() {
                   <strong className='text-mf-blue'>Sanity</strong> — content
                   management system (USA, standard contractual clauses)
                 </li>
+                <li>
+                  <strong className='text-mf-blue'>Google</strong> — website
+                  analytics (Google Analytics) and advertising measurement
+                  (Google Ads), used only where you have given consent (USA,
+                  EU-US Data Privacy Framework)
+                </li>
               </ul>
               <p className='text-mf-blue/80 leading-relaxed mt-4'>
                 All providers are contractually required to protect your data and
@@ -210,12 +216,25 @@ export default async function PrivacyPage() {
                 7. Cookies
               </h2>
               <p className='text-mf-blue/80 leading-relaxed mb-3'>
-                Our website uses only essential cookies necessary for the site to
-                function. We do not use advertising or tracking cookies.
+                We use{' '}
+                <strong className='text-mf-blue'>essential cookies</strong> that
+                are necessary for the site to function. These are always active
+                and do not require your consent.
+              </p>
+              <p className='text-mf-blue/80 leading-relaxed mb-3'>
+                With your consent, we also use{' '}
+                <strong className='text-mf-blue'>analytics cookies</strong>{' '}
+                (Google Analytics) to understand how visitors use our site, and{' '}
+                <strong className='text-mf-blue'>advertising cookies</strong>{' '}
+                (Google Ads) to measure the performance of our campaigns. These
+                are not set unless you accept them via our cookie banner.
               </p>
               <p className='text-mf-blue/80 leading-relaxed'>
-                You can control cookie settings through your browser at any time.
-                Disabling cookies may affect certain features of the site.
+                You can withdraw your consent at any time by clearing this
+                site&apos;s cookies and site data in your browser, which will
+                prompt the cookie banner to appear again on your next visit.
+                Declining non-essential cookies will not affect your ability to
+                use the site.
               </p>
             </div>
 
