@@ -9,6 +9,7 @@ import { StructuredData } from './components/StructuredData';
 import GoogleAdsPageView from './components/GoogleAdsPageView';
 
 const GTAG_ID = process.env.NEXT_PUBLIC_GTAG_ID || 'AW-18020600681';
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-7Y120MYVX9';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -44,6 +45,7 @@ export default async function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GTAG_ID}');
+            gtag('config', '${GA_ID}');
           `}
         </Script>
       </head>
