@@ -155,6 +155,7 @@ export default async function Home() {
                   title={thinkDifferent.title}
                   description={thinkDifferent.description}
                   icon='think-different'
+                  href='/think-different'
                 />
               )}
 
@@ -164,6 +165,7 @@ export default async function Home() {
                   title={listenApp.title}
                   description={listenApp.description}
                   icon='listen-app'
+                  href='/listen-app'
                 />
               )}
 
@@ -173,6 +175,7 @@ export default async function Home() {
                   title={perpetratorProgramme.title}
                   description={perpetratorProgramme.description}
                   icon='perpetrator-programme'
+                  href='/perpetrator-programme'
                 />
               )}
             </div>
