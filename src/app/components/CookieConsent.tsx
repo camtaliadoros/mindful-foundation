@@ -29,7 +29,7 @@ export default function CookieConsent() {
       role='dialog'
       aria-live='polite'
       aria-label='Cookie consent'
-      className='fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6'
+      className='fixed inset-x-0 bottom-0 z-50 px-4 sm:px-6 pt-4 sm:pt-6 pb-24'
     >
       <div className='max-w-4xl mx-auto bg-white border border-mf-blue/15 rounded-2xl shadow-lg p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4'>
         <p className='text-sm text-mf-blue/80 leading-relaxed flex-1'>

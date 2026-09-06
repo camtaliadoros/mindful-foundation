@@ -3,8 +3,8 @@
 /**
  * Quick-exit ("safety exit") button. Immediately sends the visitor away from
  * the site to Google. Uses location.replace so the current page is not left in
- * the browser's back history. Rendered in the sticky header so it is reachable
- * from every page without scrolling.
+ * the browser's back history. Fixed to the bottom-right so it is reachable from
+ * every page at any scroll position.
  */
 export default function QuickExit() {
   const handleExit = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -18,11 +18,11 @@ export default function QuickExit() {
       href='https://www.google.com'
       onClick={handleExit}
       aria-label='Quick exit — leave this site now'
-      className='flex items-center gap-1.5 px-3 py-2 rounded-full bg-mf-coral text-white text-sm font-grotesk-medium whitespace-nowrap hover:brightness-110 transition-all focus:outline-none focus:ring-2 focus:ring-white/70'
+      className='fixed bottom-4 right-4 z-[60] flex items-center gap-2 px-5 py-3 rounded-full bg-mf-coral text-white text-sm md:text-base font-grotesk-medium whitespace-nowrap shadow-lg hover:brightness-110 transition-all focus:outline-none focus:ring-2 focus:ring-white/80'
     >
       <svg
-        width='16'
-        height='16'
+        width='18'
+        height='18'
         viewBox='0 0 24 24'
         fill='none'
         stroke='currentColor'

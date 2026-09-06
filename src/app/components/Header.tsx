@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import HeaderLink from './HeaderLink';
-import QuickExit from './QuickExit';
 import { DonateButton } from '../types/siteSettings';
 
 interface HeaderProps {
@@ -31,37 +30,32 @@ export default function Header({ donateButton }: HeaderProps) {
           />
         </Link>
 
-        {/* Right-side controls */}
-        <div className='flex items-center gap-4'>
-          {/* Quick exit — always visible for visitor safety */}
-          <QuickExit />
+        {/* Desktop Navigation */}
+        <nav className='hidden md:flex items-center space-x-8'>
+          <HeaderLink href='/about'>About</HeaderLink>
+          <HeaderLink href='/think-different'>Think Different</HeaderLink>
+          <HeaderLink href='/listen-app'>ListenApp</HeaderLink>
+          <HeaderLink href='/perpetrator-programme'>
+            Perpetrator Programme
+          </HeaderLink>
+          <HeaderLink href='/news'>News</HeaderLink>
+          <HeaderLink href='/contact'>Contact</HeaderLink>
+          {donateButton?.href && (
+            <Link
+              href='/donate'
+              className='px-8 py-3 rounded-full transition-all font-grotesk-medium border-2 border-mf-green text-ash bg-mf-green hover:bg-transparent hover:text-mf-green text-lg'
+            >
+              {donateButton.label || 'Donate'}
+            </Link>
+          )}
+        </nav>
 
-          {/* Desktop Navigation */}
-          <nav className='hidden md:flex items-center space-x-8'>
-            <HeaderLink href='/about'>About</HeaderLink>
-            <HeaderLink href='/think-different'>Think Different</HeaderLink>
-            <HeaderLink href='/listen-app'>ListenApp</HeaderLink>
-            <HeaderLink href='/perpetrator-programme'>
-              Perpetrator Programme
-            </HeaderLink>
-            <HeaderLink href='/news'>News</HeaderLink>
-            <HeaderLink href='/contact'>Contact</HeaderLink>
-            {donateButton?.href && (
-              <Link
-                href='/donate'
-                className='px-8 py-3 rounded-full transition-all font-grotesk-medium border-2 border-mf-green text-ash bg-mf-green hover:bg-transparent hover:text-mf-green text-lg'
-              >
-                {donateButton.label || 'Donate'}
-              </Link>
-            )}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMobileMenu}
-            className='md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1'
-            aria-label='Toggle mobile menu'
-          >
+        {/* Mobile Menu Button */}
+        <button
+          onClick={toggleMobileMenu}
+          className='md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1'
+          aria-label='Toggle mobile menu'
+        >
           <span
             className={`block w-6 h-0.5 bg-chalk transition-all duration-300 ${
               isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
@@ -77,8 +71,7 @@ export default function Header({ donateButton }: HeaderProps) {
               isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
             }`}
           />
-          </button>
-        </div>
+        </button>
       </div>
 
       {/* Mobile Navigation Menu */}
