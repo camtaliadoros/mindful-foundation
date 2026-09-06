@@ -246,6 +246,10 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
         _key,
         label,
         actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
         href,
         email,
         pdf {
@@ -342,6 +346,10 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
         _key,
         label,
         actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
         href,
         email,
         pdf {
@@ -356,6 +364,10 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
         _key,
         label,
         actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
         href,
         email,
         pdf {
@@ -410,6 +422,10 @@ export async function getPerpetratorProgrammePageData(): Promise<PerpetratorProg
         _key,
         label,
         actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
         href,
         email,
         pdf {
@@ -602,6 +618,10 @@ export async function getCTABlockData(): Promise<CTABlockData | null> {
         _key,
         label,
         actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
         href,
         email,
         pdf {
@@ -616,6 +636,10 @@ export async function getCTABlockData(): Promise<CTABlockData | null> {
         _key,
         label,
         actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
         href,
         email,
         pdf {

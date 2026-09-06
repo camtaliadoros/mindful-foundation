@@ -8,7 +8,11 @@ type FlexibleCTA = CTA | {
   _key?: string;
   _type?: string;
   label?: string;
-  actionType?: 'url' | 'email' | 'pdf';
+  actionType?: 'internal' | 'url' | 'email' | 'pdf';
+  internalLink?: {
+    _type: string;
+    slug?: string;
+  };
   href?: string;
   email?: string;
   pdf?: {
@@ -19,6 +23,36 @@ type FlexibleCTA = CTA | {
   };
   style?: 'primary' | 'secondary' | 'link';
 };
+
+// Maps a referenced page document to its route on the site.
+function resolveInternalHref(link?: {
+  _type: string;
+  slug?: string;
+}): string | undefined {
+  if (!link) return undefined;
+  switch (link._type) {
+    case 'homepage':
+      return '/';
+    case 'aboutPage':
+      return '/about';
+    case 'thinkDifferentPage':
+      return '/think-different';
+    case 'listenAppPage':
+      return '/listen-app';
+    case 'perpetratorProgrammePage':
+      return '/perpetrator-programme';
+    case 'blogPage':
+      return '/news';
+    case 'contactPage':
+      return '/contact';
+    case 'donatePage':
+      return '/donate';
+    case 'blogPost':
+      return link.slug ? `/news/${link.slug}` : undefined;
+    default:
+      return undefined;
+  }
+}
 
 interface CTAButtonProps {
   cta: FlexibleCTA;
@@ -31,11 +65,16 @@ export function CTAButton({
   className = '',
   darkBackground = false,
 }: CTAButtonProps) {
-  const { label, actionType, href, email, pdf, style } = cta;
+  const { label, actionType, internalLink, href, email, pdf, style } = cta;
+
+  const internalHref =
+    actionType === 'internal' ? resolveInternalHref(internalLink) : undefined;
 
   // Check if button has valid link/file - hide if not
   const hasValidLink = () => {
     switch (actionType) {
+      case 'internal':
+        return !!internalHref;
       case 'email':
         return !!email;
       case 'pdf':
@@ -79,10 +118,10 @@ export function CTAButton({
 
   const linkProps = getLinkProps();
 
-  // Internal links (e.g. "/contact") should navigate in the same tab via the
-  // Next.js router, not open a new tab like an external URL.
-  const isInternalLink =
-    actionType === 'url' && !!href && href.startsWith('/');
+  // Internal links (a referenced page, or a relative "/contact" URL) should
+  // navigate in the same tab via the Next.js router, not open a new tab.
+  const resolvedInternalHref =
+    internalHref || (actionType === 'url' && href?.startsWith('/') ? href : undefined);
 
   // Generate CSS classes based on style
   const getStyleClasses = () => {
@@ -116,9 +155,12 @@ export function CTAButton({
     }
   };
 
-  if (isInternalLink && href) {
+  if (resolvedInternalHref) {
     return (
-      <Link href={href} className={`${getStyleClasses()} ${className}`}>
+      <Link
+        href={resolvedInternalHref}
+        className={`${getStyleClasses()} ${className}`}
+      >
         {label}
       </Link>
     );
