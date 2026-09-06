@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { CTA } from '../types/homepage';
 
 // Extended CTA type that works for both embedded and referenced CTAs
@@ -78,6 +79,11 @@ export function CTAButton({
 
   const linkProps = getLinkProps();
 
+  // Internal links (e.g. "/contact") should navigate in the same tab via the
+  // Next.js router, not open a new tab like an external URL.
+  const isInternalLink =
+    actionType === 'url' && !!href && href.startsWith('/');
+
   // Generate CSS classes based on style
   const getStyleClasses = () => {
     const baseClasses =
@@ -109,6 +115,14 @@ export function CTAButton({
         return `${baseClasses} border-2 border-mf-green text-ash hover:bg-mf-green  `;
     }
   };
+
+  if (isInternalLink && href) {
+    return (
+      <Link href={href} className={`${getStyleClasses()} ${className}`}>
+        {label}
+      </Link>
+    );
+  }
 
   return (
     <a {...linkProps} className={`${getStyleClasses()} ${className}`}>
