@@ -21,12 +21,12 @@ export default function QuickExit() {
       className='fixed bottom-4 right-4 z-[60] inline-flex items-center gap-2 px-5 py-3 rounded-full bg-mf-coral text-white text-sm md:text-base font-grotesk-medium leading-none whitespace-nowrap shadow-lg hover:brightness-110 transition-all focus:outline-none focus:ring-2 focus:ring-white/80'
     >
       <svg
-        width='18'
-        height='18'
+        width='15'
+        height='15'
         viewBox='0 0 24 24'
         fill='none'
         stroke='currentColor'
-        strokeWidth='2.5'
+        strokeWidth='2'
         strokeLinecap='round'
         strokeLinejoin='round'
         aria-hidden='true'
