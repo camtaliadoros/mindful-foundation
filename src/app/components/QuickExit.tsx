@@ -18,7 +18,7 @@ export default function QuickExit() {
       href='https://www.google.com'
       onClick={handleExit}
       aria-label='Quick exit — leave this site now'
-      className='fixed bottom-4 right-4 z-[60] flex items-center gap-2 px-5 py-3 rounded-full bg-mf-coral text-white text-sm md:text-base font-grotesk-medium whitespace-nowrap shadow-lg hover:brightness-110 transition-all focus:outline-none focus:ring-2 focus:ring-white/80'
+      className='fixed bottom-4 right-4 z-[60] inline-flex items-center gap-2 px-5 py-3 rounded-full bg-mf-coral text-white text-sm md:text-base font-grotesk-medium leading-none whitespace-nowrap shadow-lg hover:brightness-110 transition-all focus:outline-none focus:ring-2 focus:ring-white/80'
     >
       <svg
         width='18'
@@ -30,11 +30,12 @@ export default function QuickExit() {
         strokeLinecap='round'
         strokeLinejoin='round'
         aria-hidden='true'
+        className='block shrink-0'
       >
         <line x1='18' y1='6' x2='6' y2='18' />
         <line x1='6' y1='6' x2='18' y2='18' />
       </svg>
-      Quick exit
+      <span className='leading-none'>Quick exit</span>
     </a>
   );
 }
