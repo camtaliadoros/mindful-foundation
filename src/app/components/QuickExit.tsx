@@ -30,7 +30,7 @@ export default function QuickExit() {
         strokeLinecap='round'
         strokeLinejoin='round'
         aria-hidden='true'
-        className='block shrink-0'
+        className='block shrink-0 -translate-y-[0.15em]'
       >
         <line x1='18' y1='6' x2='6' y2='18' />
         <line x1='6' y1='6' x2='18' y2='18' />
