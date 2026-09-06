@@ -26,7 +26,11 @@ export interface Testimonial {
 export interface CTA {
   _key: string;
   label: string;
-  actionType: 'url' | 'email' | 'pdf';
+  actionType: 'internal' | 'url' | 'email' | 'pdf';
+  internalLink?: {
+    _type: string;
+    slug?: string;
+  };
   href?: string;
   email?: string;
   pdf?: {
