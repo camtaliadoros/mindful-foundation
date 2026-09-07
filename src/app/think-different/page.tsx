@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { AnimatedApproachItem } from '../components/AnimatedApproachItem';
 import { AnimatedModuleItem } from '../components/AnimatedModuleItem';
 import { BulletItemCard } from '../components/BulletItemCard';
@@ -88,6 +89,50 @@ export default async function ThinkDifferentPage() {
       </section>
 
       <main>
+        {/* Key facts + enquiry (directly below hero) */}
+        <section className='bg-chalk py-12 px-6 border-b border-mf-blue/10'>
+          <div className='max-w-4xl mx-auto flex flex-col items-center text-center gap-8'>
+            {/* Key stats */}
+            <div className='flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-mf-blue'>
+              <span className='text-lg'>
+                <strong className='font-bold'>1,600+</strong> children and young
+                people supported
+              </span>
+              <span className='hidden sm:inline text-mf-blue/30' aria-hidden='true'>
+                |
+              </span>
+              <span className='text-lg'>
+                <strong className='font-bold'>100+</strong> educators trained
+              </span>
+              <span className='hidden sm:inline text-mf-blue/30' aria-hidden='true'>
+                |
+              </span>
+              <span className='text-lg'>
+                <strong className='font-bold'>24</strong> lessons across 8 modules
+              </span>
+            </div>
+
+            {/* Enquiry CTA */}
+            <Link
+              href='/contact'
+              className='inline-block bg-mf-green text-ash font-grotesk-medium text-lg rounded-full px-8 py-3 border-2 border-mf-green hover:bg-transparent hover:text-mf-green transition-all'
+            >
+              Enquire about Think Different for your school &rarr;
+            </Link>
+
+            {/* ListenApp signpost */}
+            <p className='text-mf-blue/80'>
+              Worried about someone in an abusive relationship?{' '}
+              <Link
+                href='/listen-app'
+                className='text-mf-blue font-semibold underline underline-offset-2 hover:text-mf-green transition-colors'
+              >
+                ListenApp offers discreet, immediate support &rarr;
+              </Link>
+            </p>
+          </div>
+        </section>
+
         {/* Overview Section */}
         <section className='bg-chalk py-16 px-12'>
           {overviewImage ? (
