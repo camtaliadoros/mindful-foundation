@@ -17,11 +17,19 @@ export interface Approach {
   };
 }
 
+export interface ThinkDifferentHeroBanner {
+  stats?: string[];
+  enquiryCta?: CTA;
+  signpostText?: string;
+  signpostLink?: CTA;
+}
+
 export interface ThinkDifferentPageData {
   _id: string;
   _type: 'thinkDifferentPage';
   title: string;
   missionStatement: string;
+  heroBanner?: ThinkDifferentHeroBanner;
   overviewHeadline: string;
   overview: BlockContent[];
   overviewImage: {

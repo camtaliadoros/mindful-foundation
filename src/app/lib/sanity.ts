@@ -187,6 +187,44 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       _type,
       title,
       missionStatement,
+      heroBanner {
+        stats,
+        enquiryCta {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        },
+        signpostText,
+        signpostLink {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        }
+      },
       overviewHeadline,
       overview,
       overviewImage {

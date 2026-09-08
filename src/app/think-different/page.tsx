@@ -13,7 +13,7 @@ import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import TwoColumnSection from '../components/TwoColumnSection';
 import { getThinkDifferentPageData } from '../lib/sanity';
 import { ThinkDifferentPageData } from '../types/thinkDifferent';
-import { CTAButton } from '../utils/cta';
+import { CTAButton, resolveCtaHref, isInternalHref } from '../utils/cta';
 import { renderBlockContent } from '../utils/sanity';
 
 
@@ -42,6 +42,7 @@ export default async function ThinkDifferentPage() {
   const {
     title,
     missionStatement,
+    heroBanner,
     overviewHeadline,
     overview,
     overviewImage,
@@ -72,7 +73,7 @@ export default async function ThinkDifferentPage() {
     ctaButtons,
   } = pageData;
 
-  console.log(overviewImage);
+  const signpostHref = resolveCtaHref(heroBanner?.signpostLink);
 
   return (
     <>
@@ -90,48 +91,64 @@ export default async function ThinkDifferentPage() {
 
       <main>
         {/* Key facts + enquiry (directly below hero) */}
-        <section className='bg-chalk py-12 px-6 border-b border-mf-blue/10'>
-          <div className='max-w-4xl mx-auto flex flex-col items-center text-center gap-8'>
-            {/* Key stats */}
-            <div className='flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-mf-blue'>
-              <span className='text-lg'>
-                <strong className='font-bold'>1,600+</strong> children and young
-                people supported
-              </span>
-              <span className='hidden sm:inline text-mf-blue/30' aria-hidden='true'>
-                |
-              </span>
-              <span className='text-lg'>
-                <strong className='font-bold'>100+</strong> educators trained
-              </span>
-              <span className='hidden sm:inline text-mf-blue/30' aria-hidden='true'>
-                |
-              </span>
-              <span className='text-lg'>
-                <strong className='font-bold'>24</strong> lessons across 8 modules
-              </span>
-            </div>
+        {heroBanner &&
+          (heroBanner.stats?.length ||
+            heroBanner.enquiryCta?.label ||
+            heroBanner.signpostText ||
+            heroBanner.signpostLink?.label) && (
+            <section className='bg-chalk py-12 px-6 border-b border-mf-blue/10'>
+              <div className='max-w-4xl mx-auto flex flex-col items-center text-center gap-8'>
+                {/* Key stats */}
+                {heroBanner.stats && heroBanner.stats.length > 0 && (
+                  <div className='flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-mf-blue'>
+                    {heroBanner.stats.map((stat, index) => (
+                      <span key={index} className='flex items-center gap-3 sm:gap-6'>
+                        {index > 0 && (
+                          <span
+                            className='hidden sm:inline text-mf-blue/30'
+                            aria-hidden='true'
+                          >
+                            |
+                          </span>
+                        )}
+                        <span className='text-lg'>{stat}</span>
+                      </span>
+                    ))}
+                  </div>
+                )}
 
-            {/* Enquiry CTA */}
-            <Link
-              href='/contact'
-              className='inline-block bg-mf-green text-ash font-grotesk-medium text-lg rounded-full px-8 py-3 border-2 border-mf-green hover:bg-transparent hover:text-mf-green transition-all'
-            >
-              Enquire about Think Different for your school &rarr;
-            </Link>
+                {/* Enquiry CTA */}
+                {heroBanner.enquiryCta?.label && (
+                  <CTAButton cta={heroBanner.enquiryCta} />
+                )}
 
-            {/* ListenApp signpost */}
-            <p className='text-mf-blue/80'>
-              Worried about someone in an abusive relationship?{' '}
-              <Link
-                href='/listen-app'
-                className='text-mf-blue font-semibold underline underline-offset-2 hover:text-mf-green transition-colors'
-              >
-                ListenApp offers discreet, immediate support &rarr;
-              </Link>
-            </p>
-          </div>
-        </section>
+                {/* Signpost */}
+                {(heroBanner.signpostText || signpostHref) && (
+                  <p className='text-mf-blue/80'>
+                    {heroBanner.signpostText}
+                    {heroBanner.signpostText && signpostHref ? ' ' : ''}
+                    {signpostHref &&
+                      heroBanner.signpostLink?.label &&
+                      (isInternalHref(signpostHref) ? (
+                        <Link
+                          href={signpostHref}
+                          className='text-mf-blue font-semibold underline underline-offset-2 hover:text-mf-green transition-colors'
+                        >
+                          {heroBanner.signpostLink.label} &rarr;
+                        </Link>
+                      ) : (
+                        <a
+                          href={signpostHref}
+                          className='text-mf-blue font-semibold underline underline-offset-2 hover:text-mf-green transition-colors'
+                        >
+                          {heroBanner.signpostLink.label} &rarr;
+                        </a>
+                      ))}
+                  </p>
+                )}
+              </div>
+            </section>
+          )}
 
         {/* Overview Section */}
         <section className='bg-chalk py-16 px-12'>

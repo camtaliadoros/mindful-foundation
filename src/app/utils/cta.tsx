@@ -54,6 +54,27 @@ function resolveInternalHref(link?: {
   }
 }
 
+// Resolves any CTA to a final href string (internal page, URL, email or PDF).
+export function resolveCtaHref(cta?: FlexibleCTA): string | undefined {
+  if (!cta) return undefined;
+  switch (cta.actionType) {
+    case 'internal':
+      return resolveInternalHref(cta.internalLink);
+    case 'email':
+      return cta.email ? `mailto:${cta.email}` : undefined;
+    case 'pdf':
+      return cta.pdf?.asset?.url;
+    case 'url':
+    default:
+      return cta.href;
+  }
+}
+
+// True for same-site paths that should use client-side navigation.
+export function isInternalHref(href?: string): boolean {
+  return !!href && href.startsWith('/');
+}
+
 interface CTAButtonProps {
   cta: FlexibleCTA;
   className?: string;
