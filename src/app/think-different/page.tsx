@@ -17,6 +17,46 @@ import { CTAButton, resolveCtaHref, isInternalHref } from '../utils/cta';
 import { renderBlockContent } from '../utils/sanity';
 
 
+function ArrowRightIcon() {
+  return (
+    <svg
+      width='18'
+      height='18'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden='true'
+      className='shrink-0'
+    >
+      <line x1='5' y1='12' x2='19' y2='12' />
+      <polyline points='12 5 19 12 12 19' />
+    </svg>
+  );
+}
+
+function ChatHeartIcon() {
+  return (
+    <svg
+      width='26'
+      height='26'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden='true'
+      className='text-mf-green'
+    >
+      <path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z' />
+      <path d='M12 13.5c-1.2-1.1-2.5-1.7-2.5-3a1.5 1.5 0 0 1 2.5-1 1.5 1.5 0 0 1 2.5 1c0 1.3-1.3 1.9-2.5 3z' />
+    </svg>
+  );
+}
+
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =
     await getThinkDifferentPageData();
@@ -73,7 +113,15 @@ export default async function ThinkDifferentPage() {
     ctaButtons,
   } = pageData;
 
+  const enquiryHref = resolveCtaHref(heroBanner?.enquiryCta);
   const signpostHref = resolveCtaHref(heroBanner?.signpostLink);
+  // Guard against legacy/partial data (e.g. stats stored without a value).
+  const bannerStats = (heroBanner?.stats ?? []).filter((s) => s?.value);
+
+  const enquiryBtnClass =
+    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 py-4 hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
+  const signpostBtnClass =
+    'inline-flex items-center gap-2 bg-mf-blue text-white font-grotesk-medium rounded-full px-6 py-3 hover:brightness-125 transition-all focus:outline-none focus:ring-2 focus:ring-mf-blue/50';
 
   return (
     <>
@@ -90,65 +138,99 @@ export default async function ThinkDifferentPage() {
       </section>
 
       <main>
-        {/* Key facts + enquiry (directly below hero) */}
+        {/* Key stats + enquiry (directly below hero) */}
         {heroBanner &&
-          (heroBanner.stats?.length ||
-            heroBanner.enquiryCta?.label ||
-            heroBanner.signpostText ||
-            heroBanner.signpostLink?.label) && (
-            <section className='bg-chalk py-12 px-6 border-b border-mf-blue/10'>
-              <div className='max-w-4xl mx-auto flex flex-col items-center text-center gap-8'>
+          (bannerStats.length > 0 ||
+            heroBanner.enquiryCta?.label) && (
+            <section className='bg-chalk pt-14 pb-16 px-6'>
+              <div className='max-w-5xl mx-auto'>
                 {/* Key stats */}
-                {heroBanner.stats && heroBanner.stats.length > 0 && (
-                  <div className='flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-mf-blue'>
-                    {heroBanner.stats.map((stat, index) => (
-                      <span key={index} className='flex items-center gap-3 sm:gap-6'>
-                        {index > 0 && (
-                          <span
-                            className='hidden sm:inline text-mf-blue/30'
-                            aria-hidden='true'
-                          >
-                            |
-                          </span>
-                        )}
-                        <span className='text-lg'>{stat}</span>
-                      </span>
+                {bannerStats.length > 0 && (
+                  <div className='grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-mf-blue/15'>
+                    {bannerStats.map((stat, index) => (
+                      <div
+                        key={stat._key ?? index}
+                        className='flex flex-col items-center text-center px-6 py-6'
+                      >
+                        <span className='text-5xl md:text-6xl font-bold text-mf-blue leading-none'>
+                          {stat.value.split('+').map((part, i, arr) => (
+                            <span key={i}>
+                              {part}
+                              {i < arr.length - 1 && (
+                                <span className='text-mf-green'>+</span>
+                              )}
+                            </span>
+                          ))}
+                        </span>
+                        <span className='mt-3 text-mf-blue text-lg'>
+                          {stat.description}
+                        </span>
+                      </div>
                     ))}
                   </div>
                 )}
 
                 {/* Enquiry CTA */}
-                {heroBanner.enquiryCta?.label && (
-                  <CTAButton cta={heroBanner.enquiryCta} />
-                )}
-
-                {/* Signpost */}
-                {(heroBanner.signpostText || signpostHref) && (
-                  <p className='text-mf-blue/80'>
-                    {heroBanner.signpostText}
-                    {heroBanner.signpostText && signpostHref ? ' ' : ''}
-                    {signpostHref &&
-                      heroBanner.signpostLink?.label &&
-                      (isInternalHref(signpostHref) ? (
-                        <Link
-                          href={signpostHref}
-                          className='text-mf-blue font-semibold underline underline-offset-2 hover:text-mf-green transition-colors'
-                        >
-                          {heroBanner.signpostLink.label} &rarr;
-                        </Link>
-                      ) : (
-                        <a
-                          href={signpostHref}
-                          className='text-mf-blue font-semibold underline underline-offset-2 hover:text-mf-green transition-colors'
-                        >
-                          {heroBanner.signpostLink.label} &rarr;
-                        </a>
-                      ))}
-                  </p>
+                {heroBanner.enquiryCta?.label && enquiryHref && (
+                  <div className='flex justify-center mt-12'>
+                    {isInternalHref(enquiryHref) ? (
+                      <Link href={enquiryHref} className={enquiryBtnClass}>
+                        {heroBanner.enquiryCta.label}
+                        <ArrowRightIcon />
+                      </Link>
+                    ) : (
+                      <a href={enquiryHref} className={enquiryBtnClass}>
+                        {heroBanner.enquiryCta.label}
+                        <ArrowRightIcon />
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </section>
           )}
+
+        {/* ListenApp signpost band */}
+        {(heroBanner?.signpostText ||
+          heroBanner?.signpostSubtext ||
+          (heroBanner?.signpostLink?.label && signpostHref)) && (
+          <section className='bg-mf-green/15 py-8 px-6'>
+            <div className='max-w-5xl mx-auto flex flex-col md:flex-row md:items-center gap-6'>
+              <div className='flex items-center gap-5 flex-1'>
+                <div className='flex-shrink-0 w-14 h-14 rounded-2xl bg-mf-blue flex items-center justify-center'>
+                  <ChatHeartIcon />
+                </div>
+                <div>
+                  {heroBanner?.signpostText && (
+                    <h2 className='text-xl md:text-2xl font-bold text-mf-blue'>
+                      {heroBanner.signpostText}
+                    </h2>
+                  )}
+                  {heroBanner?.signpostSubtext && (
+                    <p className='text-mf-blue/70 mt-1'>
+                      {heroBanner.signpostSubtext}
+                    </p>
+                  )}
+                </div>
+              </div>
+              {heroBanner?.signpostLink?.label && signpostHref && (
+                <div className='flex-shrink-0'>
+                  {isInternalHref(signpostHref) ? (
+                    <Link href={signpostHref} className={signpostBtnClass}>
+                      {heroBanner.signpostLink.label}
+                      <ArrowRightIcon />
+                    </Link>
+                  ) : (
+                    <a href={signpostHref} className={signpostBtnClass}>
+                      {heroBanner.signpostLink.label}
+                      <ArrowRightIcon />
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* Overview Section */}
         <section className='bg-chalk py-16 px-12'>

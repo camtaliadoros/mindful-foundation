@@ -188,7 +188,11 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       title,
       missionStatement,
       heroBanner {
-        stats,
+        stats[] {
+          _key,
+          value,
+          description
+        },
         enquiryCta {
           label,
           actionType,
@@ -207,6 +211,7 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
           style
         },
         signpostText,
+        signpostSubtext,
         signpostLink {
           label,
           actionType,

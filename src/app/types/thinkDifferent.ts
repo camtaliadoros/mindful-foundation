@@ -17,10 +17,17 @@ export interface Approach {
   };
 }
 
+export interface HeroBannerStat {
+  _key?: string;
+  value: string;
+  description: string;
+}
+
 export interface ThinkDifferentHeroBanner {
-  stats?: string[];
+  stats?: HeroBannerStat[];
   enquiryCta?: CTA;
   signpostText?: string;
+  signpostSubtext?: string;
   signpostLink?: CTA;
 }
 
