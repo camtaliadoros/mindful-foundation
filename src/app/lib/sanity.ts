@@ -373,6 +373,43 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
       headerSubheadline,
       whatItIsTitle,
       whatItIs,
+      whatItIsCta {
+        label,
+        actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      whatItIsSignpost {
+        text,
+        cta {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        }
+      },
       whyItMattersTitle,
       whyItMatters,
       featuresTitle,

@@ -1,4 +1,4 @@
-import { BlockContent } from './homepage';
+import { BlockContent, CTA } from './homepage';
 import { LogoSection } from './about';
 
 export interface Feature {
@@ -15,6 +15,11 @@ export interface ListenAppPageData {
   headerSubheadline: string;
   whatItIsTitle: string;
   whatItIs: BlockContent[];
+  whatItIsCta?: CTA;
+  whatItIsSignpost?: {
+    text?: string;
+    cta?: CTA;
+  };
   whyItMattersTitle: string;
   whyItMatters: BlockContent[];
   featuresTitle: string;
