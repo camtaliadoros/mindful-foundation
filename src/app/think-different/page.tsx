@@ -486,7 +486,7 @@ export default async function ThinkDifferentPage() {
         </section>
 
         {/* Training Section */}
-        <section className='bg-chalk py-16 px-6'>
+        <section className='bg-white py-16 px-6'>
           <div className='max-w-2xl mx-auto'>
             <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
               {trainingTitle || 'Training for Educators & Staff'}
@@ -504,7 +504,7 @@ export default async function ThinkDifferentPage() {
                   {trainingCovers.map((cover, index) => (
                     <BulletItemCard
                       key={index}
-                      backgroundColour='bg-white'
+                      backgroundColour='bg-chalk'
                       discColour='bg-mf-blue'
                       content={cover}
                       index={index}
@@ -525,7 +525,7 @@ export default async function ThinkDifferentPage() {
                     {trainingParticipantsReceive.map((item, index) => (
                       <BulletItemCard
                         key={index}
-                        backgroundColour='bg-white'
+                        backgroundColour='bg-chalk'
                         discColour='bg-mf-blue'
                         content={item}
                         index={index}
