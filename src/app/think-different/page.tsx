@@ -119,11 +119,13 @@ export default async function ThinkDifferentPage() {
   const bannerStats = (heroBanner?.stats ?? []).filter((s) => s?.value);
 
   // pb-*! / mb-0! override a global rule (a[class*='rounded-full']) that forces
-  // padding-bottom:6px + margin-bottom:4px, which would offset the pill content.
+  // padding-bottom:6px + margin-bottom:4px. Bottom padding is kept a touch less
+  // than the top so the text (which rides slightly high in its line-box) reads
+  // optically centred in the pill.
   const enquiryBtnClass =
-    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 py-4 pb-4! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
+    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
   const signpostBtnClass =
-    'inline-flex items-center gap-2 bg-mf-blue text-white font-grotesk-medium rounded-full px-6 py-3 pb-3! mb-0! hover:brightness-125 transition-all focus:outline-none focus:ring-2 focus:ring-mf-blue/50';
+    'inline-flex items-center gap-2 bg-mf-blue text-white font-grotesk-medium rounded-full px-6 pt-3 pb-2! mb-0! hover:brightness-125 transition-all focus:outline-none focus:ring-2 focus:ring-mf-blue/50';
 
   return (
     <>
