@@ -270,8 +270,34 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       },
       impactTitle,
       impactDescription,
+      impactOutcomesLabel,
       impactOutcomes,
+      impactRipple {
+        before,
+        after,
+        caption
+      },
       impactStories,
+      impactSupport {
+        heading,
+        cta {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        }
+      },
       trainingTitle,
       trainingDescription,
       trainingCoversTitle,

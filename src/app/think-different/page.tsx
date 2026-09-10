@@ -3,12 +3,7 @@ import { AnimatedApproachItem } from '../components/AnimatedApproachItem';
 import { AnimatedModuleItem } from '../components/AnimatedModuleItem';
 import { BulletItemCard } from '../components/BulletItemCard';
 import Header from '../components/Header';
-import {
-  ArrowDownIcon,
-  ArrowUpIcon,
-  HeartIcon,
-  StarIcon,
-} from '../components/Icons';
+import { HeartIcon } from '../components/Icons';
 import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import TwoColumnSection from '../components/TwoColumnSection';
 import { getThinkDifferentPageData } from '../lib/sanity';
@@ -34,6 +29,25 @@ function ArrowRightIcon() {
       <line x1='5' y1='12' x2='19' y2='12' />
       <polyline points='12 5 19 12 12 19' />
     </svg>
+  );
+}
+
+function CheckTickIcon() {
+  return (
+    <span
+      aria-hidden='true'
+      className='flex-shrink-0 w-6 h-6 rounded-full bg-mf-green grid place-items-center mt-0.5'
+    >
+      <svg width='13' height='13' viewBox='0 0 14 14' fill='none'>
+        <path
+          d='M2.5 7.5 5.5 10.5 11.5 3.5'
+          stroke='#181634'
+          strokeWidth='2.2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </svg>
+    </span>
   );
 }
 
@@ -99,8 +113,11 @@ export default async function ThinkDifferentPage() {
     courseAimsImage,
     impactTitle,
     impactDescription,
+    impactOutcomesLabel,
     impactOutcomes,
+    impactRipple,
     impactStories,
+    impactSupport,
     trainingTitle,
     trainingDescription,
     trainingCoversTitle,
@@ -115,6 +132,7 @@ export default async function ThinkDifferentPage() {
 
   const enquiryHref = resolveCtaHref(heroBanner?.enquiryCta);
   const signpostHref = resolveCtaHref(heroBanner?.signpostLink);
+  const supportHref = resolveCtaHref(impactSupport?.cta);
   // Guard against legacy/partial data (e.g. stats stored without a value).
   const bannerStats = (heroBanner?.stats ?? []).filter((s) => s?.value);
 
@@ -126,6 +144,8 @@ export default async function ThinkDifferentPage() {
     'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
   const signpostBtnClass =
     'inline-flex items-center gap-2 bg-mf-blue text-white font-grotesk-medium rounded-full px-6 pt-3 pb-2! mb-0! hover:brightness-125 transition-all focus:outline-none focus:ring-2 focus:ring-mf-blue/50';
+  const supportBtnClass =
+    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
 
   return (
     <>
@@ -364,41 +384,104 @@ export default async function ThinkDifferentPage() {
         </section>
 
         {/* Impact Section */}
-        <section className='bg-mf-blue py-16 px-6'>
-          <div className='max-w-2xl mx-auto'>
-            <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
+        <section className='bg-chalk py-16 md:py-24 px-6'>
+          <div className='max-w-5xl mx-auto'>
+            <h2 className='text-3xl md:text-5xl font-bold text-mf-blue tracking-tight leading-tight'>
               {impactTitle || 'Impact So Far'}
             </h2>
-            <div className='space-y-3 max-w-none mb-12 text-chalk [&>*]:text-lg'>
+
+            {/* Lead */}
+            <div className='mt-8 max-w-3xl space-y-4 [&_p]:text-mf-blue/90 [&_p]:text-lg [&_strong]:text-mf-blue [&_strong]:font-bold'>
               {impactDescription && renderBlockContent(impactDescription)}
             </div>
 
+            {/* Measured outcomes */}
             {impactOutcomes && impactOutcomes.length > 0 && (
-              <div className='flex flex-col gap-6 mb-12 space-y-2'>
-                {impactOutcomes.map((outcome, index) => {
-                  const IconComponent =
-                    index === 0
-                      ? ArrowDownIcon
-                      : index === 1
-                        ? StarIcon
-                        : index === 2
-                          ? HeartIcon
-                          : ArrowUpIcon;
-                  return (
-                    <div key={index} className='flex gap-3 items-center'>
-                      <IconComponent />
-                      <p className='text-chalk font-bold mt-1 md:text-xl'>
+              <div className='mt-12'>
+                {impactOutcomesLabel && (
+                  <p className='font-bold text-mf-blue'>{impactOutcomesLabel}</p>
+                )}
+                <div className='mt-5 grid grid-cols-1 md:grid-cols-2 gap-3.5 md:gap-x-10 max-w-4xl'>
+                  {impactOutcomes.map((outcome, index) => (
+                    <div
+                      key={index}
+                      className='flex items-start gap-3.5 bg-white border border-mf-blue/10 rounded-2xl px-5 py-4'
+                    >
+                      <CheckTickIcon />
+                      <span className='text-mf-blue font-medium leading-snug'>
                         {outcome}
-                      </p>
+                      </span>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
             )}
 
-            <div className='space-y-3 max-w-none text-chalk [&>*]:text-lg'>
+            {/* Ripple pull-quote */}
+            {impactRipple &&
+              (impactRipple.before ||
+                impactRipple.after ||
+                impactRipple.caption) && (
+                <figure className='mt-14 border-l-4 border-mf-green pl-6 md:pl-10 max-w-3xl'>
+                  {(impactRipple.before || impactRipple.after) && (
+                    <div className='flex flex-wrap items-center gap-x-5 gap-y-2 text-2xl md:text-4xl font-bold text-mf-blue tracking-tight'>
+                      {impactRipple.before && <span>{impactRipple.before}</span>}
+                      {impactRipple.before && impactRipple.after && (
+                        <span className='text-mf-green' aria-hidden='true'>
+                          &rarr;
+                        </span>
+                      )}
+                      {impactRipple.after && <span>{impactRipple.after}</span>}
+                    </div>
+                  )}
+                  {impactRipple.caption && (
+                    <figcaption className='mt-4 text-mf-blue/70 max-w-2xl'>
+                      {impactRipple.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+
+            {/* Discussion */}
+            <div className='mt-12 max-w-3xl space-y-4 [&_p]:text-mf-blue/90 [&_p]:text-lg'>
               {impactStories && renderBlockContent(impactStories)}
             </div>
+
+            {/* Supporter / donate panel */}
+            {impactSupport &&
+              (impactSupport.heading ||
+                (impactSupport.cta?.label && supportHref)) && (
+                <div className='mt-16 relative overflow-hidden bg-mf-blue text-white rounded-[28px] px-7 md:px-16 py-12 md:py-16 text-center'>
+                  <div className='mx-auto mb-6 w-[52px] h-[52px] rounded-2xl bg-mf-green/15 grid place-items-center'>
+                    <svg width='26' height='26' viewBox='0 0 26 26' fill='none' aria-hidden='true'>
+                      <path
+                        d='M13 22C6 17.5 2.5 14 2.5 9.6 2.5 6.4 5 4 8 4c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3 0 5.5 2.4 5.5 5.6C23.5 14 20 17.5 13 22Z'
+                        fill='#30F6BA'
+                      />
+                    </svg>
+                  </div>
+                  {impactSupport.heading && (
+                    <h3 className='text-2xl md:text-4xl font-bold leading-tight tracking-tight max-w-2xl mx-auto'>
+                      {impactSupport.heading}
+                    </h3>
+                  )}
+                  {impactSupport.cta?.label && supportHref && (
+                    <div className='mt-8 flex justify-center'>
+                      {isInternalHref(supportHref) ? (
+                        <Link href={supportHref} className={supportBtnClass}>
+                          {impactSupport.cta.label}
+                          <ArrowRightIcon />
+                        </Link>
+                      ) : (
+                        <a href={supportHref} className={supportBtnClass}>
+                          {impactSupport.cta.label}
+                          <ArrowRightIcon />
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
           </div>
         </section>
 
