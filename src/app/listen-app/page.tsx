@@ -132,19 +132,14 @@ export default async function ListenAppPage() {
                       />
                     </svg>
                   </span>
-                  <p className='text-mf-dark-blue font-grotesk-regular leading-relaxed'>
-                    {whatItIsSignpost.text}
-                    {whatItIsSignpost.text &&
-                    whatItIsSignpost.cta?.label &&
-                    signpostHref
-                      ? ' '
-                      : ''}
+                  <div className='text-mf-dark-blue font-grotesk-regular leading-relaxed'>
+                    {whatItIsSignpost.text && <p>{whatItIsSignpost.text}</p>}
                     {whatItIsSignpost.cta?.label &&
                       signpostHref &&
                       (isInternalHref(signpostHref) ? (
                         <Link
                           href={signpostHref}
-                          className='text-mf-blue font-semibold border-b-2 border-mf-green pb-0.5 hover:border-mf-blue transition-colors'
+                          className='inline-block mt-2 text-mf-blue font-semibold border-b-2 border-mf-green pb-0.5 hover:border-mf-blue transition-colors'
                         >
                           {whatItIsSignpost.cta.label}
                           <span
@@ -157,7 +152,7 @@ export default async function ListenAppPage() {
                       ) : (
                         <a
                           href={signpostHref}
-                          className='text-mf-blue font-semibold border-b-2 border-mf-green pb-0.5 hover:border-mf-blue transition-colors'
+                          className='inline-block mt-2 text-mf-blue font-semibold border-b-2 border-mf-green pb-0.5 hover:border-mf-blue transition-colors'
                         >
                           {whatItIsSignpost.cta.label}
                           <span
@@ -168,7 +163,7 @@ export default async function ListenAppPage() {
                           </span>
                         </a>
                       ))}
-                  </p>
+                  </div>
                 </div>
               )}
           </div>
