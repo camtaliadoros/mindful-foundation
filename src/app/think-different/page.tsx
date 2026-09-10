@@ -133,6 +133,7 @@ export default async function ThinkDifferentPage() {
   const enquiryHref = resolveCtaHref(heroBanner?.enquiryCta);
   const signpostHref = resolveCtaHref(heroBanner?.signpostLink);
   const supportHref = resolveCtaHref(impactSupport?.cta);
+  const trainingButtonHref = resolveCtaHref(trainingButton);
   // Guard against legacy/partial data (e.g. stats stored without a value).
   const bannerStats = (heroBanner?.stats ?? []).filter((s) => s?.value);
 
@@ -146,6 +147,8 @@ export default async function ThinkDifferentPage() {
     'inline-flex items-center gap-2 bg-mf-blue text-white font-grotesk-medium rounded-full px-6 pt-3 pb-2! mb-0! hover:brightness-125 transition-all focus:outline-none focus:ring-2 focus:ring-mf-blue/50';
   const supportBtnClass =
     'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
+  const trainingBtnClass =
+    'inline-block px-8 pt-3 pb-2! mb-0! rounded-full transition-all font-grotesk-medium text-xl border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-white';
 
   return (
     <>
@@ -540,14 +543,17 @@ export default async function ThinkDifferentPage() {
               <p className='text-mf-dark-blue md:text-xl'>{trainingDelivery}</p>
             </div>
 
-            {trainingButton && (
+            {trainingButton?.label && trainingButtonHref && (
               <div className='text-center'>
-                <a
-                  href={`mailto:${trainingButton.emailAddress}?subject=${encodeURIComponent(trainingButton.emailSubject)}`}
-                  className='inline-block px-8 py-3 rounded-full transition-all font-grotesk-medium text-xl border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-white'
-                >
-                  {trainingButton.label}
-                </a>
+                {isInternalHref(trainingButtonHref) ? (
+                  <Link href={trainingButtonHref} className={trainingBtnClass}>
+                    {trainingButton.label}
+                  </Link>
+                ) : (
+                  <a href={trainingButtonHref} className={trainingBtnClass}>
+                    {trainingButton.label}
+                  </a>
+                )}
               </div>
             )}
           </div>

@@ -307,8 +307,20 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       trainingDelivery,
       trainingButton {
         label,
-        emailSubject,
-        emailAddress
+        actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
       },
       ctaTitle,
       ctaButtons[] {
