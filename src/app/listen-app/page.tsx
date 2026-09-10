@@ -146,9 +146,12 @@ export default async function ListenAppPage() {
                           href={signpostHref}
                           className='text-mf-blue font-semibold border-b-2 border-mf-green pb-0.5 hover:border-mf-blue transition-colors'
                         >
-                          {whatItIsSignpost.cta.label}{' '}
-                          <span className='text-mf-green' aria-hidden='true'>
-                            &rarr;
+                          {whatItIsSignpost.cta.label}
+                          <span
+                            className='text-mf-green whitespace-nowrap'
+                            aria-hidden='true'
+                          >
+                            &nbsp;&rarr;
                           </span>
                         </Link>
                       ) : (
@@ -156,9 +159,12 @@ export default async function ListenAppPage() {
                           href={signpostHref}
                           className='text-mf-blue font-semibold border-b-2 border-mf-green pb-0.5 hover:border-mf-blue transition-colors'
                         >
-                          {whatItIsSignpost.cta.label}{' '}
-                          <span className='text-mf-green' aria-hidden='true'>
-                            &rarr;
+                          {whatItIsSignpost.cta.label}
+                          <span
+                            className='text-mf-green whitespace-nowrap'
+                            aria-hidden='true'
+                          >
+                            &nbsp;&rarr;
                           </span>
                         </a>
                       ))}
