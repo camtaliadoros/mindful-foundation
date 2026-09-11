@@ -496,6 +496,26 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
         },
         style
       },
+      donatePrompt {
+        text,
+        cta {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        }
+      },
       seo {
         title,
         description,

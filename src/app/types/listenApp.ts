@@ -58,6 +58,10 @@ export interface ListenAppPageData {
     };
     style: 'primary' | 'secondary' | 'link';
   };
+  donatePrompt?: {
+    text?: string;
+    cta?: CTA;
+  };
   seo?: {
     title?: string;
     description?: string;

@@ -55,8 +55,12 @@ export default async function ListenAppPage() {
     callToActionTitle,
     primaryCta,
     secondaryCta,
+    donatePrompt,
   } = listenAppData;
 
+  const donatePromptHref = resolveCtaHref(donatePrompt?.cta);
+  const donateBtnClass =
+    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-10 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
   const requestAccessHref = resolveCtaHref(whatItIsCta);
   const signpostHref = resolveCtaHref(whatItIsSignpost?.cta);
   const requestAccessBtnClass =
@@ -301,6 +305,34 @@ export default async function ListenAppPage() {
                   <CTAButton cta={secondaryCta} darkBackground={true} />
                 )}
               </div>
+
+              {/* Donation prompt */}
+              {donatePrompt &&
+                (donatePrompt.text ||
+                  (donatePrompt.cta?.label && donatePromptHref)) && (
+                  <div className='mt-12 pt-10 border-t border-white/15'>
+                    {donatePrompt.text && (
+                      <p className='text-chalk/80 text-lg md:text-xl font-grotesk-regular max-w-md mx-auto'>
+                        {donatePrompt.text}
+                      </p>
+                    )}
+                    {donatePrompt.cta?.label && donatePromptHref && (
+                      <div className='mt-7'>
+                        {isInternalHref(donatePromptHref) ? (
+                          <Link href={donatePromptHref} className={donateBtnClass}>
+                            {donatePrompt.cta.label}
+                            <span aria-hidden='true'>&rarr;</span>
+                          </Link>
+                        ) : (
+                          <a href={donatePromptHref} className={donateBtnClass}>
+                            {donatePrompt.cta.label}
+                            <span aria-hidden='true'>&rarr;</span>
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
             </div>
           </section>
         )}
