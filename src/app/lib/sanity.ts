@@ -569,6 +569,24 @@ export async function getPerpetratorProgrammePageData(): Promise<PerpetratorProg
         },
         style
       },
+      secondaryCta {
+        _key,
+        label,
+        actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
       seo {
         title,
         description,

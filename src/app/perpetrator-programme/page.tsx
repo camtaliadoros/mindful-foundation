@@ -3,6 +3,7 @@ import { renderBlockContent } from '../utils/sanity';
 import { CTAButton } from '../utils/cta';
 import Header from '../components/Header';
 import { ProgrammeFeature } from '../types/perpetratorProgramme';
+import { CTA } from '../types/homepage';
 
 
 export default async function PerpetratorProgrammePage() {
@@ -39,7 +40,15 @@ export default async function PerpetratorProgrammePage() {
     expansion,
     callToActionTitle,
     primaryCta,
+    secondaryCta,
   } = perpetratorData;
+
+  const ctaHasValidLink = (cta?: CTA) =>
+    !!cta &&
+    ((cta.actionType === 'internal' && cta.internalLink) ||
+      (cta.actionType === 'url' && cta.href) ||
+      (cta.actionType === 'email' && cta.email) ||
+      (cta.actionType === 'pdf' && cta.pdf?.asset?.url));
 
   return (
     <>
@@ -130,22 +139,21 @@ export default async function PerpetratorProgrammePage() {
         </section>
 
         {/* Call to Action Section */}
-        {primaryCta &&
-          ((primaryCta.actionType === 'url' && primaryCta.href) ||
-            (primaryCta.actionType === 'email' && primaryCta.email) ||
-            (primaryCta.actionType === 'pdf' &&
-              primaryCta.pdf?.asset?.url)) && (
-            <section className='bg-mf-blue text-chalk py-16 px-6'>
-              <div className='max-w-2xl mx-auto text-center'>
-                <h2 className='text-3xl font-bold mb-8 '>
-                  {callToActionTitle}
-                </h2>
-                <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+        {(ctaHasValidLink(primaryCta) || ctaHasValidLink(secondaryCta)) && (
+          <section className='bg-mf-blue text-chalk py-16 px-6'>
+            <div className='max-w-2xl mx-auto text-center'>
+              <h2 className='text-3xl font-bold mb-8 '>{callToActionTitle}</h2>
+              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                {primaryCta && ctaHasValidLink(primaryCta) && (
                   <CTAButton cta={primaryCta} darkBackground={true} />
-                </div>
+                )}
+                {secondaryCta && ctaHasValidLink(secondaryCta) && (
+                  <CTAButton cta={secondaryCta} darkBackground={true} />
+                )}
               </div>
-            </section>
-          )}
+            </div>
+          </section>
+        )}
       </main>
     </>
   );
