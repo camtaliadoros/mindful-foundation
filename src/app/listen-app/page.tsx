@@ -61,6 +61,17 @@ export default async function ListenAppPage() {
   const donatePromptHref = resolveCtaHref(donatePrompt?.cta);
   const donateBtnClass =
     'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-10 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
+
+  const ctaHasValidLink = (cta?: typeof primaryCta) =>
+    !!cta &&
+    ((cta.actionType === 'url' && cta.href) ||
+      (cta.actionType === 'email' && cta.email) ||
+      (cta.actionType === 'pdf' && cta.pdf?.asset?.url));
+  const hasCtaButtons = ctaHasValidLink(primaryCta) || ctaHasValidLink(secondaryCta);
+  const hasDonatePrompt = !!(
+    donatePrompt &&
+    (donatePrompt.text || (donatePrompt.cta?.label && donatePromptHref))
+  );
   const requestAccessHref = resolveCtaHref(whatItIsCta);
   const signpostHref = resolveCtaHref(whatItIsSignpost?.cta);
   const requestAccessBtnClass =
@@ -284,55 +295,53 @@ export default async function ListenAppPage() {
           />
         )}
 
-        {/* Call to Action Section */}
-        {((primaryCta &&
-          ((primaryCta.actionType === 'url' && primaryCta.href) ||
-            (primaryCta.actionType === 'email' && primaryCta.email) ||
-            (primaryCta.actionType === 'pdf' && primaryCta.pdf?.asset?.url))) ||
-          (secondaryCta &&
-            ((secondaryCta.actionType === 'url' && secondaryCta.href) ||
-              (secondaryCta.actionType === 'email' && secondaryCta.email) ||
-              (secondaryCta.actionType === 'pdf' &&
-                secondaryCta.pdf?.asset?.url)))) && (
+        {/* Call to Action + Donation Section */}
+        {(hasCtaButtons || hasDonatePrompt) && (
           <section className='bg-mf-blue text-chalk py-16 px-6'>
             <div className='max-w-2xl mx-auto text-center'>
-              <h2 className='text-2xl font-bold mb-8 '>{callToActionTitle}</h2>
-              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                {primaryCta && (
-                  <CTAButton cta={primaryCta} darkBackground={true} />
-                )}
-                {secondaryCta && (
-                  <CTAButton cta={secondaryCta} darkBackground={true} />
-                )}
-              </div>
-
-              {/* Donation prompt */}
-              {donatePrompt &&
-                (donatePrompt.text ||
-                  (donatePrompt.cta?.label && donatePromptHref)) && (
-                  <div className='mt-12 pt-10 border-t border-white/15'>
-                    {donatePrompt.text && (
-                      <p className='text-chalk/80 text-lg md:text-xl font-grotesk-regular max-w-md mx-auto'>
-                        {donatePrompt.text}
-                      </p>
+              {hasCtaButtons && (
+                <>
+                  <h2 className='text-2xl font-bold mb-8 '>{callToActionTitle}</h2>
+                  <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                    {primaryCta && (
+                      <CTAButton cta={primaryCta} darkBackground={true} />
                     )}
-                    {donatePrompt.cta?.label && donatePromptHref && (
-                      <div className='mt-7'>
-                        {isInternalHref(donatePromptHref) ? (
-                          <Link href={donatePromptHref} className={donateBtnClass}>
-                            {donatePrompt.cta.label}
-                            <span aria-hidden='true'>&rarr;</span>
-                          </Link>
-                        ) : (
-                          <a href={donatePromptHref} className={donateBtnClass}>
-                            {donatePrompt.cta.label}
-                            <span aria-hidden='true'>&rarr;</span>
-                          </a>
-                        )}
-                      </div>
+                    {secondaryCta && (
+                      <CTAButton cta={secondaryCta} darkBackground={true} />
                     )}
                   </div>
-                )}
+                </>
+              )}
+
+              {/* Donation prompt */}
+              {hasDonatePrompt && (
+                <div
+                  className={
+                    hasCtaButtons ? 'mt-12 pt-10 border-t border-white/15' : ''
+                  }
+                >
+                  {donatePrompt?.text && (
+                    <p className='text-chalk/80 text-lg md:text-xl font-grotesk-regular max-w-md mx-auto'>
+                      {donatePrompt.text}
+                    </p>
+                  )}
+                  {donatePrompt?.cta?.label && donatePromptHref && (
+                    <div className='mt-7'>
+                      {isInternalHref(donatePromptHref) ? (
+                        <Link href={donatePromptHref} className={donateBtnClass}>
+                          {donatePrompt.cta.label}
+                          <span aria-hidden='true'>&rarr;</span>
+                        </Link>
+                      ) : (
+                        <a href={donatePromptHref} className={donateBtnClass}>
+                          {donatePrompt.cta.label}
+                          <span aria-hidden='true'>&rarr;</span>
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </section>
         )}
