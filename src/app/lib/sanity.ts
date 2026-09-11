@@ -272,11 +272,6 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       impactDescription,
       impactOutcomesLabel,
       impactOutcomes,
-      impactRipple {
-        before,
-        after,
-        caption
-      },
       impactStories,
       impactSupport {
         heading,

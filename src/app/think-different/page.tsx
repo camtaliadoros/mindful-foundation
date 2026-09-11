@@ -115,7 +115,6 @@ export default async function ThinkDifferentPage() {
     impactDescription,
     impactOutcomesLabel,
     impactOutcomes,
-    impactRipple,
     impactStories,
     impactSupport,
     trainingTitle,
@@ -419,31 +418,6 @@ export default async function ThinkDifferentPage() {
                 </div>
               </div>
             )}
-
-            {/* Ripple pull-quote */}
-            {impactRipple &&
-              (impactRipple.before ||
-                impactRipple.after ||
-                impactRipple.caption) && (
-                <figure className='mt-14 border-l-4 border-mf-green pl-6 md:pl-10 max-w-3xl'>
-                  {(impactRipple.before || impactRipple.after) && (
-                    <div className='flex flex-wrap items-center gap-x-5 gap-y-2 text-2xl md:text-4xl font-bold text-mf-blue tracking-tight'>
-                      {impactRipple.before && <span>{impactRipple.before}</span>}
-                      {impactRipple.before && impactRipple.after && (
-                        <span className='text-mf-green' aria-hidden='true'>
-                          &rarr;
-                        </span>
-                      )}
-                      {impactRipple.after && <span>{impactRipple.after}</span>}
-                    </div>
-                  )}
-                  {impactRipple.caption && (
-                    <figcaption className='mt-4 text-mf-blue/70 max-w-2xl'>
-                      {impactRipple.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              )}
 
             {/* Discussion */}
             <div className='mt-12 max-w-3xl space-y-4 [&_p]:text-mf-blue/90 [&_p]:text-lg'>

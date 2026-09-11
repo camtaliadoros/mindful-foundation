@@ -67,11 +67,6 @@ export interface ThinkDifferentPageData {
   impactDescription: BlockContent[];
   impactOutcomesLabel?: string;
   impactOutcomes: string[];
-  impactRipple?: {
-    before?: string;
-    after?: string;
-    caption?: string;
-  };
   impactStories: BlockContent[];
   impactSupport?: {
     heading?: string;
