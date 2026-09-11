@@ -3,7 +3,12 @@ import { AnimatedApproachItem } from '../components/AnimatedApproachItem';
 import { AnimatedModuleItem } from '../components/AnimatedModuleItem';
 import { BulletItemCard } from '../components/BulletItemCard';
 import Header from '../components/Header';
-import { HeartIcon } from '../components/Icons';
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  HeartIcon,
+  StarIcon,
+} from '../components/Icons';
 import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import TwoColumnSection from '../components/TwoColumnSection';
 import { getThinkDifferentPageData } from '../lib/sanity';
@@ -29,25 +34,6 @@ function ArrowRightIcon() {
       <line x1='5' y1='12' x2='19' y2='12' />
       <polyline points='12 5 19 12 12 19' />
     </svg>
-  );
-}
-
-function CheckTickIcon() {
-  return (
-    <span
-      aria-hidden='true'
-      className='flex-shrink-0 w-6 h-6 rounded-full bg-mf-green grid place-items-center mt-0.5'
-    >
-      <svg width='13' height='13' viewBox='0 0 14 14' fill='none'>
-        <path
-          d='M2.5 7.5 5.5 10.5 11.5 3.5'
-          stroke='#181634'
-          strokeWidth='2.2'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        />
-      </svg>
-    </span>
   );
 }
 
@@ -403,18 +389,25 @@ export default async function ThinkDifferentPage() {
                 {impactOutcomesLabel && (
                   <p className='font-bold text-mf-blue'>{impactOutcomesLabel}</p>
                 )}
-                <div className='mt-5 grid grid-cols-1 md:grid-cols-2 gap-3.5 md:gap-x-10 max-w-4xl'>
-                  {impactOutcomes.map((outcome, index) => (
-                    <div
-                      key={index}
-                      className='flex items-start gap-3.5 bg-white border border-mf-blue/10 rounded-2xl px-5 py-4'
-                    >
-                      <CheckTickIcon />
-                      <span className='text-mf-blue font-medium leading-snug'>
-                        {outcome}
-                      </span>
-                    </div>
-                  ))}
+                <div className='mt-6 flex flex-col gap-5'>
+                  {impactOutcomes.map((outcome, index) => {
+                    const IconComponent =
+                      index === 0
+                        ? ArrowDownIcon
+                        : index === 1
+                          ? StarIcon
+                          : index === 2
+                            ? HeartIcon
+                            : ArrowUpIcon;
+                    return (
+                      <div key={index} className='flex items-center gap-4'>
+                        <IconComponent />
+                        <span className='text-mf-blue font-bold text-lg md:text-xl'>
+                          {outcome}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
