@@ -136,7 +136,7 @@ export default async function PerpetratorProgrammePage() {
                 (feature: ProgrammeFeature, index: number) => (
                   <div
                     key={feature._key}
-                    className='bg-white rounded-2xl p-6 flex flex-col gap-4 shadow-[0_18px_34px_-26px_rgba(38,34,79,0.5)] transition-transform hover:-translate-y-1'
+                    className='bg-white rounded-2xl p-6 flex flex-col gap-4 shadow-[0_6px_16px_-10px_rgba(38,34,79,0.35)] transition-all duration-200 hover:-translate-y-2 hover:shadow-[0_22px_36px_-16px_rgba(38,34,79,0.45)]'
                   >
                     <div className='h-10 w-10 rounded-[11px] bg-mf-green/15 flex items-center justify-center text-[#0f9d6f] font-bold text-sm'>
                       {String(index + 1).padStart(2, '0')}
@@ -163,17 +163,17 @@ export default async function PerpetratorProgrammePage() {
 
         {/* Call to Action Section */}
         {(ctaHasValidLink(primaryCta) || ctaHasValidLink(secondaryCta)) && (
-          <section className='bg-mf-blue text-chalk py-16 md:py-20 px-6'>
+          <section className='bg-chalk text-mf-blue py-16 md:py-20 px-6'>
             <div className='max-w-2xl mx-auto text-center'>
               <h2 className='text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-10'>
                 {callToActionTitle}
               </h2>
               <div className='flex flex-col sm:flex-row gap-4 justify-center'>
                 {primaryCta && ctaHasValidLink(primaryCta) && (
-                  <CTAButton cta={primaryCta} darkBackground={true} />
+                  <CTAButton cta={primaryCta} darkBackground={false} />
                 )}
                 {secondaryCta && ctaHasValidLink(secondaryCta) && (
-                  <CTAButton cta={secondaryCta} darkBackground={true} />
+                  <CTAButton cta={secondaryCta} darkBackground={false} />
                 )}
               </div>
             </div>
