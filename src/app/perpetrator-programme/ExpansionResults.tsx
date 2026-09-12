@@ -114,7 +114,7 @@ function parseExpansion(blocks: BlockContent[]): ParsedExpansion {
       const reducedMatch = fullText.match(/reduced by\s*([\d.]+)%/i);
       if (reducedMatch) {
         parsed.highlights.push({
-          big: `−${reducedMatch[1]}%`,
+          big: `↓ ${reducedMatch[1]}%`,
           text: fullText,
         });
         continue;
