@@ -15,7 +15,6 @@ const KNOWN_HEADINGS = new Set([
 
 interface Bar {
   pct: string;
-  pctValue: number;
   label: string;
 }
 
@@ -95,7 +94,6 @@ function parseExpansion(blocks: BlockContent[]): ParsedExpansion {
           .trim();
         parsed.bars.push({
           pct: improvementMatch[1],
-          pctValue: parseFloat(improvementMatch[1]),
           label,
         });
         barsStarted = true;
@@ -168,7 +166,6 @@ export default function ExpansionResults({
   content: BlockContent[];
 }>) {
   const data = parseExpansion(content);
-  const maxPct = Math.max(1, ...data.bars.map((b) => b.pctValue));
 
   return (
     <>
@@ -240,26 +237,15 @@ export default function ExpansionResults({
             ))}
 
             {data.bars.length > 0 && (
-              <div className='mt-10 flex flex-col gap-7'>
+              <div className='mt-10 flex flex-col gap-5'>
                 {data.bars.map((bar, i) => (
-                  <div key={i}>
-                    <div className='flex items-baseline gap-3 flex-wrap'>
-                      <span className='text-3xl md:text-4xl font-bold text-mf-blue tracking-tight'>
-                        {bar.pct}%
-                      </span>
-                      <span className='text-mf-dark-blue text-base md:text-lg'>
-                        {bar.label}
-                      </span>
-                    </div>
-                    <div className='mt-3 h-3 rounded-full bg-mf-blue/10 overflow-hidden'>
-                      <div
-                        className='h-full rounded-full bg-mf-green animate-mf-bar-grow'
-                        style={{
-                          width: `${Math.min(100, (bar.pctValue / maxPct) * 92)}%`,
-                          animationDelay: `${i * 90}ms`,
-                        }}
-                      />
-                    </div>
+                  <div key={i} className='flex items-baseline gap-3 flex-wrap'>
+                    <span className='text-3xl md:text-4xl font-bold text-mf-green tracking-tight'>
+                      {bar.pct}%
+                    </span>
+                    <span className='text-mf-dark-blue text-base md:text-lg'>
+                      {bar.label}
+                    </span>
                   </div>
                 ))}
               </div>
