@@ -4,6 +4,7 @@ import { CTAButton } from '../utils/cta';
 import Header from '../components/Header';
 import { ProgrammeFeature } from '../types/perpetratorProgramme';
 import { CTA } from '../types/homepage';
+import ExpansionResults from './ExpansionResults';
 
 // Numbered, two-column layout used for the prose sections (title + rule on
 // the left, body copy on the right) to echo the editorial split in the
@@ -157,12 +158,8 @@ export default async function PerpetratorProgrammePage() {
           </SplitSection>
         </section>
 
-        {/* Expansion Section */}
-        <section className='py-16 md:py-24 px-6 bg-white'>
-          <SplitSection num='05' title={expansionTitle}>
-            {renderBlockContent(expansion)}
-          </SplitSection>
-        </section>
+        {/* Expansion Section (incl. pilot writeup, results and principles) */}
+        <ExpansionResults title={expansionTitle} content={expansion} />
 
         {/* Call to Action Section */}
         {(ctaHasValidLink(primaryCta) || ctaHasValidLink(secondaryCta)) && (
