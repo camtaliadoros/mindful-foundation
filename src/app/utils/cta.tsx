@@ -147,7 +147,7 @@ export function CTAButton({
   // Generate CSS classes based on style
   const getStyleClasses = () => {
     const baseClasses =
-      'px-8 py-3 rounded-full transition-all font-grotesk-medium text-xl';
+      'px-8 py-3 rounded-full transition-all font-grotesk-medium text-base';
 
     // Dark background styles
     if (darkBackground) {
