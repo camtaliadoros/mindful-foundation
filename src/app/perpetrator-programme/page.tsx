@@ -136,7 +136,7 @@ export default async function PerpetratorProgrammePage() {
                 (feature: ProgrammeFeature, index: number) => (
                   <div
                     key={feature._key}
-                    className='bg-white rounded-2xl p-6 flex flex-col gap-4 shadow-[0_6px_16px_-10px_rgba(38,34,79,0.35)] transition-all duration-200 hover:-translate-y-2 hover:shadow-[0_22px_36px_-16px_rgba(38,34,79,0.45)]'
+                    className='bg-white rounded-2xl p-6 flex flex-col gap-4 shadow-[0_6px_16px_-10px_rgba(38,34,79,0.35)]'
                   >
                     <div className='h-10 w-10 rounded-[11px] bg-mf-green/15 flex items-center justify-center text-[#0f9d6f] font-bold text-sm'>
                       {String(index + 1).padStart(2, '0')}

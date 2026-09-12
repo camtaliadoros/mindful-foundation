@@ -73,6 +73,27 @@ body {
   animation: mf-fade-up 800ms ease-out both;
 }
 
+/* Growing fill animation for progress/stat bars */
+@keyframes mf-bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-mf-bar-grow {
+  transform-origin: left;
+  animation: mf-bar-grow 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-mf-bar-grow {
+    animation: none;
+  }
+}
+
 /* Elegant button shadows */
 .hover\:shadow-mf-green\/30:hover {
   box-shadow:

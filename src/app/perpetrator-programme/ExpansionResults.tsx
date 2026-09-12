@@ -253,9 +253,10 @@ export default function ExpansionResults({
                     </div>
                     <div className='mt-3 h-3 rounded-full bg-mf-blue/10 overflow-hidden'>
                       <div
-                        className='h-full rounded-full bg-mf-green'
+                        className='h-full rounded-full bg-mf-green animate-mf-bar-grow'
                         style={{
                           width: `${Math.min(100, (bar.pctValue / maxPct) * 92)}%`,
+                          animationDelay: `${i * 90}ms`,
                         }}
                       />
                     </div>
