@@ -1,4 +1,5 @@
 import { BlockContent } from '../types/homepage';
+import { ArrowUpIcon } from '../components/Icons';
 
 // The "expansion" field is authored in Sanity as a single free-text block
 // containing the pilot writeup, a bulleted stats list and a closing
@@ -239,7 +240,8 @@ export default function ExpansionResults({
             {data.bars.length > 0 && (
               <div className='mt-10 flex flex-col gap-5'>
                 {data.bars.map((bar, i) => (
-                  <div key={i} className='flex items-baseline gap-3 flex-wrap'>
+                  <div key={i} className='flex items-center gap-3 flex-wrap'>
+                    <ArrowUpIcon />
                     <span className='text-3xl md:text-4xl font-bold text-mf-green tracking-tight'>
                       {bar.pct}%
                     </span>

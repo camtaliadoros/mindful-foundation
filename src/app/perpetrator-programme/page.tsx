@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getPerpetratorProgrammePageData } from '../lib/sanity';
 import { renderBlockContent } from '../utils/sanity';
 import { CTAButton } from '../utils/cta';
@@ -105,6 +106,16 @@ export default async function PerpetratorProgrammePage() {
       </section>
 
       <main>
+        {/* Enquiry CTA (directly below hero) */}
+        <section className='bg-chalk py-10 md:py-12 px-6 text-center'>
+          <Link
+            href='/contact'
+            className='inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60'
+          >
+            Enquire about the Perpetrator Programme
+          </Link>
+        </section>
+
         {/* Why It's Needed Section */}
         <section className='py-16 md:py-24 px-6 bg-chalk'>
           <SplitSection num='01' title={whyItsNeededTitle}>
