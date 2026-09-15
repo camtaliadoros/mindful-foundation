@@ -241,7 +241,9 @@ export default function ExpansionResults({
               <div className='mt-10 flex flex-col gap-5'>
                 {data.bars.map((bar, i) => (
                   <div key={i} className='flex items-center gap-3 flex-wrap'>
-                    <ArrowUpIcon />
+                    <span className='inline-block -translate-y-[7px]'>
+                      <ArrowUpIcon />
+                    </span>
                     <span className='text-3xl md:text-4xl font-bold text-mf-green tracking-tight leading-none'>
                       {bar.pct}%
                     </span>
