@@ -133,7 +133,7 @@ function parseExpansion(blocks: BlockContent[]): ParsedExpansion {
           bucket = 'results';
           parsed.resultsHeading = trimmed;
         } else if (trimmed === 'Programme Principles') {
-          parsed.principlesHeading = trimmed;
+          parsed.principlesHeading = 'Programme Quotes';
         }
         continue;
       }
@@ -277,12 +277,12 @@ export default function ExpansionResults({
         </section>
       )}
 
-      {/* Programme Principles */}
+      {/* Programme Quotes */}
       {data.principles.length > 0 && (
         <section className='py-16 md:py-24 px-6 bg-mf-blue'>
           <div className='max-w-5xl mx-auto'>
             <h2 className='text-3xl md:text-4xl font-bold text-chalk text-center tracking-tight mb-14'>
-              {data.principlesHeading || 'Programme Principles'}
+              {data.principlesHeading || 'Programme Quotes'}
             </h2>
             <div className='grid md:grid-cols-3 gap-5'>
               {data.principles.map((quote, i) => (
