@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import HeaderWrapper from './components/HeaderWrapper';
+import { SocialLinks } from './components/SocialLinks';
 import { getSiteSettings } from './lib/sanity';
 import { generateMetadata as generateSiteMetadata } from './utils/metadata';
 import { StructuredData } from './components/StructuredData';
@@ -82,6 +83,7 @@ export default async function RootLayout({
         <div className='min-h-screen bg-chalk'>
           <HeaderWrapper />
           {children}
+          <SocialLinks />
         </div>
         <QuickExit />
         <CookieConsent />

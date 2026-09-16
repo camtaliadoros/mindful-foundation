@@ -1,6 +1,5 @@
 import { AnimatedStatCard } from './components/AnimatedStatCard';
 import { CTA } from './components/CTA';
-import { SocialLinks } from './components/SocialLinks';
 import { TestimonialCard } from './components/TestimonialCard';
 import { WorkCard } from './components/WorkCard';
 import { getHomepageData, getSiteSettings } from './lib/sanity';
@@ -233,9 +232,6 @@ export default async function Home() {
 
         {/* Call to Action Section */}
         <CTA />
-
-        {/* Social Links */}
-        <SocialLinks />
       </main>
     </>
   );
