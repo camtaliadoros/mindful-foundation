@@ -1,5 +1,6 @@
 import { AnimatedStatCard } from './components/AnimatedStatCard';
 import { CTA } from './components/CTA';
+import { SocialLinks } from './components/SocialLinks';
 import { TestimonialCard } from './components/TestimonialCard';
 import { WorkCard } from './components/WorkCard';
 import { getHomepageData, getSiteSettings } from './lib/sanity';
@@ -155,6 +156,7 @@ export default async function Home() {
                   title={thinkDifferent.title}
                   description={thinkDifferent.description}
                   icon='think-different'
+                  href='/think-different'
                 />
               )}
 
@@ -164,6 +166,7 @@ export default async function Home() {
                   title={listenApp.title}
                   description={listenApp.description}
                   icon='listen-app'
+                  href='/listen-app'
                 />
               )}
 
@@ -173,6 +176,7 @@ export default async function Home() {
                   title={perpetratorProgramme.title}
                   description={perpetratorProgramme.description}
                   icon='perpetrator-programme'
+                  href='/perpetrator-programme'
                 />
               )}
             </div>
@@ -229,6 +233,9 @@ export default async function Home() {
 
         {/* Call to Action Section */}
         <CTA />
+
+        {/* Social Links */}
+        <SocialLinks />
       </main>
     </>
   );

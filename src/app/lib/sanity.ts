@@ -187,6 +187,49 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       _type,
       title,
       missionStatement,
+      heroBanner {
+        stats[] {
+          _key,
+          value,
+          description
+        },
+        enquiryCta {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        },
+        signpostText,
+        signpostSubtext,
+        signpostLink {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        }
+      },
       overviewHeadline,
       overview,
       overviewImage {
@@ -227,8 +270,29 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       },
       impactTitle,
       impactDescription,
+      impactOutcomesLabel,
       impactOutcomes,
       impactStories,
+      impactSupport {
+        heading,
+        cta {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        }
+      },
       trainingTitle,
       trainingDescription,
       trainingCoversTitle,
@@ -238,8 +302,20 @@ export async function getThinkDifferentPageData(): Promise<ThinkDifferentPageDat
       trainingDelivery,
       trainingButton {
         label,
-        emailSubject,
-        emailAddress
+        actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
       },
       ctaTitle,
       ctaButtons[] {
@@ -292,6 +368,43 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
       headerSubheadline,
       whatItIsTitle,
       whatItIs,
+      whatItIsCta {
+        label,
+        actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      whatItIsSignpost {
+        text,
+        cta {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        }
+      },
       whyItMattersTitle,
       whyItMatters,
       featuresTitle,
@@ -378,6 +491,26 @@ export async function getListenAppPageData(): Promise<ListenAppPageData | null> 
         },
         style
       },
+      donatePrompt {
+        text,
+        cta {
+          label,
+          actionType,
+          internalLink-> {
+            _type,
+            "slug": slug.current
+          },
+          href,
+          email,
+          pdf {
+            asset-> {
+              url,
+              originalFilename
+            }
+          },
+          style
+        }
+      },
       seo {
         title,
         description,
@@ -419,6 +552,24 @@ export async function getPerpetratorProgrammePageData(): Promise<PerpetratorProg
       expansion,
       callToActionTitle,
       primaryCta {
+        _key,
+        label,
+        actionType,
+        internalLink-> {
+          _type,
+          "slug": slug.current
+        },
+        href,
+        email,
+        pdf {
+          asset-> {
+            url,
+            originalFilename
+          }
+        },
+        style
+      },
+      secondaryCta {
         _key,
         label,
         actionType,

@@ -8,6 +8,7 @@ import { generateMetadata as generateSiteMetadata } from './utils/metadata';
 import { StructuredData } from './components/StructuredData';
 import GoogleAdsPageView from './components/GoogleAdsPageView';
 import CookieConsent from './components/CookieConsent';
+import QuickExit from './components/QuickExit';
 
 const GTAG_ID = process.env.NEXT_PUBLIC_GTAG_ID || 'AW-18020600681';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-7Y120MYVX9';
@@ -82,6 +83,7 @@ export default async function RootLayout({
           <HeaderWrapper />
           {children}
         </div>
+        <QuickExit />
         <CookieConsent />
       </body>
     </html>

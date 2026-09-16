@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { AnimatedApproachItem } from '../components/AnimatedApproachItem';
 import { AnimatedModuleItem } from '../components/AnimatedModuleItem';
 import { BulletItemCard } from '../components/BulletItemCard';
@@ -12,9 +13,49 @@ import { ScrollAnimatedImage } from '../components/ScrollAnimatedImage';
 import TwoColumnSection from '../components/TwoColumnSection';
 import { getThinkDifferentPageData } from '../lib/sanity';
 import { ThinkDifferentPageData } from '../types/thinkDifferent';
-import { CTAButton } from '../utils/cta';
+import { CTAButton, resolveCtaHref, isInternalHref } from '../utils/cta';
 import { renderBlockContent } from '../utils/sanity';
 
+
+function ArrowRightIcon() {
+  return (
+    <svg
+      width='18'
+      height='18'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden='true'
+      className='block shrink-0 -translate-y-[0.1em]'
+    >
+      <line x1='5' y1='12' x2='19' y2='12' />
+      <polyline points='12 5 19 12 12 19' />
+    </svg>
+  );
+}
+
+function ChatHeartIcon() {
+  return (
+    <svg
+      width='26'
+      height='26'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden='true'
+      className='text-mf-green'
+    >
+      <path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z' />
+      <path d='M12 13.5c-1.2-1.1-2.5-1.7-2.5-3a1.5 1.5 0 0 1 2.5-1 1.5 1.5 0 0 1 2.5 1c0 1.3-1.3 1.9-2.5 3z' />
+    </svg>
+  );
+}
 
 export default async function ThinkDifferentPage() {
   const pageData: ThinkDifferentPageData | null =
@@ -41,6 +82,7 @@ export default async function ThinkDifferentPage() {
   const {
     title,
     missionStatement,
+    heroBanner,
     overviewHeadline,
     overview,
     overviewImage,
@@ -57,8 +99,10 @@ export default async function ThinkDifferentPage() {
     courseAimsImage,
     impactTitle,
     impactDescription,
+    impactOutcomesLabel,
     impactOutcomes,
     impactStories,
+    impactSupport,
     trainingTitle,
     trainingDescription,
     trainingCoversTitle,
@@ -71,7 +115,25 @@ export default async function ThinkDifferentPage() {
     ctaButtons,
   } = pageData;
 
-  console.log(overviewImage);
+  const enquiryHref = resolveCtaHref(heroBanner?.enquiryCta);
+  const signpostHref = resolveCtaHref(heroBanner?.signpostLink);
+  const supportHref = resolveCtaHref(impactSupport?.cta);
+  const trainingButtonHref = resolveCtaHref(trainingButton);
+  // Guard against legacy/partial data (e.g. stats stored without a value).
+  const bannerStats = (heroBanner?.stats ?? []).filter((s) => s?.value);
+
+  // pb-*! / mb-0! override a global rule (a[class*='rounded-full']) that forces
+  // padding-bottom:6px + margin-bottom:4px. Bottom padding is kept a touch less
+  // than the top so the text (which rides slightly high in its line-box) reads
+  // optically centred in the pill.
+  const enquiryBtnClass =
+    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
+  const signpostBtnClass =
+    'inline-flex items-center gap-2 bg-mf-blue text-white font-grotesk-medium rounded-full px-6 pt-3 pb-2! mb-0! hover:brightness-125 transition-all focus:outline-none focus:ring-2 focus:ring-mf-blue/50';
+  const supportBtnClass =
+    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-8 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
+  const trainingBtnClass =
+    'inline-block px-8 pt-3 pb-2! mb-0! rounded-full transition-all font-grotesk-medium text-xl border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-white';
 
   return (
     <>
@@ -88,6 +150,100 @@ export default async function ThinkDifferentPage() {
       </section>
 
       <main>
+        {/* Key stats + enquiry (directly below hero) */}
+        {heroBanner &&
+          (bannerStats.length > 0 ||
+            heroBanner.enquiryCta?.label) && (
+            <section className='bg-chalk pt-14 pb-16 px-6'>
+              <div className='max-w-5xl mx-auto'>
+                {/* Key stats */}
+                {bannerStats.length > 0 && (
+                  <div className='grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-mf-blue/15'>
+                    {bannerStats.map((stat, index) => (
+                      <div
+                        key={stat._key ?? index}
+                        className='flex flex-col items-center text-center px-6 py-6'
+                      >
+                        <span className='text-5xl md:text-6xl font-bold text-mf-blue leading-none'>
+                          {stat.value.split('+').map((part, i, arr) => (
+                            <span key={i}>
+                              {part}
+                              {i < arr.length - 1 && (
+                                <span className='text-mf-green'>+</span>
+                              )}
+                            </span>
+                          ))}
+                        </span>
+                        <span className='mt-3 text-mf-blue text-lg'>
+                          {stat.description}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Enquiry CTA */}
+                {heroBanner.enquiryCta?.label && enquiryHref && (
+                  <div className='flex justify-center mt-12'>
+                    {isInternalHref(enquiryHref) ? (
+                      <Link href={enquiryHref} className={enquiryBtnClass}>
+                        {heroBanner.enquiryCta.label}
+                        <ArrowRightIcon />
+                      </Link>
+                    ) : (
+                      <a href={enquiryHref} className={enquiryBtnClass}>
+                        {heroBanner.enquiryCta.label}
+                        <ArrowRightIcon />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
+
+        {/* ListenApp signpost band */}
+        {(heroBanner?.signpostText ||
+          heroBanner?.signpostSubtext ||
+          (heroBanner?.signpostLink?.label && signpostHref)) && (
+          <section className='bg-mf-green/15 py-8 px-6'>
+            <div className='max-w-5xl mx-auto flex flex-col md:flex-row md:items-center gap-6'>
+              <div className='flex items-center gap-5 flex-1'>
+                <div className='flex-shrink-0 w-14 h-14 rounded-2xl bg-mf-blue flex items-center justify-center'>
+                  <ChatHeartIcon />
+                </div>
+                <div>
+                  {heroBanner?.signpostText && (
+                    <h2 className='text-xl md:text-2xl font-bold text-mf-blue'>
+                      {heroBanner.signpostText}
+                    </h2>
+                  )}
+                  {heroBanner?.signpostSubtext && (
+                    <p className='text-mf-blue/70 mt-1'>
+                      {heroBanner.signpostSubtext}
+                    </p>
+                  )}
+                </div>
+              </div>
+              {heroBanner?.signpostLink?.label && signpostHref && (
+                <div className='flex-shrink-0'>
+                  {isInternalHref(signpostHref) ? (
+                    <Link href={signpostHref} className={signpostBtnClass}>
+                      {heroBanner.signpostLink.label}
+                      <ArrowRightIcon />
+                    </Link>
+                  ) : (
+                    <a href={signpostHref} className={signpostBtnClass}>
+                      {heroBanner.signpostLink.label}
+                      <ArrowRightIcon />
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
         {/* Overview Section */}
         <section className='bg-chalk py-16 px-12'>
           {overviewImage ? (
@@ -216,46 +372,91 @@ export default async function ThinkDifferentPage() {
         </section>
 
         {/* Impact Section */}
-        <section className='bg-mf-blue py-16 px-6'>
-          <div className='max-w-2xl mx-auto'>
-            <h2 className='text-3xl font-bold text-chalk mb-8 text-center'>
+        <section className='bg-chalk py-16 md:py-24 px-6'>
+          <div className='max-w-5xl mx-auto'>
+            <h2 className='text-3xl md:text-5xl font-bold text-mf-blue tracking-tight leading-tight'>
               {impactTitle || 'Impact So Far'}
             </h2>
-            <div className='space-y-3 max-w-none mb-12 text-chalk [&>*]:text-lg'>
+
+            {/* Lead */}
+            <div className='mt-8 max-w-3xl space-y-4 [&_p]:text-mf-blue/90 [&_p]:text-lg [&_strong]:text-mf-blue [&_strong]:font-bold'>
               {impactDescription && renderBlockContent(impactDescription)}
             </div>
 
+            {/* Measured outcomes */}
             {impactOutcomes && impactOutcomes.length > 0 && (
-              <div className='flex flex-col gap-6 mb-12 space-y-2'>
-                {impactOutcomes.map((outcome, index) => {
-                  const IconComponent =
-                    index === 0
-                      ? ArrowDownIcon
-                      : index === 1
-                        ? StarIcon
-                        : index === 2
-                          ? HeartIcon
-                          : ArrowUpIcon;
-                  return (
-                    <div key={index} className='flex gap-3 items-center'>
-                      <IconComponent />
-                      <p className='text-chalk font-bold mt-1 md:text-xl'>
-                        {outcome}
-                      </p>
-                    </div>
-                  );
-                })}
+              <div className='mt-12'>
+                {impactOutcomesLabel && (
+                  <p className='font-bold text-mf-blue'>{impactOutcomesLabel}</p>
+                )}
+                <div className='mt-6 flex flex-col gap-5'>
+                  {impactOutcomes.map((outcome, index) => {
+                    const IconComponent =
+                      index === 0
+                        ? ArrowDownIcon
+                        : index === 1
+                          ? StarIcon
+                          : index === 2
+                            ? HeartIcon
+                            : ArrowUpIcon;
+                    return (
+                      <div key={index} className='flex items-center gap-4'>
+                        <IconComponent />
+                        <span className='text-mf-blue font-bold text-lg md:text-xl'>
+                          {outcome}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             )}
 
-            <div className='space-y-3 max-w-none text-chalk [&>*]:text-lg'>
+            {/* Discussion */}
+            <div className='mt-12 max-w-3xl space-y-4 [&_p]:text-mf-blue/90 [&_p]:text-lg'>
               {impactStories && renderBlockContent(impactStories)}
             </div>
+
+            {/* Supporter / donate panel */}
+            {impactSupport &&
+              (impactSupport.heading ||
+                (impactSupport.cta?.label && supportHref)) && (
+                <div className='mt-16 relative overflow-hidden bg-mf-blue text-white rounded-[28px] px-7 md:px-16 py-12 md:py-16 text-center'>
+                  <div className='mx-auto mb-6 w-[52px] h-[52px] rounded-2xl bg-mf-green/15 grid place-items-center'>
+                    <svg width='26' height='26' viewBox='0 0 26 26' fill='none' aria-hidden='true'>
+                      <path
+                        d='M13 22C6 17.5 2.5 14 2.5 9.6 2.5 6.4 5 4 8 4c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3 0 5.5 2.4 5.5 5.6C23.5 14 20 17.5 13 22Z'
+                        fill='#30F6BA'
+                      />
+                    </svg>
+                  </div>
+                  {impactSupport.heading && (
+                    <h3 className='text-2xl md:text-4xl font-bold leading-tight tracking-tight max-w-2xl mx-auto'>
+                      {impactSupport.heading}
+                    </h3>
+                  )}
+                  {impactSupport.cta?.label && supportHref && (
+                    <div className='mt-8 flex justify-center'>
+                      {isInternalHref(supportHref) ? (
+                        <Link href={supportHref} className={supportBtnClass}>
+                          {impactSupport.cta.label}
+                          <ArrowRightIcon />
+                        </Link>
+                      ) : (
+                        <a href={supportHref} className={supportBtnClass}>
+                          {impactSupport.cta.label}
+                          <ArrowRightIcon />
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
           </div>
         </section>
 
         {/* Training Section */}
-        <section className='bg-chalk py-16 px-6'>
+        <section className='bg-white py-16 px-6'>
           <div className='max-w-2xl mx-auto'>
             <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
               {trainingTitle || 'Training for Educators & Staff'}
@@ -273,7 +474,7 @@ export default async function ThinkDifferentPage() {
                   {trainingCovers.map((cover, index) => (
                     <BulletItemCard
                       key={index}
-                      backgroundColour='bg-white'
+                      backgroundColour='bg-chalk'
                       discColour='bg-mf-blue'
                       content={cover}
                       index={index}
@@ -294,7 +495,7 @@ export default async function ThinkDifferentPage() {
                     {trainingParticipantsReceive.map((item, index) => (
                       <BulletItemCard
                         key={index}
-                        backgroundColour='bg-white'
+                        backgroundColour='bg-chalk'
                         discColour='bg-mf-blue'
                         content={item}
                         index={index}
@@ -309,14 +510,17 @@ export default async function ThinkDifferentPage() {
               <p className='text-mf-dark-blue md:text-xl'>{trainingDelivery}</p>
             </div>
 
-            {trainingButton && (
+            {trainingButton?.label && trainingButtonHref && (
               <div className='text-center'>
-                <a
-                  href={`mailto:${trainingButton.emailAddress}?subject=${encodeURIComponent(trainingButton.emailSubject)}`}
-                  className='inline-block px-8 py-3 rounded-full transition-all font-grotesk-medium text-xl border-2 border-mf-blue text-mf-blue hover:bg-mf-blue hover:text-white'
-                >
-                  {trainingButton.label}
-                </a>
+                {isInternalHref(trainingButtonHref) ? (
+                  <Link href={trainingButtonHref} className={trainingBtnClass}>
+                    {trainingButton.label}
+                  </Link>
+                ) : (
+                  <a href={trainingButtonHref} className={trainingBtnClass}>
+                    {trainingButton.label}
+                  </a>
+                )}
               </div>
             )}
           </div>

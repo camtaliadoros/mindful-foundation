@@ -1,4 +1,4 @@
-import { BlockContent } from './homepage';
+import { BlockContent, CTA } from './homepage';
 
 export interface ProgrammeFeature {
   _key: string;
@@ -36,6 +36,7 @@ export interface PerpetratorProgrammePageData {
     };
     style: 'primary' | 'secondary' | 'link';
   };
+  secondaryCta?: CTA;
   seo?: {
     title?: string;
     description?: string;

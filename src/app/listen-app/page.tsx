@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import { getListenAppPageData } from '../lib/sanity';
 import { renderBlockContent } from '../utils/sanity';
-import { CTAButton } from '../utils/cta';
+import { CTAButton, resolveCtaHref, isInternalHref } from '../utils/cta';
 import Header from '../components/Header';
 import { Feature } from '../types/listenApp';
 import { LogoSection } from '../components/LogoSection';
@@ -40,6 +41,8 @@ export default async function ListenAppPage() {
     headerSubheadline,
     whatItIsTitle,
     whatItIs,
+    whatItIsCta,
+    whatItIsSignpost,
     whyItMattersTitle,
     whyItMatters,
     featuresTitle,
@@ -52,7 +55,27 @@ export default async function ListenAppPage() {
     callToActionTitle,
     primaryCta,
     secondaryCta,
+    donatePrompt,
   } = listenAppData;
+
+  const donatePromptHref = resolveCtaHref(donatePrompt?.cta);
+  const donateBtnClass =
+    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg rounded-full px-10 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
+
+  const ctaHasValidLink = (cta?: typeof primaryCta) =>
+    !!cta &&
+    ((cta.actionType === 'url' && cta.href) ||
+      (cta.actionType === 'email' && cta.email) ||
+      (cta.actionType === 'pdf' && cta.pdf?.asset?.url));
+  const hasCtaButtons = ctaHasValidLink(primaryCta) || ctaHasValidLink(secondaryCta);
+  const hasDonatePrompt = !!(
+    donatePrompt &&
+    (donatePrompt.text || (donatePrompt.cta?.label && donatePromptHref))
+  );
+  const requestAccessHref = resolveCtaHref(whatItIsCta);
+  const signpostHref = resolveCtaHref(whatItIsSignpost?.cta);
+  const requestAccessBtnClass =
+    'inline-flex items-center gap-2 bg-mf-green text-mf-blue font-grotesk-medium text-lg md:text-xl rounded-full px-10 pt-4 pb-3! mb-0! hover:brightness-105 transition-all focus:outline-none focus:ring-2 focus:ring-mf-green/60';
 
   return (
     <>
@@ -73,14 +96,91 @@ export default async function ListenAppPage() {
 
       <main>
         {/* What It Is Section */}
-        <section className='py-16 px-6'>
+        <section className='py-16 md:py-24 px-6'>
           <div className='max-w-2xl mx-auto'>
-            <h2 className='text-3xl font-bold text-mf-blue mb-8 text-center'>
+            <h2 className='text-3xl md:text-4xl font-bold text-mf-blue mb-10 text-center tracking-tight'>
               {whatItIsTitle}
             </h2>
-            <div className='[&>*]:text-mf-dark-blue max-w-none space-y-3 font-grotesk-regular [&>*]:text-lg'>
+            <div className='[&>*]:text-mf-dark-blue max-w-none space-y-5 font-grotesk-regular [&_p]:text-lg [&_p]:leading-relaxed'>
               {renderBlockContent(whatItIs)}
             </div>
+
+            {/* Primary action */}
+            {whatItIsCta?.label && requestAccessHref && (
+              <div className='mt-12 text-center'>
+                {isInternalHref(requestAccessHref) ? (
+                  <Link href={requestAccessHref} className={requestAccessBtnClass}>
+                    {whatItIsCta.label}
+                    <span aria-hidden='true'>&rarr;</span>
+                  </Link>
+                ) : (
+                  <a href={requestAccessHref} className={requestAccessBtnClass}>
+                    {whatItIsCta.label}
+                    <span aria-hidden='true'>&rarr;</span>
+                  </a>
+                )}
+              </div>
+            )}
+
+            {/* Signpost for a different audience */}
+            {whatItIsSignpost &&
+              (whatItIsSignpost.text ||
+                (whatItIsSignpost.cta?.label && signpostHref)) && (
+                <div className='mt-12 pt-8 border-t border-mf-blue/10 flex items-start gap-4'>
+                  <span
+                    aria-hidden='true'
+                    className='flex-shrink-0 w-10 h-10 rounded-xl bg-mf-green/15 grid place-items-center mt-0.5'
+                  >
+                    <svg width='20' height='20' viewBox='0 0 22 22' fill='none' className='text-mf-green'>
+                      <path
+                        d='M11 3 20 7l-9 4-9-4 9-4Z'
+                        stroke='currentColor'
+                        strokeWidth='1.8'
+                        strokeLinejoin='round'
+                      />
+                      <path
+                        d='M5.5 9v4.2c0 1.4 2.5 2.8 5.5 2.8s5.5-1.4 5.5-2.8V9'
+                        stroke='currentColor'
+                        strokeWidth='1.8'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
+                  </span>
+                  <div className='text-mf-dark-blue font-grotesk-regular leading-relaxed'>
+                    {whatItIsSignpost.text && <p>{whatItIsSignpost.text}</p>}
+                    {whatItIsSignpost.cta?.label &&
+                      signpostHref &&
+                      (isInternalHref(signpostHref) ? (
+                        <Link
+                          href={signpostHref}
+                          className='inline-block mt-2 text-mf-blue font-semibold border-b-2 border-mf-green pb-0.5 hover:border-mf-blue transition-colors'
+                        >
+                          {whatItIsSignpost.cta.label}
+                          <span
+                            className='text-mf-green whitespace-nowrap'
+                            aria-hidden='true'
+                          >
+                            &nbsp;&rarr;
+                          </span>
+                        </Link>
+                      ) : (
+                        <a
+                          href={signpostHref}
+                          className='inline-block mt-2 text-mf-blue font-semibold border-b-2 border-mf-green pb-0.5 hover:border-mf-blue transition-colors'
+                        >
+                          {whatItIsSignpost.cta.label}
+                          <span
+                            className='text-mf-green whitespace-nowrap'
+                            aria-hidden='true'
+                          >
+                            &nbsp;&rarr;
+                          </span>
+                        </a>
+                      ))}
+                  </div>
+                </div>
+              )}
           </div>
         </section>
 
@@ -195,27 +295,53 @@ export default async function ListenAppPage() {
           />
         )}
 
-        {/* Call to Action Section */}
-        {((primaryCta &&
-          ((primaryCta.actionType === 'url' && primaryCta.href) ||
-            (primaryCta.actionType === 'email' && primaryCta.email) ||
-            (primaryCta.actionType === 'pdf' && primaryCta.pdf?.asset?.url))) ||
-          (secondaryCta &&
-            ((secondaryCta.actionType === 'url' && secondaryCta.href) ||
-              (secondaryCta.actionType === 'email' && secondaryCta.email) ||
-              (secondaryCta.actionType === 'pdf' &&
-                secondaryCta.pdf?.asset?.url)))) && (
+        {/* Call to Action + Donation Section */}
+        {(hasCtaButtons || hasDonatePrompt) && (
           <section className='bg-mf-blue text-chalk py-16 px-6'>
             <div className='max-w-2xl mx-auto text-center'>
-              <h2 className='text-2xl font-bold mb-8 '>{callToActionTitle}</h2>
-              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                {primaryCta && (
-                  <CTAButton cta={primaryCta} darkBackground={true} />
-                )}
-                {secondaryCta && (
-                  <CTAButton cta={secondaryCta} darkBackground={true} />
-                )}
-              </div>
+              {hasCtaButtons && (
+                <>
+                  <h2 className='text-2xl font-bold mb-8 '>{callToActionTitle}</h2>
+                  <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                    {primaryCta && (
+                      <CTAButton cta={primaryCta} darkBackground={true} />
+                    )}
+                    {secondaryCta && (
+                      <CTAButton cta={secondaryCta} darkBackground={true} />
+                    )}
+                  </div>
+                </>
+              )}
+
+              {/* Donation prompt */}
+              {hasDonatePrompt && (
+                <div
+                  className={
+                    hasCtaButtons ? 'mt-12 pt-10 border-t border-white/15' : ''
+                  }
+                >
+                  {donatePrompt?.text && (
+                    <p className='text-chalk/80 text-lg md:text-xl font-grotesk-regular max-w-md mx-auto'>
+                      {donatePrompt.text}
+                    </p>
+                  )}
+                  {donatePrompt?.cta?.label && donatePromptHref && (
+                    <div className='mt-7'>
+                      {isInternalHref(donatePromptHref) ? (
+                        <Link href={donatePromptHref} className={donateBtnClass}>
+                          {donatePrompt.cta.label}
+                          <span aria-hidden='true'>&rarr;</span>
+                        </Link>
+                      ) : (
+                        <a href={donatePromptHref} className={donateBtnClass}>
+                          {donatePrompt.cta.label}
+                          <span aria-hidden='true'>&rarr;</span>
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </section>
         )}

@@ -17,11 +17,26 @@ export interface Approach {
   };
 }
 
+export interface HeroBannerStat {
+  _key?: string;
+  value: string;
+  description: string;
+}
+
+export interface ThinkDifferentHeroBanner {
+  stats?: HeroBannerStat[];
+  enquiryCta?: CTA;
+  signpostText?: string;
+  signpostSubtext?: string;
+  signpostLink?: CTA;
+}
+
 export interface ThinkDifferentPageData {
   _id: string;
   _type: 'thinkDifferentPage';
   title: string;
   missionStatement: string;
+  heroBanner?: ThinkDifferentHeroBanner;
   overviewHeadline: string;
   overview: BlockContent[];
   overviewImage: {
@@ -50,8 +65,13 @@ export interface ThinkDifferentPageData {
   };
   impactTitle?: string;
   impactDescription: BlockContent[];
+  impactOutcomesLabel?: string;
   impactOutcomes: string[];
   impactStories: BlockContent[];
+  impactSupport?: {
+    heading?: string;
+    cta?: CTA;
+  };
   trainingTitle?: string;
   trainingDescription: BlockContent[];
   trainingCoversTitle?: string;
@@ -59,11 +79,7 @@ export interface ThinkDifferentPageData {
   trainingParticipantsReceiveTitle?: string;
   trainingParticipantsReceive: string[];
   trainingDelivery: string;
-  trainingButton?: {
-    label: string;
-    emailSubject: string;
-    emailAddress: string;
-  };
+  trainingButton?: CTA;
   ctaTitle?: string;
   ctaButtons: CTA[];
   seo?: {
