@@ -524,9 +524,19 @@ export default function BeyondBeliefPage() {
               className='mt-14 text-base leading-[1.6]'
               style={{ color: LAVENDER }}
             >
-              In immediate danger? Call 999. If you can&rsquo;t speak, press
-              55. National Domestic Abuse Helpline: 0808 2000 247 (free,
-              24/7).
+              In immediate danger? Call{' '}
+              <a href='tel:999' className='font-semibold text-chalk underline underline-offset-2'>
+                999
+              </a>
+              . If you can&rsquo;t speak, press 55. National Domestic Abuse
+              Helpline:{' '}
+              <a
+                href='tel:08082000247'
+                className='font-semibold text-chalk underline underline-offset-2 whitespace-nowrap'
+              >
+                0808 2000 247
+              </a>{' '}
+              (free, 24/7).
             </p>
           </div>
         </section>
