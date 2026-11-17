@@ -35,6 +35,7 @@ export default function Header({ donateButton }: HeaderProps) {
           <HeaderLink href='/about'>About</HeaderLink>
           <HeaderLink href='/think-different'>Think Different</HeaderLink>
           <HeaderLink href='/listen-app'>ListenApp</HeaderLink>
+          <HeaderLink href='/beyond-belief'>Beyond Belief</HeaderLink>
           <HeaderLink href='/perpetrator-programme'>
             Inside Power
           </HeaderLink>
@@ -103,6 +104,13 @@ export default function Header({ donateButton }: HeaderProps) {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               ListenApp
+            </Link>
+            <Link
+              href='/beyond-belief'
+              className='block text-xl hover:text-mf-green transition-colors py-3'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Beyond Belief
             </Link>
             <Link
               href='/perpetrator-programme'
