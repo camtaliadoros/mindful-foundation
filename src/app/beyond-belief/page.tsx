@@ -372,10 +372,10 @@ export default function BeyondBeliefPage() {
           </div>
         </section>
 
-        {/* 03 The 12-Session Programme */}
-        <section id='programme' className='py-16 md:py-24 px-6 bg-chalk'>
+        {/* The 12-Session Programme — hidden for now; remove `hidden` to restore */}
+        <section id='programme' hidden className='hidden py-16 md:py-24 px-6 bg-chalk'>
           <div className='max-w-5xl mx-auto'>
-            <CenteredHeader num='03' title='The 12-Session Programme'>
+            <CenteredHeader num='' title='The 12-Session Programme'>
               <p>
                 Each session builds understanding and confidence step by
                 step, from recognising abuse to planning a life beyond it.
@@ -405,10 +405,10 @@ export default function BeyondBeliefPage() {
           </div>
         </section>
 
-        {/* 04 Individual Support & Safeguarding */}
-        <section className='py-16 md:py-24 px-6 bg-white'>
+        {/* 03 Individual Support & Safeguarding */}
+        <section className='py-16 md:py-24 px-6 bg-chalk'>
           <div className='max-w-5xl mx-auto'>
-            <SplitSection num='04' title='Individual Support & Safeguarding'>
+            <SplitSection num='03' title='Individual Support & Safeguarding'>
               <p>
                 Beyond Belief isn&rsquo;t limited to the sessions. We look
                 at your whole situation (the risks you face, your emotional
@@ -437,10 +437,10 @@ export default function BeyondBeliefPage() {
           </div>
         </section>
 
-        {/* 05 Outcomes */}
+        {/* 04 Outcomes */}
         <section className='py-16 md:py-24 px-6 bg-mf-blue text-chalk'>
           <div className='max-w-5xl mx-auto'>
-            <CenteredHeader num='05' title='Outcomes' dark>
+            <CenteredHeader num='04' title='Outcomes' dark>
               <p>
                 What we aim for every person who takes part in Beyond
                 Belief:
@@ -466,10 +466,10 @@ export default function BeyondBeliefPage() {
           </div>
         </section>
 
-        {/* 06 Professional Expertise */}
+        {/* 05 Professional Expertise */}
         <section className='py-16 md:py-24 px-6 bg-chalk'>
           <div className='max-w-5xl mx-auto'>
-            <SplitSection num='06' title='Professional Expertise'>
+            <SplitSection num='05' title='Professional Expertise'>
               <p>
                 Beyond Belief draws on extensive professional experience in
                 domestic abuse victim support, safeguarding, high-risk case
